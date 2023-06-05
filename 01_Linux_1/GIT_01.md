@@ -40,6 +40,7 @@ Met een fork maak je een hele nieuwe kopie van een project, zonder gedeelde bran
 ## Opdracht
 ### Gebruikte bronnen
 Google
+Wikipedia
 ### Ervaren problemen
 Moest weer even wennen aan de github omgeving.
 ### Resultaat
