@@ -1,69 +1,20 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-f059dc9a6f8d3a56e377f745f24479a46679e63a5d9fe6f495e02850cd0d8118.svg)](https://classroom.github.com/online_ide?assignment_repo_id=6530921&assignment_repo_type=AssignmentRepo)
-# Example Cloud
-Een voorbeeld repository voor de Cloud Opleiding van TechGrounds.  
-Je kan een voorbeeld uitwerking van een opdracht vinden in [sprint_2 over S3](./sprint_2/S3.md) dat gebruik maakt van [de template](./templates/opdracht.md).
+# Micha de Jong
 
-Deze README.md is uiteindelijk ook voor jou. Vervang deze tekst met een introductie over jezelf.
+## Over mij
+[Ik ben Micha](00_includes/Foto_Micha.jpg), 34 jaar en woonachtig in Bloemendaal. Van jongs af aan was ik creatief en had ik aanleg voor
+techniek, dus begon ik eerst aan een studie Industrieel Product Ontwerp. Ik zocht echter meer vrijheid in studieinhoud, 
+waardoor ik na mijn propedeuse ben overgestapt naar filosofie. Daar raakte ik gefascineerd door logica en speltheorie, 
+die ik met mijn technische achtergrond heb gecombineerd om boardgames te gaan ontwerpen.
 
-## Organization is Key
-Je repository zal uiteindelijk de plek zijn waar je al je uitgewerkte opdrachten en opgedane kennis in plaatst. Zorg ervoor dat je een consistente folder structuur aanmaakt. Hiermee help je ons, jezelf, en je collega's, om elkaars werk te controleren en feedback te geven.
+Tijdens dat ontwerpen moest ik vaak allerlei kansberekeningen uitvoeren, waardoor ik wat python ben gaan leren 
+om dat proces te kunnen automatiseren. Het viel me op hoe leuk dat leerproces was en ik begon voor het eerst een carrière 
+in IT te overwegen. Inmiddels weet ik zeker dat ik iets wil blijven doen in de IT! Qua kerneigenschappen denk ik dat ik
+in veel werkomgevingen van waarde zou kunnen zijn:  
 
-```
-root
- |- 00_includes < Plaats hier al je screenshots
- |- 00_templates < Hier vind je de templates
- |
- |- 01_Linux_1
- |
- |- 02_Cloud_1
- |- 02_Cloud_2
- |- 02_Cloud_⋮
- |- 02_Cloud_6
- |
- |- 03_Project
- |  |- Code
- |  |- Documentatie
- |  |- Log
- |
- |- beschrijvingen < Mocht je snippets aan informatie willen opslaan zoals in het voorbeeld aangegeven
-```
+► Zelfstandig  
+► Creatief  
+► Stressbestendig  
+► Nieuwsgierig  
+► Kritisch  
 
-Zoals je kan zien zijn de eerste mappen al aangemaakt.
-
-## MarkDown Tips
-**Een volledige cheatsheet vind je [hier](https://devhints.io/markdown)**.
-
-### Wat daar niet op staat:
-Maar wel handig is om te weten:  
-```
-Als·je·een·regel·schrijft·en·je·gebruikt·één·enter.↩
-Dan·plaatst·GitHub/MarkDown·je·tekst·op·één·regel.
-```
-Als je een regel schrijft en je gebruikt één enter.
-Dan plaatst GitHub/MarkDown je tekst op één regel.
-
-Gebruikt dubbel enter om een nieuwe paragraaf te beginnen.
-```
-paragraaf·1↩
-↩
-paragraaf·2
-```
-Voor alleen een regelbreuk plaats je twee spaties aan het einde van de regel voor de enter.
-```
-regel·1··↩
-regel·2
-```
-### Opmaak shortlist
-`[text](link)` is de manier om een link te maken. Als je naar andere bestanden in je repostiory verwijst, zorg dat de links relatief zijn.
-
-`#·text` geeft een titel opmaak
-
-`##·text` geeft een kop level 1 opmaak
-
-```
-Text in `backquotes` worden geformateerd als code
-```
-
-Kijk ook anders even naar de source van deze readme!
-
-!!Push code test!!
+Daarnaast hou ik van boulderen, snowboarden, muziek, films en alle soorten games!  
