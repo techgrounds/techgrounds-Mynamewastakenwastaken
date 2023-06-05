@@ -1,12 +1,8 @@
 # Markdown
-[Geef een korte beschrijving van het onderwerp]
-
-## Key-terms
-- Markdown:  
 Markdown is een lichtgewicht opmaaktaal op basis van platte tekst die zodanig ontworpen is dat het gemakkelijk valt te 
 converteren naar HTML en andere formaten met een applicatie met dezelfde naam.
 
-
+## Key-terms
 - WYSIWYG vs WYSIWYM:  
 What you see is what you get (WYSIWYG) zijn traditionele tekst editors zoals Office Word waarin de opmaak van de tekst 
 en de tekst zelf tegelijk worden weergegeven. De uiteindelijke tekst ziet er uit zoals die in de editor wordt weergegeven. 
