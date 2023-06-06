@@ -1,7 +1,7 @@
 # Micha de Jong
 
 ## Over mij
-![Dit ben ik](00_includes\Foto_Micha.jpg)  
+![Dit ben ik](main/00_includes/Foto_Micha.jpg)  
 
 Ik ben Micha, 34 jaar en woonachtig in Bloemendaal. Van jongs af aan was ik creatief en had ik aanleg voor
 techniek, dus begon ik eerst aan een studie Industrieel Product Ontwerp. Ik zocht echter meer vrijheid in studieinhoud, 
