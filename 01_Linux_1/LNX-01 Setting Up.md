@@ -8,6 +8,10 @@ Ubuntu is een specifieke versie (distribution) van Linux.
 - AWS:  
 AWS is de cloud service van Amazon.
 
+- CLI:
+Een command line interface (CLI) is een user interface die compleet op tekst gebaseerd is, in tegenstelling tot bv een grafical user interface (GUI). Een CLI is minder gebruiksvriendelijk maar geeft veel directere controle
+voor gebruikers die weten wat ze doen.
+
 - VM:  
 Een virtual machine (VM) is een computer-omgeving die draait op software ipv direct op hardware. Er zit dan een laag software (hypervisor) tussen de hardware en de VM's die delen van de hardware toewijst aan elke VM.
 
