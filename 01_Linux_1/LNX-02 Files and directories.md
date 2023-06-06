@@ -14,7 +14,7 @@
 
 ### Resultaat
 Ik gebruik 'pwd' om de huidige map te zien:  
-![current dir](.\main\00_includes\Linux_pics\2\current_dir.png)
+![current dir](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/2/current_dir.png?raw=true)
 
 Vervolgens gebruik ik 'ls' om te zien dat er geen andere directories zijn, maar 'ls -a' laat wel wat verborgen bestanden zien:  
 ![home](..\00_includes\Linux_pics\2\home_dirs.png)
