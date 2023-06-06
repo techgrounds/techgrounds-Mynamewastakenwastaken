@@ -33,5 +33,5 @@ SSH gebruikt sleutels (key pairs) om verkeer te beveiligen. Een key pair bestaat
 Dit was op te lossen door de juiste port aan te geven:  
 ![fix](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/port_fixed.png?raw=true)
 ### Resultaat
-![Dit](..\00_includes\Linux_pics\whoami_final.png)
+![Dit](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/whoami_final.png?raw=true)
 Ik kan zien dat ik ingelogd ben onder de username: micha_
