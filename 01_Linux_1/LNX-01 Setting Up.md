@@ -22,11 +22,16 @@ SSH gebruikt sleutels (key pairs) om verkeer te beveiligen. Een key pair bestaat
 
 ## Opdracht
 ### Gebruikte bronnen
-- [Eerst installeer ik OpenSSH](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell#install-openssh-for-windows)  
-- [Vervolgens probeer ik te verbinden met de VM](https://learn.microsoft.com/en-us/azure/virtual-machines/linux-vm-connect?tabs=Linux)  
+- [OpenSSH](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell#install-openssh-for-windows)  
+- [Verbinding met de VM](https://learn.microsoft.com/en-us/azure/virtual-machines/linux-vm-connect?tabs=Linux)  
+- [Juiste port invullen](https://linuxhandbook.com/ssh-alternate-port/)
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
-
+- Ik linkte eerst naar de .pem file in mijn downloads map en kreeg een error. De key was correct maar moest blijkbaar in de .ssh map.
+- Vervolgens kreeg ik dit bericht:  
+ ![error](..\00_includes\Linux_pics\permission_denied.png)
+Dit was op te lossen door de juiste port aan te geven:  
+![fix](..\00_includes\Linux_pics\port_fixed.png)
 ### Resultaat
-[Dit](00_includes\Linux pics\Install SSH.png)
+![Dit](..\00_includes\Linux_pics\whoami_final.png)
+Ik kan zien dat ik ingelogd ben onder de username: micha_
