@@ -31,7 +31,7 @@ SSH gebruikt sleutels (key pairs) om verkeer te beveiligen. Een key pair bestaat
 - Vervolgens kreeg ik dit bericht:  
  ![error](..\00_includes\Linux_pics\permission_denied.png)
 Dit was op te lossen door de juiste port aan te geven:  
-![fix](.\00_includes/Linux_pics/port_fixed.png)
+![fix](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/port_fixed.png?raw=true)
 ### Resultaat
 ![Dit](..\00_includes\Linux_pics\whoami_final.png)
 Ik kan zien dat ik ingelogd ben onder de username: micha_
