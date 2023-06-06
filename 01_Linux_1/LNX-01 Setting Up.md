@@ -29,7 +29,7 @@ SSH gebruikt sleutels (key pairs) om verkeer te beveiligen. Een key pair bestaat
 ### Ervaren problemen
 - Ik linkte eerst naar de .pem file in mijn downloads map en kreeg een error. De key was correct maar moest blijkbaar in de .ssh map.
 - Vervolgens kreeg ik dit bericht:  
- ![error](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/permission_denied.png?raw=true)
+ ![error](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/permission_denied.png?raw=true)  
 Dit was op te lossen door de juiste port aan te geven:  
 ![fix](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/port_fixed.png?raw=true)
 ### Resultaat
