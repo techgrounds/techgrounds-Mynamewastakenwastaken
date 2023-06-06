@@ -27,3 +27,5 @@ Ik gebruik 'cd' om naar de techgrounds map te gaan, en 'cat > tekstfile.txt' om 
 
 Met 'cd ..' kan ik een map omhoog, en ik kan ook precies aangeven naar welke map ik direct wil:  
 ![directory swaps](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/2/directoweeeees.png?raw=true)
+
+![test](..\00_includes\Linux_pics\2\directoweeeees.png)
