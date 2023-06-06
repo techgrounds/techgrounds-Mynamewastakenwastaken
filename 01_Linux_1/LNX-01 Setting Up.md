@@ -12,6 +12,9 @@ AWS is de cloud service van Amazon.
 Een command line interface (CLI) is een user interface die compleet op tekst gebaseerd is, in tegenstelling tot bv een grafical user interface (GUI). Een CLI is minder gebruiksvriendelijk maar geeft veel directere controle
 voor gebruikers die weten wat ze doen.
 
+- Powershell:  
+Een programma van Microsoft met een eigen script taal voor oa automatisatie. Kan ook gebruikt worden als CLI voor bv een Ubuntu VM.
+
 - VM:  
 Een virtual machine (VM) is een computer-omgeving die draait op software ipv direct op hardware. Er zit dan een laag software (hypervisor) tussen de hardware en de VM's die delen van de hardware toewijst aan elke VM.
 
