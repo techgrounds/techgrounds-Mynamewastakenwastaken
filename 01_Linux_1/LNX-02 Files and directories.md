@@ -1,13 +1,15 @@
-# [Onderwerp]
+# Files & Directories
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+- Directories:  
+Dit is hoe 'folders' of 'mappen' worden aangeduid in Ubuntu.
+- Home:  
+Dit is de folder waar je als gebruiker in begint als je Ubuntu opstart.
 
 ## Opdracht
 ### Gebruikte bronnen
-(https://www.hostinger.com/tutorials/linux-commands)
-(https://www.hostinger.com/tutorials/how-to-install-and-use-nano-text-editor)
+[Een lijst aan Linux commands](https://www.hostinger.com/tutorials/linux-commands)
 
 ### Ervaren problemen
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
