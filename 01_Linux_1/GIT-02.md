@@ -14,7 +14,7 @@ Google
 Wikipedia
 
 ### Ervaren problemen
-Ik had geen problemen.
+Ik was compleet geconcentreerd op het afmaken van de opdracht, waardoor ik het proces niet goed vastgelegd heb.
 
 ### Resultaat
 ```
