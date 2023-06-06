@@ -8,7 +8,7 @@ Ubuntu is een specifieke versie (distribution) van Linux.
 - AWS:  
 AWS is de cloud service van Amazon.
 
-- CLI:
+- CLI:  
 Een command line interface (CLI) is een user interface die compleet op tekst gebaseerd is, in tegenstelling tot bv een grafical user interface (GUI). Een CLI is minder gebruiksvriendelijk maar geeft veel directere controle
 voor gebruikers die weten wat ze doen.
 
@@ -24,7 +24,7 @@ Dit is de software die elke VM een deel van de hardware toebedeeld. Meerdere VM'
 - SSH:  
 Secure Shell Protocol (SSH) is een manier om netwerkverkeer te versleutelen over onbeveiligde netwerken.
 
-- Key pair:
+- Key pair:  
 SSH gebruikt sleutels (key pairs) om verkeer te beveiligen. Een key pair bestaat uit twee sleutels; een private en public key. Elke gebruiker kan een public key gebruiken om zijn verkeer te versleutelen, en alleen de server heeft de unieke private key om dat verkeer weer te ontsleutelen.
 
 ## Opdracht
