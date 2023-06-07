@@ -1,11 +1,13 @@
 # Users and groups
-[Geef een korte beschrijving van het onderwerp]
+Een 'user' in Linux is een account met een eigen 'home directory'. Groepen zijn een handige manier om de 'permissions' van meerdere users tegelijk aan te passen en te beheren.
 
 ## Key-terms
-- sudo
-- adduser
-- usermod
-
+- sudo:  
+Superuser do (sudo) is een manier om als gebruiker tijdelijk handelingen uit te kunnen voeren waar 'root' permissions voor nodig zijn. Dit werkt alleen als de gebruiker permission heeft om sudo te gebruiken.
+- adduser:  
+Met deze handelingen kunnen nieuwe unieke users aangemaakt worden.
+- usermod:  
+Hiermee kunnen user gegevens aangepast worden.
 ## Opdracht
 ### Gebruikte bronnen
 https://zach-gollwitzer.medium.com/how-to-manage-users-and-groups-on-ubuntu-linux-e036f4503107  
