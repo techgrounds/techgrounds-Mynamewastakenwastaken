@@ -15,16 +15,16 @@ https://www.cyberciti.biz/faq/add-new-user-account-with-admin-access-on-linux/
 
 ### Ervaren problemen
 Usernames mogen in Linux blijkbaar geen hoofdletters bevatten.  
-![Up case](..\00_includes\Linux_pics\4\tester_error.png)  
+![Up case](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/4/tester_error.png?raw=true)  
 
 ### Resultaat
 Ik maak met 'adduser' een nieuwe gebruiker (tester) aan met het wachtwoord '1234':  
-![add user](..\00_includes\Linux_pics\4\add_tester.png)  
+![add user](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/4/add_tester.png?raw=true)  
 Vervolgens gebruik ik 'usermod' om de nieuwe gebruiker een admin te maken:  
-![admin](..\00_includes\Linux_pics\4\tester_admin.png)  
+![admin](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/4/tester_admin.png?raw=true)  
 Ik log in als de nieuwe gebruiker om te bevestigen dat ik 'sudo' kan gebruiken:  
-![](..\00_includes\Linux_pics\4\tester_admin_conf.png)  
+![conf](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/4/tester_admin_conf.png?raw=true)  
 Alle gegevens over gebruikers en groepen zijn te vinden in /etc:  
-![etc](..\00_includes\Linux_pics\4\etc.png)  
+![etc](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/4/etc.png?raw=true)  
 Met 'grep' kan ik zien dat de nieuwe gebruiker inderdaad toegevoegd is aan de admin groep:  
-![grep](..\00_includes\Linux_pics\4\grep_groups.png)
+![grep](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/4/grep_groups.png?raw=true)
