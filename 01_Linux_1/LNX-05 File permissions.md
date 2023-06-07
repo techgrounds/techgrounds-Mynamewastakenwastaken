@@ -20,7 +20,7 @@ Ik had geen problemen.
 
 ### Resultaat
 Ik heb nog bestanden staan van de vorige opdrachten, en met 'ls -l' kan ik de permissions zien:  
-![ls](..\00_includes\Linux_pics\5\long_list.png)  
+![ls](\00_includes\Linux_pics\5\long_list.png)  
 Aan de tekstbestanden is te zien dat ze read/write permissions hebben voor de user en de group 'micha_', en dat andere gebruikers alleen een read permission hebben.  
 
 Vervolgens voeg ik een execute permission (x) toe voor alle gebruikers:  
