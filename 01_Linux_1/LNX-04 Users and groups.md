@@ -2,7 +2,9 @@
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+- sudo
+- adduser
+- usermod
 
 ## Opdracht
 ### Gebruikte bronnen
