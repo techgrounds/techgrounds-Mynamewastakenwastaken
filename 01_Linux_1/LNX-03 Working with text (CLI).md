@@ -2,9 +2,12 @@
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
-- stdin
-- stdout
-- pipe
+- stdin:  
+De standard input (stdin) van Linux is tekst die ingevoerd word via een keyboard.
+- stdout:  
+De standard output (stdout) van Linux is tekst die via de terminal zichtbaar is.
+- pipe:  
+Met pipes (|) kunnen we de input en output van ingevoerde commands veranderen.
 
 ## Opdracht
 ### Gebruikte bronnen
