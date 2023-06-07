@@ -19,10 +19,10 @@ Ik had geen problemen.
 
 ### Resultaat
 Voor de setup maak ik een .txt bestand met twee zinnen tekst:  
-![setup](..\00_includes\Linux_pics\3\setup.png)  
+![setup](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/3/setup.png?raw=true)  
 Ik gebruik 'echo' met een pipe om een zin met het woord 'Techgrounds' toe te voegen:  
-![echo](..\00_includes\Linux_pics\3\echo_write.png)  
+![echo](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/3/echo_write.png?raw=true)  
 Vervolgens gebruik ik 'grep' om alleen de zin met het woord 'Techgrounds' uit de tekst te laten zien:  
-![grep](..\00_includes\Linux_pics\3\grep.png)  
+![grep](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/3/grep.png?raw=true)  
 Als laatste sla ik de gefilterde zin op in een nieuw txt bestand:    
-![new_txt](..\00_includes\Linux_pics\3\techgrounds_txt.png)
+![new_txt](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/3/techgrounds_txt.png?raw=true)
