@@ -21,7 +21,7 @@ https://devhints.io/bash
 - Omdat ik python gewend ben had ik '>' als operator gebruikt in mijn script en dat werkte niet zoals verwacht. Ik moest '-gt' gebruiken.
 
 ### Resultaat
-- Create a directory called ‘scripts’. Place all the scripts you make in this directory.
+- Create a directory called ‘scripts’. Place all the scripts you make in this directory.  
 ![[mkdir](..\00_includes\Linux_pics\7\mkdir_scripts.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/mkdir_scripts.png?raw=true)
 - Add the scripts directory to the PATH variable.  
 ![[bash](..\00_includes\Linux_pics\7\cat_bash.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/cat_bash.png?raw=true)  
