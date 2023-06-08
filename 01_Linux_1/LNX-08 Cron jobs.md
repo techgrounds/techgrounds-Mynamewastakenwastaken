@@ -23,7 +23,7 @@ Ik gebruik 'date' om een timestamp te krijgen, en schrijf dit naar een txt besta
 ![[date](..\00_includes\Linux_pics\8\timestamper.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/8/timestamper.png?raw=true)  
 - Register the script in your crontab so that it runs every minute.  
 
-Eerst start ik het cron proces op:
+Eerst start ik het cron proces op:  
 ![[enable](..\00_includes\Linux_pics\8\enable_cron.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/8/enable_cron.png?raw=true)  
 Vervolgens schrijf ik met 'crontab -l' een taak die elke minuut uitgevoerd zou moeten worden:    
 ![[timestamper](..\00_includes\Linux_pics\8\cronjob_timestamp.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/8/cronjob_timestamp.png?raw=true)  
