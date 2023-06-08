@@ -1,5 +1,5 @@
 # File permissions
-[Geef een korte beschrijving van het onderwerp]
+De handelingen die een gebruiker of groep mag uitvoeren op een file worden 'permissions' genoemd. 
 
 ## Key-terms
 - ls -l:

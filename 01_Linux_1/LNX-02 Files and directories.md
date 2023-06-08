@@ -1,5 +1,12 @@
 # Files & Directories
-[Geef een korte beschrijving van het onderwerp]
+
+In Linux zijn files (bestanden) en directories (mappen) de basiscomponenten van het bestandssysteem. Ze worden gebruikt om gegevens op te slaan, te organiseren en te beheren. Hier is een uitleg van beide concepten:
+
+Bestanden (Files): In Linux zijn bestanden de basisentiteiten die gegevens bevatten. Ze kunnen tekst, afbeeldingen, audio, video, programma's, configuratiegegevens en meer bevatten. Bestandsnamen in Linux zijn hoofdlettergevoelig, wat betekent dat "bestand.txt" en "Bestand.txt" als twee verschillende bestanden worden beschouwd. Bestanden hebben attributen zoals leesbaarheid, schrijfbaarheid en uitvoerbaarheid, die bepalen welke bewerkingen op het bestand kunnen worden uitgevoerd.
+
+Mappen (Directories): Mappen in Linux worden gebruikt om bestanden te organiseren en te structureren in een hiërarchische indeling. Ze kunnen andere mappen en bestanden bevatten. Mappen vormen een boomstructuur, waarbij de bovenste map de "root" is die wordt aangeduid met een schuine streep ("/"). Een pad zoals "/home/gebruiker/documenten" geeft bijvoorbeeld de locatie aan van de map "documenten" binnen de map "gebruiker" in de "home" -map.
+
+Door het gebruik van directories kunnen bestanden georganiseerd worden op een logische manier, waardoor het gemakkelijker wordt om ze te vinden en te beheren. Het navigeren door het bestandssysteem wordt gedaan met behulp van opdrachten zoals "cd" (change directory) om van map naar map te gaan.
 
 ## Key-terms
 - Directories:  

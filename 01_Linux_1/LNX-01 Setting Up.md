@@ -1,5 +1,5 @@
 # Linux setup
-Linux is een besturingssysteem zoals Windows of macOS, maar dan open-source.
+Een Linux-distributie is een compleet open-source besturingssysteem dat is gebaseerd op de Linux-kernel en wordt geleverd met verschillende hulpprogramma's, bibliotheken, grafische gebruikersinterfaces en applicaties. Er zijn veel populaire Linux-distributies beschikbaar, waaronder Ubuntu, Fedora, Debian, CentOS, Arch Linux en vele anderen. Elke distributie kan zijn eigen kenmerken, pakketbeheerder en gebruikerservaring hebben, maar ze delen allemaal de Linux-kernel.
 
 ## Key-terms
 - Ubuntu:  
