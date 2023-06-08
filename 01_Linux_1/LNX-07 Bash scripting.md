@@ -15,24 +15,24 @@ https://help.ubuntu.com/community/Beginners/BashScripting
 https://devhints.io/bash
 ### Ervaren problemen
 - vergeten chmod:  
-![chmod](..\00_includes\Linux_pics\7\txt_script.png)  
+![[chmod](..\00_includes\Linux_pics\7\txt_script.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/txt_script.png?raw=true)  
 - ik had spaties gebruikt:  
-![foutje](..\00_includes\Linux_pics\7\foutje.png)
-- Omdat ik python gewend ben had ik '>' als operator gebruikt in mijn script, en het werkte niet zoals verwacht. Ik moest blijkbaar '-gt' gebruiken.
+![[foutje](..\00_includes\Linux_pics\7\foutje.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/foutje.png?raw=true)
+- Omdat ik python gewend ben had ik '>' als operator gebruikt in mijn script en dat werkte niet zoals verwacht. Ik moest '-gt' gebruiken.
 
 ### Resultaat
 - Create a directory called ‘scripts’. Place all the scripts you make in this directory.
-![mkdir](..\00_includes\Linux_pics\7\mkdir_scripts.png)
+![[mkdir](..\00_includes\Linux_pics\7\mkdir_scripts.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/mkdir_scripts.png?raw=true)
 - Add the scripts directory to the PATH variable.  
-![bash](..\00_includes\Linux_pics\7\cat_bash.png)  
-![path](..\00_includes\Linux_pics\7\echo_path.png)  
+![[bash](..\00_includes\Linux_pics\7\cat_bash.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/cat_bash.png?raw=true)  
+![[path](..\00_includes\Linux_pics\7\echo_path.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/echo_path.png?raw=true)  
 - Create a script that appends a line of text to a text file whenever it is executed.  
-![txt script](..\00_includes\Linux_pics\7\txt_script_werkt!.png)  
+![[txt script](..\00_includes\Linux_pics\7\txt_script_werkt!.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/txt_script_werkt!.png?raw=true)  
 - Create a script that installs the httpd package, activates httpd, and enables httpd. Finally, your script should print the status of httpd in the terminal.  
-![httpd install](..\00_includes\Linux_pics\7\httpd_script.png)
-![httpd status](..\00_includes\Linux_pics\7\httpd_script_werkt!.png)
+![[httpd install](..\00_includes\Linux_pics\7\httpd_script.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/httpd_script.png?raw=true)
+![[httpd status](..\00_includes\Linux_pics\7\httpd_script_werkt!.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/httpd_script_werkt!.png?raw=true)
 
 - Create a script that generates a random number between 1 and 10, stores it in a variable, and then appends the number to a text file.  
-![random](..\00_includes\Linux_pics\7\random_generator.png)\
+![[random](..\00_includes\Linux_pics\7\random_generator.png)\](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/random_generator.png?raw=true)
 - Create a script that generates a random number between 1 and 10, stores it in a variable, and then appends the number to a text file only if the number is bigger than 5. If the number is 5 or smaller, it should append a line of text to that same text file instead.  
-![random5](..\00_includes\Linux_pics\7\random_generator_5.png)
+![[random5](..\00_includes\Linux_pics\7\random_generator_5.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/random_generator_5.png?raw=true)
