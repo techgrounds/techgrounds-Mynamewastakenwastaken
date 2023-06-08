@@ -27,7 +27,7 @@ Het was een uitzoekwerk om te vinden dat 'xinetd' de telnet daemon is.
 
 ### Resultaat
 Om te beginnen installeren we xinet en starten we de service:  
-![suspend](..\00_includes\Linux_pics\6\inetd_install.png)  
+![suspend](..\00_includes\Linux_pics\6\inetd_install.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/6/inetd_install.png?raw=true)  
 
 Vervolgens kunnen we met 'ps -aux' zien dat de daemon is gestart:  
 ![mem](..\00_includes\Linux_pics\6\xinet.png)  
