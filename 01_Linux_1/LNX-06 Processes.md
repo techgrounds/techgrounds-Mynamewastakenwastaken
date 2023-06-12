@@ -27,14 +27,14 @@ Het was een uitzoekwerk om te vinden dat 'xinetd' de telnet daemon is.
 
 ### Resultaat
 Om te beginnen installeren we xinet en starten we de service:  
-![suspend](..\00_includes\Linux_pics\6\inetd_install.png)  
+![[suspend](..\00_includes\Linux_pics\6\inetd_install.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/6/inetd_install.png?raw=true)  
 
 Vervolgens kunnen we met 'ps -aux' zien dat de daemon is gestart:  
-![mem](..\00_includes\Linux_pics\6\xinet.png)  
+![[mem](..\00_includes\Linux_pics\6\xinet.png)  ](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/6/xinet.png?raw=true)
 
 Met 'grep' kunnen we de informatie beter filteren met het process id (PID):  
-![](..\00_includes\Linux_pics\6\xinet_grep.png)  
+![[](..\00_includes\Linux_pics\6\xinet_grep.png)  ](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/6/xinet_grep.png?raw=true)
 Hier kunnen we zien dat de daemon 2080kb aan fysieke memory gebruikt, en tot 12032kb aan virtuele memory mag gebruiken.
 
 Als laatste kunnen we met 'sudo kill' de daemon stoppen:  
-![kill](..\00_includes\Linux_pics\6\xinet_kill.png)
+![[kill](..\00_includes\Linux_pics\6\xinet_kill.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/6/xinet_kill.png?raw=true)
