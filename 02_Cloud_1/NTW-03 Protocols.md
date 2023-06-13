@@ -1,45 +1,46 @@
 # Protocols
-[Geef een korte beschrijving van het onderwerp]
+Internetprotocollen zijn een set regels en procedures die worden gebruikt om gegevens uit te wisselen en te communiceren over computernetwerken, zoals het internet. Ze vormen de basis voor de communicatie tussen verschillende apparaten en systemen die zijn verbonden met het internet.
+
+De belangrijkste internetprotocollen zijn het Internet Protocol (IP) en het Transmission Control Protocol (TCP). Het Internet Protocol zorgt voor het adresseren en routeren van gegevenspakketten over het netwerk. TCP is verantwoordelijk voor het beheren van de betrouwbare overdracht van gegevens tussen computers, waarbij het ervoor zorgt dat de gegevens in de juiste volgorde aankomen en eventuele fouten worden gedetecteerd en hersteld.
+
+Daarnaast zijn er nog andere protocollen die op verschillende niveaus van de netwerkarchitectuur opereren, zoals het Hypertext Transfer Protocol (HTTP) voor het ophalen van webpagina's, het Simple Mail Transfer Protocol (SMTP) voor het verzenden van e-mails, het File Transfer Protocol (FTP) voor het overdragen van bestanden, en het Domain Name System (DNS) voor het vertalen van domeinnamen naar IP-adressen.
+
+Al deze protocollen werken samen om de verschillende soorten communicatie en gegevensoverdracht op het internet mogelijk te maken. Ze stellen apparaten in staat om met elkaar te communiceren en maken het internet tot een wereldwijd netwerk van netwerken.
 
 ## Key-terms
 [Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
 
 ## Opdracht
 ### Gebruikte bronnen
-[Plaats hier de bronnen die je hebt gebruikt.]
+https://en.wikipedia.org/wiki/List_of_network_protocols_(OSI_model)  
+https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force  
 
-### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
-- Fysieke laag:
-Ethernet  
-USB  
-DSL  
+- Fysieke laag: 
+USB  (Universal Serial Bus)  
+DSL  (Digital Subscriber Line)  
 
 - Datalinklaag:
-Point-to-Point Protocol (PPP)
-WiFi (IEEE 802.11)
+PPP (Point-to-Point Protocol)  
+Ethernet
 
 - Netwerklaag:  
-Internet Protocol (IP)  
-Internet Control Message Protocol (ICMP)  
-Open Shortest Path First (OSPF)  
+IP (Internet Protocol)  
+NAT (Network Address Translation)  
 
 - Transportlaag:  
-Transmission Control Protocol (TCP)  
-User Datagram Protocol (UDP)  
+TCP (Transmission Control Protocol)  
+UDP (User Datagram Protocol)  
 
 - Sessielaag:  
-Session Initiation Protocol (SIP)  
-Remote Procedure Call (RPC)  
+SDP (Sockets Direct Protocol)  
+NCP (NetWare Core Protocol)  
 
 - Presentatielaag:  
-Hypertext Markup Language (HTML)  
-Secure Sockets Layer (SSL)  
-Graphics Interchange Format (GIF)  
+SSL (Secure Socket Tunneling)  
+NCP (NetWare Core Protocol)  
 
 - Toepassingslaag:  
-HyperText Transfer Protocol (HTTP)  
-File Transfer Protocol (FTP)  
-Simple Mail Transfer Protocol (SMTP)  
+HTTP (HyperText Transfer Protocol)  
+DHCP (Dynamic Host Configuration Protocol)
