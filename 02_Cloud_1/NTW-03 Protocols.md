@@ -8,13 +8,14 @@ Daarnaast zijn er nog andere protocollen die op verschillende niveaus van de net
 Al deze protocollen werken samen om de verschillende soorten communicatie en gegevensoverdracht op het internet mogelijk te maken. Ze stellen apparaten in staat om met elkaar te communiceren en maken het internet tot een wereldwijd netwerk van netwerken.
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+- packet
 
 ## Opdracht
 ### Gebruikte bronnen
 https://en.wikipedia.org/wiki/List_of_network_protocols_(OSI_model)  
 https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force  
-
+https://www.comptia.org/content/articles/what-is-wireshark-and-how-to-use-it#:~:text=Wireshark%20is%20a%20network%20protocol,packet%20sniffer%20in%20the%20world.  
+https://www.youtube.com/watch?v=U9i7rWV-Gxo  
 
 ### Resultaat
 - Identify several other protocols and their associated OSI layer. Name at least one for each layer:
@@ -52,3 +53,13 @@ DHCP (Dynamic Host Configuration Protocol)
 Het IETF (Internet Engineering Task Force) is een open internationale gemeenschap van technische experts, ingenieurs en andere belanghebbenden die betrokken zijn bij de ontwikkeling en standaardisatie van internetprotocollen en -technologieën. Het is een vrijwillige organisatie die tot doel heeft het  functioneren van het internet te bevorderen.
 
 De IETF opereert op basis van de principes van openheid, inclusiviteit en consensus. Iedereen kan deelnemen aan de activiteiten van de IETF, ongeacht hun organisatie of achtergrond. Beslissingen worden genomen op basis van consensus, waarbij gestreefd wordt naar het bereiken van een brede overeenstemming onder de betrokkenen.
+
+- Look into wireshark and install this program. Try and capture a bit of your own network data. Search for a protocol you know and try to understand how it functions:
+
+Eerst verzamelen we wat netwerkverkeer:  
+![](..\00_includes\Cloud_pics\3\shark_packets.png)
+
+Er staan meteen al wat protocollen tussen die we herkennen, zoals TCP en UDP van de OSI-laag 4. Als we op een van de TCP packets klikken zien we meer informatie:  
+![](..\00_includes\Cloud_pics\3\shark_packets_info.png)
+
+We zien eerst dat dit de 1327e packet is die Wireshark voor ons heeft opgevangen. Verder kunnen we zien hoeveel bytes er verstuurd zijn in die packet, met welk protocol, wat de oorsprong en bestemming waren, en hoeveel tijd dat verkeer heeft gekost.
