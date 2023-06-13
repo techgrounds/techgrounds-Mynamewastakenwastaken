@@ -17,30 +17,38 @@ https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force
 
 
 ### Resultaat
-- Fysieke laag: 
+- Identify several other protocols and their associated OSI layer. Name at least one for each layer:
+
+1 - Fysieke laag: 
 USB  (Universal Serial Bus)  
 DSL  (Digital Subscriber Line)  
 
-- Datalinklaag:
+2 - Datalinklaag:
 PPP (Point-to-Point Protocol)  
 Ethernet
 
-- Netwerklaag:  
+3 - Netwerklaag:  
 IP (Internet Protocol)  
 NAT (Network Address Translation)  
 
-- Transportlaag:  
+4 - Transportlaag:  
 TCP (Transmission Control Protocol)  
 UDP (User Datagram Protocol)  
 
-- Sessielaag:  
+5 - Sessielaag:  
 SDP (Sockets Direct Protocol)  
 NCP (NetWare Core Protocol)  
 
-- Presentatielaag:  
+6 - Presentatielaag:  
 SSL (Secure Socket Tunneling)  
 NCP (NetWare Core Protocol)  
 
-- Toepassingslaag:  
+7 - Toepassingslaag:  
 HTTP (HyperText Transfer Protocol)  
 DHCP (Dynamic Host Configuration Protocol)
+
+- Figure out who determines what protocols we use and what is needed to introduce your own protocol:
+
+Het IETF (Internet Engineering Task Force) is een open internationale gemeenschap van technische experts, ingenieurs en andere belanghebbenden die betrokken zijn bij de ontwikkeling en standaardisatie van internetprotocollen en -technologieën. Het is een vrijwillige organisatie die tot doel heeft het  functioneren van het internet te bevorderen.
+
+De IETF opereert op basis van de principes van openheid, inclusiviteit en consensus. Iedereen kan deelnemen aan de activiteiten van de IETF, ongeacht hun organisatie of achtergrond. Beslissingen worden genomen op basis van consensus, waarbij gestreefd wordt naar het bereiken van een brede overeenstemming onder de betrokkenen.
