@@ -7,8 +7,8 @@ Cronjobs zijn geautomatiseerde taken die op regelmatige basis worden uitgevoerd 
 
 ## Opdracht
 ### Gebruikte bronnen
-https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-ubuntu-1804  
-https://www.linuxfoundation.org/blog/blog/classic-sysadmin-how-to-check-disk-space-on-linux-from-the-command-line#:~:text=That%20command%20is%20df%20%2DH,your%20system%20(Figure%201)  
+[Cron tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-ubuntu-1804)  
+[Check disc space](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-how-to-check-disk-space-on-linux-from-the-command-line#:~:text=That%20command%20is%20df%20%2DH,your%20system%20(Figure%201))  
 
 ### Ervaren problemen
 - had geen permission om in de /log map te schrijven, dus ik moest mezelf eerst die permission geven:  
