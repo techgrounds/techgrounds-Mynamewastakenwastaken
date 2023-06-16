@@ -1,9 +1,11 @@
 # Subnetting
-[Geef een korte beschrijving van het onderwerp]
+Subnets (subnetwerken) zijn onderverdelingen van een IP-netwerk. Een IP-netwerk bestaat uit een reeks IP-adressen die behoren tot een bepaald bereik. Door het netwerk op te splitsen in meerdere subnets, kunnen netwerkbeheerders het IP-adresbereik op een logische en efficiënte manier gebruiken en beheren.
 
 ## Key-terms
+- Subnet:  
+Elk subnet heeft zijn eigen bereik van IP-adressen dat wordt bepaald door het *subnetmasker*. Het subnetmasker bepaalt welk deel van het IP-adres wordt gebruikt voor het netwerk-ID (aan de linkerkant) en welk deel wordt gebruikt voor de host-ID (aan de rechterkant). Het subnetmasker '255.255.255.0' betekent bv dat de eerste drie blokken van '255' gebruikt worden voor het netwerk-ID, en dat er vervolgens 256 unieke adressen mogelijk zijn voor het laatste blok; 0 t/m 255.  
+Over het algemeen worden de eerste en de laatste (0 en 255 in dit geval) gereserveerd voor het netwerk-adres en het broadcast-adres.
 - CIDR
-- subnet
 
 ## Opdracht
 ### Gebruikte bronnen
