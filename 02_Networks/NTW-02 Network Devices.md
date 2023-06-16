@@ -3,11 +3,12 @@
 Netwerkapparaten zijn fysieke of virtuele apparaten die worden gebruikt om communicatie en gegevensoverdracht mogelijk te maken in computernetwerken. Deze apparaten bieden de basisinfrastructuur voor netwerkconnectiviteit en het verzenden van gegevens tussen verschillende nodes in een netwerk.
 
 ## Key-terms
-- DHCP:  
+- DHCP (Dynamic Host Configuration Protocol):  
+DHCP is een netwerkprotocol dat wordt gebruikt om automatisch IP-adressen en andere netwerkconfiguraties aan netwerkapparaten toe te wijzen. Wanneer een apparaat verbinding maakt met een netwerk, kan het een DHCP verzoek verzenden om een IP-adres te verkrijgen. De DHCP server ontvangt dit verzoek en reageert door een uniek IP-adres toe te wijzen aan dat apparaat, samen met andere configuratiegegevens zoals het subnetmasker, de default gateway en de DNS-servers.
 
 ## Opdracht
 ### Gebruikte bronnen
-ipconfig: De terminal command om mijn default gateway te vinden. Met dat IP adres kan ik vervolgens op mijn modem inloggen.
+ipconfig: De terminal command om mijn default gateway te vinden. Met dat IP-adres kan ik vervolgens op mijn modem inloggen.
 
 ### Resultaat
 - Benoem en beschrijf de functies van veel voorkomend netwerkapparatuur:
