@@ -35,7 +35,7 @@ Kortom, de router kan verschillende IPv6-adressen toewijzen aan apparaten op bas
 
 - Ontdek wat je privé IP adres is van je laptop en mobiel op wifi.
 
-![](..\00_includes\Cloud_pics\2\connected_devices.png)
+![[](..\00_includes\Cloud_pics\2\connected_devices.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/5/connected_sameip.png?raw=true)
 
 Laptop: 192.168.178.227
 Telefoon: 192.168.178.17
