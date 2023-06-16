@@ -2,10 +2,12 @@
 
 Netwerkapparaten zijn fysieke of virtuele apparaten die worden gebruikt om communicatie en gegevensoverdracht mogelijk te maken in computernetwerken. Deze apparaten bieden de basisinfrastructuur voor netwerkconnectiviteit en het verzenden van gegevens tussen verschillende nodes in een netwerk.
 
+## Key-terms
+- DHCP:  
 
 ## Opdracht
 ### Gebruikte bronnen
-ipconfig: de terminal command om mijn default gateway te vinden zodat ik op de modem kan inloggen.
+ipconfig: De terminal command om mijn default gateway te vinden. Met dat IP adres kan ik vervolgens op mijn modem inloggen.
 
 ### Resultaat
 - Benoem en beschrijf de functies van veel voorkomend netwerkapparatuur:
@@ -28,7 +30,11 @@ Een netwerkinterfacekaart is een hardwarecomponent die in een computer wordt gep
 Deze apparaten werken samen om gegevens te verzenden, te ontvangen en te routeren in een netwerkomgeving, waardoor communicatie mogelijk wordt tussen verschillende nodes, apparaten en gebruikers binnen het netwerk.
 
 - De meeste routers hebben een overzicht van alle verbonden apparaten, vind deze lijst. Welke andere informatie heeft de router over aangesloten apparatuur?
+
+Met de webbrowser kunnen we via de default gateway (192.168.178.1) op de modem inloggen. Vervolgens kunnen we een lijst opvragen met alle verbonden apparaten:  
 ![[](..\00_includes\Cloud_pics\2\connected_devices.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/2/connected_devices.png?raw=true)
 
-- Waar staat je DHCP server op jouw netwerk? Wat zijn de configuraties hiervan?
+- Waar staat je DHCP server op jouw netwerk? Wat zijn de configuraties hiervan?  
+
+Onder 'Advanced settings' kunnen we de DHCP server vinden. Hier is te zien dat in mijn geval de DHCP server IP adressen uitdeeld tussen 192.168.178.10 en 192.168.178.255:  
 ![[](..\00_includes\Cloud_pics\2\dhcp.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/2/dhcp.png?raw=true)
