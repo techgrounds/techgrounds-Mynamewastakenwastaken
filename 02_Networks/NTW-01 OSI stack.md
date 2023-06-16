@@ -13,7 +13,7 @@ https://www.geeksforgeeks.org/tcp-ip-model/
 ### Resultaat
 
 Het OSI-model verdeelt de processen die plaatsvinden tijdens communicatie tussen computers in zeven lagen:  
-![osi](..\00_includes\Cloud_pics\1\OSI_model.png)
+![[osi](..\00_includes\Cloud_pics\1\OSI_model.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/1/OSI_model.png?raw=true)
 
  Elke laag vertegenwoordigt een specifiek aspect van de communicatie en voert specifieke functies uit. De lagen worden hieronder beschreven van onder naar boven:
 
@@ -35,7 +35,7 @@ Het OSI-model verdeelt de processen die plaatsvinden tijdens communicatie tussen
 Het TCP/IP-model vormt de basis voor de werking van het moderne internet. Het is een schaalbaar model dat flexibel genoeg is om nieuwe protocollen en technologieën te ondersteunen. Hoewel het OSI-model nuttig is als conceptueel raamwerk, wordt het TCP/IP-model vaak gebruikt als de praktische basis voor netwerkimplementaties, aangezien het nauwer aansluit bij de realiteit van het internet en de hedendaagse netwerkomgevingen.
 
 In tegenstelling tot het zevenlaagse OSI-model bestaat het TCP/IP-model uit vier (vijf in sommige versies) lagen:  
-![vs](..\00_includes\Cloud_pics\1\osi_vs_tcpip.png)  
+![[vs](..\00_includes\Cloud_pics\1\osi_vs_tcpip.png)  ](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/1/osi_vs_tcpip.png?raw=true)
 De lagen worden hieronder wederom beschreven van onder naar boven:
 
 1 - Netwerktoegangslaag: Deze laag komt overeen met de gecombineerde fysieke en datalinklagen van het OSI-model. Het omvat de fysieke verbindingen, bekabeling, netwerkkaarten, en de protocollen die nodig zijn om gegevens over het lokale netwerk te verzenden, zoals Ethernet. In sommige versies van het TCP/IP-model worden de fysieke en datalink elementen in twee lagen gescheiden.
