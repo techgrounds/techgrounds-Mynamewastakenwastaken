@@ -30,8 +30,8 @@ SSH gebruikt sleutels (key pairs) om verkeer te beveiligen. Een key pair bestaat
 ## Opdracht
 ### Gebruikte bronnen
 - [OpenSSH](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell#install-openssh-for-windows)  
-- [Verbinding met de VM](https://learn.microsoft.com/en-us/azure/virtual-machines/linux-vm-connect?tabs=Linux)  
-- [Juiste port invullen](https://linuxhandbook.com/ssh-alternate-port/)
+- [Linux VM connect](https://learn.microsoft.com/en-us/azure/virtual-machines/linux-vm-connect?tabs=Linux)  
+- [SSH port](https://linuxhandbook.com/ssh-alternate-port/)
 
 ### Ervaren problemen
 - Ik linkte eerst naar de .pem file in mijn downloads map en kreeg een error. De key was correct maar moest blijkbaar in de .ssh map.
