@@ -28,7 +28,7 @@ Een netwerkinterfacekaart is een hardwarecomponent die in een computer wordt gep
 Deze apparaten werken samen om gegevens te verzenden, te ontvangen en te routeren in een netwerkomgeving, waardoor communicatie mogelijk wordt tussen verschillende nodes, apparaten en gebruikers binnen het netwerk.
 
 - De meeste routers hebben een overzicht van alle verbonden apparaten, vind deze lijst. Welke andere informatie heeft de router over aangesloten apparatuur?
-![](..\00_includes\Cloud_pics\2\connected_devices.png)
+![[](..\00_includes\Cloud_pics\2\connected_devices.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/2/connected_devices.png?raw=true)
 
 - Waar staat je DHCP server op jouw netwerk? Wat zijn de configuraties hiervan?
-![](..\00_includes\Cloud_pics\2\dhcp.png)
+![[](..\00_includes\Cloud_pics\2\dhcp.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/2/dhcp.png?raw=true)
