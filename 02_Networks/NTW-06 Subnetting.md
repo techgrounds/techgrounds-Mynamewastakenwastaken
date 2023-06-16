@@ -24,7 +24,7 @@ Als oplossing heb ik een apart subnet gemaakt voor de NAT gateway.
 1 private subnet dat internet toegang heeft via een NAT gateway. Dit subnet moet minimaal 30 hosts kunnen plaatsen (de 30 hosts is exclusief de NAT gateway).  
 1 public subnet met een internet gateway. Dit subnet moet minimaal 5 hosts kunnen plaatsen (de 5 hosts is exclusief de internet gateway).
 
-![](..\00_includes\Cloud_pics\6\VPC_map.png)
+![[](..\00_includes\Cloud_pics\6\VPC_map.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/6/VPC_map.png?raw=true)
 
 In deze architectuur maken we een publiek virtueel netwerk (192.168.0.0/24) dat verbonden is met het internet via een internet gateway. Dit netwerk gebruikt 256 ip-adressen (192.168.0.0 t/m 192.168.0.255), waarvan er 254 uitgedeeld kunnen worden (192.168.0.1 t/m 192.168.0.254).
 
