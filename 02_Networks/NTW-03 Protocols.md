@@ -57,9 +57,9 @@ De IETF opereert op basis van de principes van openheid, inclusiviteit en consen
 - Look into wireshark and install this program. Try and capture a bit of your own network data. Search for a protocol you know and try to understand how it functions:
 
 Eerst verzamelen we wat netwerkverkeer:  
-![](..\00_includes\Cloud_pics\3\shark_packets.png)
+![[](..\00_includes\Cloud_pics\3\shark_packets.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/3/shark_packets.png?raw=true)
 
 Er staan meteen al wat protocollen tussen die we herkennen, zoals TCP en UDP van de OSI-laag 4. Als we op een van de TCP packets klikken zien we meer informatie:  
-![](..\00_includes\Cloud_pics\3\shark_packets_info.png)
+![[](..\00_includes\Cloud_pics\3\shark_packets_info.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/3/shark_packets_info.png?raw=true)
 
 We zien eerst dat dit de 1327e packet is die Wireshark voor ons heeft opgevangen. Verder kunnen we zien hoeveel bytes er verstuurd zijn in die packet, met welk protocol, wat de oorsprong en bestemming waren, en hoeveel tijd dat verkeer heeft gekost.
