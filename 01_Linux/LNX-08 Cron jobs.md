@@ -1,13 +1,16 @@
 # Cron jobs
 
-Cronjobs zijn geautomatiseerde taken die op regelmatige basis worden uitgevoerd op een Linux-systeem. Het woord "cron" verwijst naar het cron-systeem, dat een tijdgebaseerde jobplanner is in Linux en andere Unix-achtige besturingssystemen.
+Cronjobs zijn geautomatiseerde taken die op regelmatige basis worden uitgevoerd op een Linux-systeem. Het woord "cron" verwijst naar het cron-systeem, dat een tijdgebaseerde jobplanner is in Linux en andere Unix-achtige besturingssystemen. Het zijn in feite bash-scripts die op vooraf bepaalde intervallen uitgevoerd worden.
 
 ## Key-terms
-- Crontab
+- Crontab:  
+Dit is de file waarin alle cronjobs vastgelegd worden. Elke regel bevat een verwijzing naar het script dat uitgevoerd moet worden, en het moment waarop dat moet gebeuren. Dat moment word vastgelegd in 5 tekens; de minuut, het uur, de dag (van de maand), de maand, en de dag (van de week). Als 'wildcard' wordt het teken '*' gebruikt, als er geen specifieke waarde ingevuld moet worden.  
+'5 4 1 * *' kan dus bv gelezen worden als 'uitvoeren om 4:05 op de eerste van elke maand'.
 
 ## Opdracht
 ### Gebruikte bronnen
 [Cron tutorial](https://www.digitalocean.com/community/tutorials/how-to-use-cron-to-automate-tasks-ubuntu-1804)  
+[Crontab calculator](https://crontab.guru/)  
 [Check disc space](https://www.linuxfoundation.org/blog/blog/classic-sysadmin-how-to-check-disk-space-on-linux-from-the-command-line#:~:text=That%20command%20is%20df%20%2DH,your%20system%20(Figure%201))  
 
 ### Ervaren problemen
