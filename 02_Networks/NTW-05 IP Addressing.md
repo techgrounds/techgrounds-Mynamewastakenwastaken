@@ -1,8 +1,13 @@
-# [Onderwerp]
-[Geef een korte beschrijving van het onderwerp]
+# IP Adressing
+IP-adressen (Internet Protocol-adressen) zijn unieke numerieke identificaties die worden gebruikt om apparaten op een netwerk te identificeren en communicatie mogelijk te maken tussen verschillende apparaten via het Internet Protocol (IP).
+
+Een IP-adres is een reeks cijfers die meestal in de vorm van vier getallen wordt weergegeven, gescheiden door punten, zoals '192.168.0.1'. Elk apparaat dat verbinding maakt met een netwerk krijgt een IP-adres toegewezen om uniek geïdentificeerd te kunnen worden binnen dat netwerk.
+
+Er zijn twee versies van IP-adressen in gebruik: IPv4 (Internet Protocol versie 4) en IPv6 (Internet Protocol versie 6). IPv4-adressen bestaan uit 32 bits en worden weergegeven in het dot-decimal formaat, zoals hierboven vermeld. IPv6-adressen zijn 128 bits lang en worden weergegeven in een hexadecimale notatie, bijvoorbeeld '2001:0db8:85a3:0000:0000:8a2e:0370:7334'.
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+- DNS:  
+DNS staat voor "Domain Name System" en het is een systeem dat wordt gebruikt om domeinnamen om te zetten in IP-adressen. Het fungeert als een soort telefoonboek van het internet, waarbij domeinnamen worden vertaald naar de numerieke IP-adressen die computers gebruiken om met elkaar te communiceren.
 
 ## Opdracht
 ### Gebruikte bronnen
