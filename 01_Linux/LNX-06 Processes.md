@@ -1,29 +1,31 @@
 # Processes
-A daemon is also called background processes. It is a UNIX or Linux program that executes inside the background. Almost every daemon contains names that finish with "d" the letter. For example, sshd, this manages connections of SSH remote access, or the httpd daemon that manages the Apache server.
 
 Alles wat op een Linux-systeem gebeurt, is in de vorm van een proces; een taak die door het besturingssysteem gestart wordt en processorcapaciteit claimt.
 
 Er kunnen in principe 2 soorten processen actief zijn:
 
-De processen die door de computer tijdens het opstarten geactiveerd worden zoals init, syslogd, etc. Deze automatisch bij het opstarten geactiveerde processen noemen we deamons.
-De tweede soort zijn de interactieve processen die door de gebruikers opgestart worden door een commando in te typen. Elk commando veroorzaakt een proces, het is de enige manier om systeembronnen van de kernel te vragen.
-Alle processen hebben een Proces-ID waarmee het bij de kernel bekend is. Ook om procesbeheer, zoals het uitschakelen, uit te voeren moet gebruik gemaakt worden van dit PID. Dit nummer wordt toegekend in de volgorde van opstarten. PID 1 is altijd het proces 'init', de moeder van alle processen, elk ander proces komt namelijk voort uit 'init'. Voor een overzicht van alle active processen is het commando # ps aux of voor een continue update # top .
+De processen die door de computer tijdens het opstarten geactiveerd worden zoals init, syslogd, etc; dit soort processen noemen we *deamons*.  
+De tweede soort zijn de interactieve processen die door de gebruikers opgestart worden door een commando in te typen. Elk commando veroorzaakt een proces dat systeembronnen van de kernel opvraagt.  
+
+Alle processen hebben een Proces-ID (PID) waarmee het bij de kernel bekend is. Om processen te beheren maken we ook gebruik van dit PID. PID 1 is altijd het proces 'init', de moeder van alle processen, en elk ander proces komt voort uit 'init'. Voor een overzicht van alle active processen kunnen we het commando 'ps aux' gebruiken.
+
 
 ## Key-terms
-- PID
-- telnet [hostname/ipaddress] [port number]
-- ps
-- pmap
-- kill
+- Daemon:  
+Een daemon kan ook beschreven worden als een 'achtergrond proces', aangezien ze altijd uitgevoerd worden op de achtergrond. Daemons kunnen meestal herkend worden aan het feit dat de naam eindigt met een 'd'. De daemon die SSH connecties mogelijk maakt heet bv 'sshd'.
+- PID:  
+Elk proces heeft een eigen unieke PID waarmee Linux de processen kan beheren. De PID's worden toegekend in de volgorde waarmee elk proces gestart wordt. 
+- kill (PID):  
+Met dit command kunnen de meeste processen gestopt worden als het PID bekend is.
+
 ## Opdracht
 ### Gebruikte bronnen
-https://www.baeldung.com/linux/resident-set-vs-virtual-memory-size
-https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using-command-line/  
-https://linuxhint.com/check_memory_usage_process_linux/  
-https://askubuntu.com/questions/59811/kill-pid-not-really-killing-the-process-why
+[Understanding memory size](https://www.baeldung.com/linux/resident-set-vs-virtual-memory-size)  
+[Check running processes](https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using-command-line/)  
+[Memory usage](https://linuxhint.com/check_memory_usage_process_linux/)  
 
 ### Ervaren problemen
-Het was een uitzoekwerk om te vinden dat 'xinetd' de telnet daemon is.
+Het was een uitzoekwerk om er achter te komen dat de telnet daemon 'xinetd' genoemd wordt. 
 
 ### Resultaat
 Om te beginnen installeren we xinet en starten we de service:  
