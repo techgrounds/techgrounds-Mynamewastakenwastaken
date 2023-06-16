@@ -1,18 +1,23 @@
 # Bash scripting
 
-Bash is een opdrachtregelinterpreter die interactieve opdrachten accepteert en scripts kan uitvoeren. Met Bash-scripting kun je reeksen opdrachten en logica in een scriptbestand plaatsen, zodat ze als een enkele eenheid kunnen worden uitgevoerd.
+Linux Bash ("Bourne Again SHell") is een commandoregelinterface (CLI) en een scriptingtaal die wordt gebruikt in besturingssystemen gebaseerd op Linux. Met Bash-scripting kun je reeksen opdrachten en logica in een scriptbestand plaatsen zodat ze met 1 handeling uitgevoerd kunnen worden. Het is daarom een krachtige tool voor het beheren en automatiseren van taken op een Linux systeem.
 
 ## Key-terms
-- Path variable
+- Bash:  
+Een bash script begint meestal met '#!/bin/bash', een regel waarmee we aangeven hoe het bestand gelezen moet worden door het systeem. Vervolgens kunnen alle handelingen die normaal uitgevoerd mogen worden door de gebruiker in het script verwerkt worden. Het voordeel is dat er ook logica in verwerkt kan worden met variabelen die door de gebruiker gedefinieerd worden.
+- PATH variable:  
+Dit is een geordende lijst met alle paden waar executable commands te vinden zijn. Als een command door de gebruiker wordt ingevoerd zoekt Linux via de PATH variable naar de file met de naam van dat command om het uit te voeren. Gebruikers kunnen zelf paden toevoegen aan de PATH, zodat commands uitgevoerd kunnen worden zonder telkens het complete pad naar de file te specificeren.
+
 
 ## Opdracht
 ### Gebruikte bronnen
-https://phoenixnap.com/kb/linux-add-to-path#:~:text=PATH%20is%20an%20environment%20variable,command%20without%20specifying%20a%20path.  
-https://www.javatpoint.com/install-httpd-ubuntu#:~:text=Introduction%20to%20httpd,the%20Hypertext%20Transfer%20Protocol%20daemon  
-https://adamtheautomator.com/ubuntu-systemctl/
-https://www.tutorialspoint.com/guide-to-generate-random-numbers-in-linux#:~:text=To%20generate%20a%20random%20number,minimum%20value%20of%20the%20range  
-https://help.ubuntu.com/community/Beginners/BashScripting  
-https://devhints.io/bash
+[Add directory to PATH](https://phoenixnap.com/kb/linux-add-to-path#:~:text=PATH%20is%20an%20environment%20variable,command%20without%20specifying%20a%20path.)  
+[HTTPD daemon](https://www.javatpoint.com/install-httpd-ubuntu#:~:text=Introduction%20to%20httpd,the%20Hypertext%20Transfer%20Protocol%20daemon)  
+[Systemctl](https://adamtheautomator.com/ubuntu-systemctl/)
+[Generate random numbers](https://www.tutorialspoint.com/guide-to-generate-random-numbers-in-linux#:~:text=To%20generate%20a%20random%20number,minimum%20value%20of%20the%20range)  
+[Bash scripting basics](https://help.ubuntu.com/community/Beginners/BashScripting)  
+[Bash cheatsheet](https://devhints.io/bash)
+
 ### Ervaren problemen
 - vergeten chmod:  
 ![[chmod](..\00_includes\Linux_pics\7\txt_script.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Linux_pics/7/txt_script.png?raw=true)  
