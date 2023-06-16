@@ -13,4 +13,4 @@ https://www.calculator.net/hex-calculator.html?b2dnumber1=d8&calctype=b2d&x=0&y=
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
-![](..\00_includes\Cloud_pics\4\bina_hex_counting.png)
+![[](..\00_includes\Cloud_pics\4\bina_hex_counting.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/4/bina_hex_counting.png?raw=true)
