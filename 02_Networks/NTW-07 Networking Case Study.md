@@ -28,7 +28,7 @@ A file server containing internal documents
 
 Ik heb de architectuur ontworpen met de aanname dat het bedrijf een redelijk beveiligde fysieke omgeving heeft voor de servers en werkomgeving. Indien dat niet het geval is, zou een vergelijkbare architectuur werken in een cloud omgeving: zolang de DMZ omgeving maar logisch afgescheiden blijft van het interne netwerk. Daarnaast heb ik de AD server behandeld als een server om advertenties aan te leveren; als er een Active Directory server bedoeld wordt zou ik aanraden om die te combineren met de Documents server.  
 
-![](..\00_includes\Security_pics\1\Network_map.png)
+![[](..\00_includes\Security_pics\1\Network_map.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Security_pics/1/Network_map_AD.png?raw=true)
 
 We sluiten eerst een router aan om verbinding te maken met het internet, met een externe firewall die zoveel mogelijk schadelijk verkeer blokkeert.  
 
