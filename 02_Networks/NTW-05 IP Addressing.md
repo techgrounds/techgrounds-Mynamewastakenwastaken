@@ -14,8 +14,6 @@ DNS staat voor "Domain Name System" en het is een systeem dat wordt gebruikt om 
 https://www.scaler.com/topics/computer-network/public-and-private-ip-address/
 https://www.whatismyip.com/  
 
-### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
 - Ontdek wat je publieke IP adres is van je laptop en mobiel op wifi.
@@ -38,18 +36,24 @@ Het is mogelijk dat de router verschillende adressen toewijst aan verschillende 
 
 Kortom, de router kan verschillende IPv6-adressen toewijzen aan apparaten op basis van verschillende factoren, zoals de netwerkconfiguratie, de manier waarop de adressen worden gegenereerd en het beheer van het adresbereik door de router.
 
-- Ontdek wat je privé IP adres is van je laptop en mobiel op wifi.
+- Ontdek wat je privé IP adres is van je laptop en mobiel op wifi. Zijn de adressen hetzelfde of niet? Leg uit waarom.  
 
-![[](..\00_includes\Cloud_pics\2\connected_devices.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/5/connected_sameip.png?raw=true)
+We kunnen op onze modem precies zien welke apparaten verbonden zijn met welke IP adressen:  
+![[](..\00_includes\Cloud_pics\2\connected_devices.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/2/connected_devices.png?raw=true)  
 
-Laptop: 192.168.178.227
-Telefoon: 192.168.178.17
+Laptop (Flapflop): 192.168.178.227  
+Mobiel (POCO): 192.168.178.17
 
-Zijn verschillend, zodat de modem weet welk verkeer naar welk apparaat gestuurd moet worden.
+Deze zijn verschillend, zodat de modem weet welke data naar welk apparaat gestuurd moet worden.
 
-- Verander het privé IP adres van je mobiel naar dat van je laptop. Wat gebeurt er dan?
+- Verander het privé IP adres van je mobiel naar dat van je laptop. Wat gebeurt er dan?  
 
-Werkt nog steeds, maar aanzienlijk trager.
-- Probeer het privé IP adres van je mobiel te veranderen naar een adres buiten je netwerk. Wat gebeurt er dan?
+Ik geef eerst mijn mobiel een statisch IP adres dat identiek is aan dat van mijn laptop. Het internet werkt daarna op beide apparaten nog steeds, maar lijkt wel iets trager. We kunnen op de modem zien wat er ongeveer aan de hand is:
 
-Geen verbinding
+![[](..\00_includes\Cloud_pics\2\connected_devices.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/Cloud_pics/5/connected_sameip.png?raw=true)  
+
+We kunnen zien dat de laptop nog steeds een IPv4 adres heeft, maar dat mijn mobiel (te herkennen aan het MAC adres) opeens de naam "Unknown" heeft gekregen. Deze heeft geen IPv4 adres meer, maar nog wel een uniek IPv6 adres, wat verklaart waarom beide apparaten nog steeds verbinding hebben.
+
+- Probeer het privé IP adres van je mobiel te veranderen naar een adres buiten je netwerk. Wat gebeurt er dan?  
+ 
+Als ik mijn mobiel een adres buiten het submaster 255.255.255.0 geef valt de verbinding helemaal weg.
