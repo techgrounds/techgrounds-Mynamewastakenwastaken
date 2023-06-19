@@ -1,17 +1,19 @@
-# [Onderwerp]
-[Geef een korte beschrijving van het onderwerp]
+# Network Detection
+
+Netwerkdetectie is het proces van identificeren en analyseren van activiteiten en gebeurtenissen in een computernetwerk om potentiële bedreigingen, beveiligingsinbreuken, ongeautoriseerde toegang of andere afwijkende gebeurtenissen te ontdekken. Het doel van netwerkdetectie is om verdachte of schadelijke activiteiten te identificeren en te reageren op mogelijke beveiligingsproblemen.
+
+Netwerkdetectie maakt gebruik van verschillende technieken en hulpmiddelen om netwerkverkeer en systeemgegevens te monitoren en te analyseren.
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+- Filter:  
+Wireshark-filters zijn expressies of regels die worden gebruikt om specifieke netwerkverkeer te filteren en weer te geven in de Wireshark-netwerkanalysator. Ze stellen je in staat om selectief pakketten te bekijken op basis van specifieke criteria, zoals bron- of doel-IP-adressen, protocollen, poortnummers, gegevenstypen en andere kenmerken van netwerkpakketten.
 
 ## Opdracht
 ### Gebruikte bronnen
 [nmap](https://www.geeksforgeeks.org/nmap-command-in-linux-with-examples/)  
-https://linuxconfig.org/linux-ipconfig-equivalent  
-https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/  
+[Linux ipconfig](https://linuxconfig.org/linux-ipconfig-equivalent)  
+[tls handshake](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/)  
 
-### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
 - Scan the network of your Linux machine using nmap. What do you find?  
