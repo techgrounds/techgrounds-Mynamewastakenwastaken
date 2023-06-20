@@ -4,12 +4,13 @@ Symmetrische encryptie is een methode waarbij dezelfde sleutel wordt gebruikt vo
 Een groot nadeel van Symmetrische encryptie is dat het aantal benodigde sleutels in een netwerk exponentieel toeneemt met het aantal gebruikers.
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+- AES
 
 ## Opdracht
 ### Gebruikte bronnen
 https://en.wikipedia.org/wiki/Caesar_cipher  
 https://en.wikipedia.org/wiki/Enigma_machine  
+https://www.javainuse.com/aesgenerator  
 
 ### Resultaat
 - Find one more historic cipher besides the Caesar cipher.  
@@ -26,4 +27,16 @@ Asymmetrische encryptie: Ook bekend als public key-cryptografie, maakt gebruik v
 
 Transport Layer Security (TLS)/Secure Sockets Layer (SSL): TLS en SSL zijn protocollen voor het versleutelen van gegevens tijdens het transport over een netwerk, zoals het internet. Ze maken gebruik van zowel symmetrische als asymmetrische encryptie om de vertrouwelijkheid, integriteit en authenticiteit van gegevens te waarborgen. TLS/SSL wordt veel gebruikt voor beveiligde communicatie, zoals HTTPS-websites en beveiligde e-mail.
 
-- Send a symmetrically encrypted message to one of your peers via the public Slack channel. They should be able to decrypt the message using a key you share with them. Try to think of a way to share this encryption key without revealing it to everyone. You are not allowed to use any private messages or other communication channels besides the public Slack channel. Analyse the shortcomings of symmetric encryption for sending messages.
+- Send a symmetrically encrypted message to one of your peers via the public Slack channel. They should be able to decrypt the message using a key you share with them.
+
+We kunnen een AES generator gebruiken om een versleuteld bericht te genereren. Als sleutel gebruiken we een getal van 128 bits, oftewel 16 cijfers; '1234567890123456'.  
+
+![](..\00_includes\Security_pics\4\AES_encrypt.png)  
+
+![](..\00_includes\Security_pics\4\encrypted_link.png)  
+
+Het versleutelde bericht 'rEoOIx95hGg68vGOF+TULELXepMsW9/GsUaBushKXHb3fdNSXqAYxfb4Ovk3gXqQ3NIogg7r9gD89krb5cequeZQopbxZD9Ck6LOEZQJjpI=' kan vervolgens met dezelfde sleutel ook weer ontsleuteld worden:
+
+![](https://miro.medium.com/v2/resize:fit:900/1*EtijPOFUlIwsMPTYmgbemA.jpeg)
+
+- Try to think of a way to share this encryption key without revealing it to everyone. You are not allowed to use any private messages or other communication channels besides the public Slack channel. Analyse the shortcomings of symmetric encryption for sending messages.
