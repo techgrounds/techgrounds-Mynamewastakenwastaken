@@ -4,12 +4,13 @@ Asymmetrische encryptie of public key-cryptografie, maakt gebruik van een paar s
 Het voordeel van asymmetrische encryptie is dat de privésleutel geheim kan worden gehouden terwijl de openbare sleutel breed kan worden verspreid.
 
 ## Key-terms
-- RSA
+- RSA:  
+RSA is een asymmetrisch encryptie-algoritme dat wordt gebruikt voor versleuteling, decodering en digitale handtekeningen. Het is vernoemd naar de drie makers van het algoritme: Ron Rivest, Adi Shamir en Leonard Adleman, die het in 1977 hebben ontwikkeld.  
+In RSA wordt een paar sleutels gegenereerd: een openbare sleutel en een privésleutel. De openbare sleutel wordt gebruikt om gegevens te versleutelen, terwijl de privésleutel wordt gebruikt om gegevens te decoderen. De sleutels bestaan uit lange wiskundige getallen en zijn mathematisch gerelateerd op een manier die het moeilijk maakt om de privésleutel te berekenen op basis van de openbare sleutel.
 
 ## Opdracht
 ### Gebruikte bronnen
 [RSA encryption generator](https://www.javainuse.com/rsagenerator)
-
 
 ### Resultaat
 -Generate a key pair.  
