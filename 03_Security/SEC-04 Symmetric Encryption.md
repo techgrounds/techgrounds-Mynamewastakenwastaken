@@ -4,13 +4,16 @@ Symmetrische encryptie is een methode waarbij dezelfde sleutel wordt gebruikt vo
 Een groot nadeel van Symmetrische encryptie is dat het aantal benodigde sleutels in een netwerk exponentieel toeneemt met het aantal gebruikers.
 
 ## Key-terms
-- AES
+- AES:  
+AES staat voor Advanced Encryption Standard, wat een symmetrisch encryptie-algoritme is dat wordt gebruikt voor het versleutelen en decoderen van gegevens. Het is een van de meest gebruikte algoritmen voor versleuteling in de moderne cryptografie.  
+AES maakt gebruik van een blokcijfer-algoritme, wat betekent dat het gegevens in blokken van een bepaalde grootte versleutelt. De standaard blokgrootte voor AES is 128 bits, en het ondersteunt ook sleutellengtes van 128 bits, 192 bits en 256 bits. Het algoritme maakt gebruik van een reeks transformaties, waaronder substitutie, permutatie en XOR-operaties, om de gegevens te versleutelen.  
+Het gebruik van AES vereist een geheime sleutel die zowel bij de verzender als bij de ontvanger bekend moet zijn. Het algoritme is efficiënt en kan snel worden uitgevoerd, zelfs op apparaten met beperkte bronnen zoals mobiele telefoons en IoT-apparaten.
 
 ## Opdracht
 ### Gebruikte bronnen
-https://en.wikipedia.org/wiki/Caesar_cipher  
-https://en.wikipedia.org/wiki/Enigma_machine  
-https://www.javainuse.com/aesgenerator  
+[Caesar cipher (wikipedia)](https://en.wikipedia.org/wiki/Caesar_cipher)  
+[Enigma machine (wikipedia)](https://en.wikipedia.org/wiki/Enigma_machine)  
+[AES encryption generator](https://www.javainuse.com/aesgenerator)  
 
 ### Resultaat
 - Find one more historic cipher besides the Caesar cipher.  
