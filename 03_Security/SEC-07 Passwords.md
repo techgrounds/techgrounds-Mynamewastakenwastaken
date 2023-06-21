@@ -6,6 +6,7 @@
 
 ## Opdracht
 ### Gebruikte bronnen
+https://crackstation.net/  
 https://www.cyberciti.biz/faq/where-are-the-passwords-of-the-users-located-in-linux/#:~:text=The%20encrypted%20passwords%20and%20other,by%20a%20colon%20(%3A)%20symbol.
 
 ### Ervaren problemen
@@ -47,5 +48,35 @@ De reductiefunctie wordt iteratief toegepast op deze gehashte waarde, gevolgd do
 
 Het gebruik van rainbow tables versnelt het proces van het achterhalen van wachtwoorden aanzienlijk in vergelijking met brute-force-aanvallen, waarbij elke mogelijke combinatie moet worden geprobeerd. Het belangrijkste beveiligingsmechanisme tegen rainbow-table-aanvallen is het gebruik van zouten en iteraties bij het hashen van wachtwoorden. Door een uniek zout aan elk wachtwoord toe te voegen en het hashen meerdere keren te herhalen, wordt het moeilijker en tijdrovender om effectief gebruik te maken van rainbow tables.
 
+- Below are two MD5 password hashes. One is a weak password, the other is a string of 16 randomly generated characters. Try to look up both hashes in a Rainbow Table.  03F6D7D1D9AAE7160C05F71CE485AD31  
+03D086C9B98F90D628F2D1BD84CFA6CA
 
-Hash: $6$ZA5snlPMBFIEyfJn$9UM04XX4f.zmWCECPbe5ZEMJuV8JERkIxdIIDDrw9/4jGMdhGzI5M98I4.9Lk09H.40LudRDyrulQimTHKVlC.
+- Create a new user in Linux with the password 12345. Look up the hash in a Rainbow Table.
+
+Hash: $6$ZA5snlPMBFIEyfJn$9UM04XX4f.zmWCECPbe5ZEMJuV8JERkIxdIIDDrw9/4jGMdhGzI5M98I4.9Lk09H.40LudRDyrulQimTHKVlC.  
+
+- Despite the bad password, and the fact that Linux uses common hashing algorithms, you won’t get a match in the Rainbow Table. This is because the password is salted. To understand how salting works, find a peer who has the same password in /etc/shadow, and compare hashes.  
+
+Hashing met zout (hash salting) is een techniek die wordt gebruikt om de beveiliging van gehashte wachtwoorden te verbeteren. Het houdt in dat er een extra willekeurige waarde (het zout) wordt toegevoegd aan het wachtwoord voordat het gehasht wordt.
+
+Hier is een uitleg van hoe hash salting werkt:
+
+Stap 1: Zoutgeneratie
+
+Voor elk gebruikerswachtwoord wordt een uniek, willekeurig zout gegenereerd. Het zout kan een lange reeks willekeurige bytes zijn.
+Stap 2: Combinatie van zout en wachtwoord
+
+Het wachtwoord van de gebruiker wordt gecombineerd met het zout. Dit kan worden gedaan door het zout en het wachtwoord aan elkaar te plakken.
+Stap 3: Hashberekening
+
+De gecombineerde waarde (zout + wachtwoord) wordt gehasht met behulp van een hashfunctie, zoals MD5, SHA-256, bcrypt, of Argon2.
+Stap 4: Opslag van het gehashte wachtwoord en zout
+
+Het gehashte wachtwoord en het zout worden samen opgeslagen in de gebruikersdatabase. Beide waarden zijn nodig om het wachtwoord te verifiëren tijdens het inlogproces.
+Bij het verifiëren van een wachtwoord tijdens het inlogproces worden dezelfde stappen gevolgd:
+
+Het ingevoerde wachtwoord wordt gecombineerd met het opgeslagen zout.
+De gecombineerde waarde wordt gehasht.
+Het resulterende gehashte waarde wordt vergeleken met het opgeslagen gehashte wachtwoord.
+Als de twee gehashte waarden overeenkomen, wordt het wachtwoord geaccepteerd.
+Door gebruik te maken van hash salting wordt de veiligheid van wachtwoorden vergroot. Het zout zorgt ervoor dat zelfs als twee gebruikers hetzelfde wachtwoord hebben, de gehashte waarden verschillend zullen zijn vanwege het unieke zout. Dit bemoeilijkt het gebruik van vooraf berekende tabellen, zoals rainbow tables, omdat ze specifiek moeten worden aangepast aan elk uniek zout. Het verhoogt ook de complexiteit en tijdsduur van brute-force-aanvallen, omdat elke gok moet worden gecombineerd met het zout en gehasht voordat deze kan worden vergeleken met het opgeslagen gehashte wachtwoord.
