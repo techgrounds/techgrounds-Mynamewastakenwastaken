@@ -8,6 +8,8 @@ Netwerkdetectie maakt gebruik van verschillende technieken en hulpmiddelen om ne
 - Filter:  
 Wireshark-filters zijn expressies of regels die worden gebruikt om specifieke netwerkverkeer te filteren en weer te geven in de Wireshark-netwerkanalysator. Ze stellen je in staat om selectief pakketten te bekijken op basis van specifieke criteria, zoals bron- of doel-IP-adressen, protocollen, poortnummers, gegevenstypen en andere kenmerken van netwerkpakketten.
 
+- TLS handshake
+
 ## Opdracht
 ### Gebruikte bronnen
 [nmap](https://www.geeksforgeeks.org/nmap-command-in-linux-with-examples/)  

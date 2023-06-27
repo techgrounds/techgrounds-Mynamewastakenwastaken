@@ -4,7 +4,7 @@ Linux Bash ("Bourne Again SHell") is een commandoregelinterface (CLI) en een scr
 
 ## Key-terms
 - Bash:  
-Een bash script begint meestal met '#!/bin/bash', een regel waarmee we aangeven hoe het bestand gelezen moet worden door het systeem. Vervolgens kunnen alle handelingen die normaal uitgevoerd mogen worden door de gebruiker in het script verwerkt worden. Het voordeel is dat er ook logica in verwerkt kan worden met variabelen die door de gebruiker gedefinieerd worden.
+Een bash script begint meestal met '#!/bin/bash'; een regel waarmee we aangeven hoe het bestand gelezen moet worden door het systeem. Vervolgens kunnen alle handelingen die normaal uitgevoerd mogen worden door de gebruiker in het script verwerkt worden. Het voordeel is dat er ook logica in verwerkt kan worden met variabelen die door de gebruiker gedefinieerd worden.
 - PATH variable:  
 Dit is een geordende lijst met alle paden waar executable commands te vinden zijn. Als een command door de gebruiker wordt ingevoerd zoekt Linux via de PATH variable naar de file met de naam van dat command om het uit te voeren. Gebruikers kunnen zelf paden toevoegen aan de PATH, zodat commands uitgevoerd kunnen worden zonder telkens het complete pad naar de file te specificeren.
 

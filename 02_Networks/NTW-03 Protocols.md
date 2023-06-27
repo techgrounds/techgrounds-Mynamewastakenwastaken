@@ -8,7 +8,9 @@ Daarnaast zijn er nog andere protocollen die op verschillende niveaus van de net
 Al deze protocollen werken samen om de verschillende soorten communicatie en gegevensoverdracht op het internet mogelijk te maken. Ze stellen apparaten in staat om met elkaar te communiceren en maken het internet tot een wereldwijd netwerk van netwerken.
 
 ## Key-terms
-- packet
+- Packet:  
+Wanneer gegevens worden verzonden van een bronapparaat naar een doelapparaat via een netwerk, worden de gegevens opgedeeld in kleinere stukjes, genaamd pakketten. Deze pakketten bevatten zowel de gegevens zelf als aanvullende informatie (metadata), zoals bron- en doeladressen, controle-informatie en sequentienummers.  
+Het opdelen van gegevens in pakketten heeft verschillende voordelen. Ten eerste maakt het de overdracht efficiënter, omdat pakketten parallel kunnen worden verzonden en ontvangen. Bovendien kan het netwerk de beste route voor elk pakket bepalen en kan het pakketten opnieuw ordenen als ze in een andere volgorde aankomen dan ze zijn verzonden. Dit verbetert de betrouwbaarheid en prestaties van de gegevensoverdracht.
 
 ## Opdracht
 ### Gebruikte bronnen

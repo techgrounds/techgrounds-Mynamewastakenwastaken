@@ -2,7 +2,8 @@
 Een firewall is een beveiligingsmechanisme dat wordt gebruikt om een netwerk of een individuele computer te beschermen tegen ongeautoriseerde toegang en ongewenst netwerkverkeer. Het fungeert als een barrière tussen een interne vertrouwde netwerkomgeving (bijvoorbeeld een bedrijfsnetwerk) en externe onbetrouwbare netwerken (bijvoorbeeld het internet). Firewalls kunnen zowel in hardware- als in softwarevorm bestaan.
 
 ## Key-terms
-[Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
+- stateless
+- statefull
 
 ## Opdracht
 ### Gebruikte bronnen
@@ -10,7 +11,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-s
 https://serverspace.io/support/help/osnovnye-komandy-ufw/#:~:text=If%20you%20get%20a%20Status,all%20ports%20on%20the%20server.  
 
 ### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
+Webport vergeten
 
 ### Resultaat
 
