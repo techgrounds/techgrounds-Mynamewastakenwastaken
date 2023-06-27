@@ -1,4 +1,4 @@
-# [Onderwerp]
+# Elastic Block Store (EBS)
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
@@ -6,10 +6,18 @@
 
 ## Opdracht
 ### Gebruikte bronnen
-[Plaats hier de bronnen die je hebt gebruikt.]
+https://www.simplified.guide/linux/disk-mount  
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html  
+
 
 ### Ervaren problemen
 [Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
-[Omschrijf hoe je weet dat je opdracht gelukt is (gebruik screenshots waar nodig).]
+- Navigate to the EC2 menu.
+Create a t2.micro Amazon Linux 2 machine with all the default settings.
+Create a new EBS volume with the following requirements:
+Volume type: General Purpose SSD (gp3)
+Size: 1 GiB
+Availability Zone: same as your EC2
+Wait for its state to be available.
