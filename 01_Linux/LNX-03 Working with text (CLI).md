@@ -15,11 +15,8 @@ Een Linux command om tekst naar de terminal te printen.
 
 ## Opdracht
 ### Gebruikte bronnen
-https://www.cyberciti.biz/faq/ubuntu-create-file-using-cat-command/  
-https://linuxhint.com/linux-pipe-command-examples/
-
-### Ervaren problemen
-Ik had geen problemen.
+[Cat command](https://www.cyberciti.biz/faq/ubuntu-create-file-using-cat-command/)  
+[Pipe command](https://linuxhint.com/linux-pipe-command-examples/)  
 
 ### Resultaat
 Voor de setup maak ik een .txt bestand met twee zinnen tekst:  

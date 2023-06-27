@@ -1,5 +1,5 @@
 # Users and groups
-Een 'user' in Linux is een account met een eigen 'home directory'. Groepen zijn een handige manier om de 'permissions' van meerdere users tegelijk aan te passen en te beheren.
+Een 'user' in Linux is een account met een eigen 'home directory'. Groepen zijn een handige manier om de permissions van meerdere users tegelijk aan te passen en te beheren.
 
 ## Key-terms
 - sudo:  
@@ -10,8 +10,7 @@ Met deze handelingen kunnen nieuwe unieke users aangemaakt worden.
 Hiermee kunnen user gegevens aangepast worden.
 ## Opdracht
 ### Gebruikte bronnen
-https://zach-gollwitzer.medium.com/how-to-manage-users-and-groups-on-ubuntu-linux-e036f4503107  
-https://www.cyberciti.biz/faq/add-new-user-account-with-admin-access-on-linux/
+[Linux add user](https://www.cyberciti.biz/faq/add-new-user-account-with-admin-access-on-linux/)  
 
 ### Ervaren problemen
 Usernames mogen in Linux blijkbaar geen hoofdletters bevatten.  

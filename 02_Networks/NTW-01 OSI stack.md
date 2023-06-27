@@ -17,7 +17,7 @@ Het OSI-model verdeelt de processen die plaatsvinden tijdens communicatie tussen
 
  Elke laag vertegenwoordigt een specifiek aspect van de communicatie en voert specifieke functies uit. De lagen worden hieronder beschreven van onder naar boven:
 
-1 - Fysieke laag: Dit is de onderste laag van het OSI-model. Het omvat de fysieke verbindingen en transmissie van ruwe bits over het netwerk. Het definieert de elektrische, mechanische en functionele kenmerken van de fysieke media.
+1 - Fysieke laag: Dit is de onderste laag van het OSI-model. Het omvat de fysieke verbindingen en transmissie van bits over het netwerk. Het definieert de elektrische, mechanische en functionele kenmerken van de fysieke media.
 
 2 - Datalinklaag: Deze laag is verantwoordelijk voor de betrouwbare overdracht van gegevens tussen aangrenzende nodes op het netwerk. Het zorgt voor foutdetectie en -correctie en organiseert gegevens in frames.
 
