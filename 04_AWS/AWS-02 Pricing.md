@@ -16,6 +16,19 @@ https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated
 ### Resultaat
 - Create an alert that you can use to monitor your own cloud costs.  
 
-
+Create alarm in Cloudwatch;
+![](..\00_includes\04_AWS\2\Cloudwatch.png)  
+Het alarm gaat af als er verwacht wordt dat ik binnen 6 uur meer dan een dollar uit ga geven;
+![](..\00_includes\04_AWS\2\Estimated_cost.png)  
+![](..\00_includes\04_AWS\2\Estimated_dollar.png)  
+Ik krijg een mailtje als het alarm afgaat;
+![](..\00_includes\04_AWS\2\Dollar_notification.png)  
+![](..\00_includes\04_AWS\2\Dollar_alarm.png)  
+Het alarm is succesvol aangemaakt;
+![](..\00_includes\04_AWS\2\Dollar_alarm_conf.png)  
 
 - Understand the options that AWS offers to get insights in your cloud costs.
+
+Cost explorer
+
+Pricing calculator
