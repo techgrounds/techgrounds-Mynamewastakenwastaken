@@ -9,8 +9,6 @@
 https://docs.aws.amazon.com/  
 https://aws.amazon.com/blogs/architecture/what-to-consider-when-selecting-a-region-for-your-workloads/  
 
-### Ervaren problemen
-[Geef een korte beschrijving van de problemen waar je tegenaan bent gelopen met je gevonden oplossing.]
 
 ### Resultaat
 - What is an AWS Availability Zone?  
