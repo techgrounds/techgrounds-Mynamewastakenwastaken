@@ -24,7 +24,7 @@ Het alarm gaat af als er verwacht wordt dat ik binnen 6 uur meer dan een dollar 
 Ik krijg een mailtje als het alarm afgaat;
 ![[](..\00_includes\04_AWS\2\Dollar_notification.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Dollar_notification.png?raw=true)  
 ![[](..\00_includes\04_AWS\2\Dollar_alarm.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Dollar_alarm.png?raw=true)  
-Het alarm is succesvol aangemaakt;
+Het alarm is succesvol aangemaakt;  
 ![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Dollar_alarm_conf.png?raw=true)  
 
 - Understand the options that AWS offers to get insights in your cloud costs.
