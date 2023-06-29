@@ -32,8 +32,22 @@ New Security Group:
 Name: Web server SG  
 Rules: Allow SSH, HTTP and HTTPS from anywhere  
 
+We starten eerst de EC2 instance met de aangegeven specificaties;
+![](..\00_includes\04_AWS\6\EC2_ami.png)  
+![](..\00_includes\04_AWS\6\EC2_userdata.png)  
+![](..\00_includes\04_AWS\6\EC2_secgroup.png)  
 
 - Wait for the Status Checks to get out of the initialization stage. When you click the Status Checks tab, you should see that the System reachability and the Instance reachability checks have passed.  
+
+We kunnen zien dat de instance klaar is voor gebruik;  
+![](..\00_includes\04_AWS\6\EC2_conf.png)  
+
 - Log in to your EC2 instance using an ssh connection.
 Terminate your instance.
 
+Als laatste log ik met de sleutel en het publieke IP adres in via powershell;  
+![](..\00_includes\04_AWS\6\EC2_login.png)  
+Om de instance te kunnen verwijderen moeten we eerst een beveiliging weghalen;
+![](..\00_includes\04_AWS\6\remove_prot.png)  
+![](..\00_includes\04_AWS\6\terminate.png)  
+![](..\00_includes\04_AWS\6\terminate_conf.png)  
