@@ -18,12 +18,12 @@ Share the object URL of your cat picture with a peer. Make sure they are able to
 
 Eerst maken we een nieuwe bucket met de aangegeven specificaties;  
 ![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/create_bucket.png?raw=true)  
-![](..\00_includes\04_AWS\5\bucket_name.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/bucket_name.png?raw=true)  
 Vervolgens uploaden we het plaatje;  
-![](..\00_includes\04_AWS\5\upload.png)  
-![](..\00_includes\04_AWS\5\upload_conf.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/upload.png?raw=true)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/upload_conf.png?raw=true)  
 In het overzicht kunnen we vervolgens de url naar ons object vinden; https://techgrounds-micha-testbucket.s3.eu-central-1.amazonaws.com/Cat.jpg. Zolang de bucket online blijft is onze kat bereikbaar;  
-![](..\00_includes\04_AWS\5\Cat.jpg)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/Cat.jpg?raw=true)  
 
 
 - Create new bucket with the following requirements:  
@@ -33,12 +33,12 @@ Enable static website hosting.
 Share the bucket website endpoint with a peer. Make sure they are able to see the website.  
 
 We maken een nieuwe bucket voor de website, waarvoor we static hosting aanzetten;  
-![](..\00_includes\04_AWS\5\bucket_site.png)  
-![](..\00_includes\04_AWS\5\enable_hosting.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/bucket_site.png?raw=true)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/enable_hosting.png?raw=true)  
 We moeten de policy aanpassen zodat de content bereikbaar is voor alle gebruikers;  
-![](..\00_includes\04_AWS\5\bucket_policy.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/bucket_policy.png?raw=true)  
 Uiteindelijk is de website bereikbaar met de volgende link; http://techgrounds-micha-static-website.s3-website.eu-central-1.amazonaws.com/.  
-![](..\00_includes\04_AWS\5\endpoint_test.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/endpoint_test.png?raw=true)  
 
 
 
