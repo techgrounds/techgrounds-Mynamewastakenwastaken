@@ -1,5 +1,5 @@
 # Elastic Block Store (EBS)
-[Geef een korte beschrijving van het onderwerp]
+EBS (Elastic Block Store) is een opslagservice die wordt aangeboden door AWS. Het is een blokopslagoplossing die ontworpen is om persistent en duurzaam opslaggeheugen te bieden aan EC2-instances (Elastic Compute Cloud) in de AWS-cloudomgeving.
 
 ## Key-terms
 [Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
