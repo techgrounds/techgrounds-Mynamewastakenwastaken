@@ -1,5 +1,6 @@
 # AWS Global Infrastructure
-[Geef een korte beschrijving van het onderwerp]
+
+De AWS Global Infrastructure is het uitgebreide netwerk van fysieke datacenters en geavanceerde infrastructuur die wereldwijd door Amazon Web Services wordt beheerd. Het strekt zich uit over verschillende geografische regio's en biedt klanten overal ter wereld toegang tot de services en resources van AWS.
 
 ## Key-terms
 [Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
