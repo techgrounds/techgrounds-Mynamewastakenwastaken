@@ -1,5 +1,5 @@
 # AWS Pricing
-[Geef een korte beschrijving van het onderwerp]
+AWS biedt verschillende services en plannen aan om kosten te kunnen voorspellen en beheren.
 
 ## Key-terms
 [Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
