@@ -17,7 +17,7 @@ https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html
 
 - Allocate an Elastic IP address to your account.  
 
-![](..\00_includes\04_AWS\10\Elastic_IP.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/Elastic_IP.png?raw=true)  
 
 - Create a new VPC with the following requirements:  
 Region: Frankfurt (eu-central-1)  
@@ -34,10 +34,10 @@ CIDR: 10.0.1.0/24
 AZ: eu-central-1a  
 
 Eerst maken we de nieuwe VPC aan;  
-![](..\00_includes\04_AWS\10\VPC_create1.png)  
-![](..\00_includes\04_AWS\10\VPC_create2.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/VPC_create1.png?raw=true)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/VPC_create2.png?raw=true)  
 In de preview kunnen we controleren of het er goed uit ziet;
-![](..\00_includes\04_AWS\10\VPC_preview.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/VPC_preview.png?raw=true)  
 
 - Create an additional public subnet with the following requirements:  
 VPC: Lab VPC  
@@ -51,8 +51,8 @@ AZ: eu-central-1b
 CIDR: 10.0.3.0/24  
 
 Onder 'subnets' kunnen we extra subnets aanmaken;  
-![](..\00_includes\04_AWS\10\VPC_extra_subs.png)  
-![](..\00_includes\04_AWS\10\Subnet_map.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/VPC_extra_subs.png?raw=true)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/Subnet_map.png?raw=true)  
 
 - View the main route table for Lab VPC. It should have an entry for the NAT gateway. Rename this route table to Private Route Table.  
 Explicitly associate the private route table with your two private subnets.  
@@ -60,11 +60,11 @@ View the other route table for Lab VPC. It should have an entry for the internet
 Explicitly associate the public route table to your two public subnets.  
 
 De publieke subnets zijn te herkennen aan de route met destination '0.0.0.0/0' en target 'igw';
-![](..\00_includes\04_AWS\10\Subnet_route.png)  
+![]([..\00_includes\04_AWS\10\Subnet_route.png](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/Subnet_route.png?raw=true))  
 We geven de nieuwe subnets de correcte route tables en passen de naamgeving aan;  
-![](..\00_includes\04_AWS\10\Subnet_route_edit.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/Subnet_route_edit.png?raw=true)  
 We kunnen in het overzicht zien dat het klopt;  
-![](..\00_includes\04_AWS\10\Subnet_map_final.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/Subnet_map_final.png?raw=true)  
 
 - Create a Security Group with the following requirements:
 Name: Web SG  
@@ -73,7 +73,7 @@ VPC: Lab VPC
 Inbound rule: allow HTTP access from anywhere  
 Outbound rule: Allow all traffic  
 
-![](..\00_includes\04_AWS\10\Security_rules.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/Security_rules.png?raw=true)  
 
 - Launch an EC2 instance with the following requirements:
 AMI: Amazon Linux 2  
@@ -97,10 +97,10 @@ Security Group: Web SG
 Key pair: no key pair  
 
 We starten een EC2 instance met de aangegeven specificaties en wachten tot die opgestart is;  
-![](..\00_includes\04_AWS\10\EC2_create.png)  
-![](..\00_includes\04_AWS\10\EC2_launch.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/EC2_create.png?raw=true)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/EC2_launch.png?raw=true)  
 
 - Connect to your server using the public IPv4 DNS name.
 
 Als laatste kunnen we met het publieke IP adres via http verbinding maken;
-![](..\00_includes\04_AWS\10\EC2_connected.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/10/EC2_connected.png?raw=true)  
