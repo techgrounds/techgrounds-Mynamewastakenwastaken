@@ -17,15 +17,15 @@ https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated
 - Create an alert that you can use to monitor your own cloud costs.  
 
 Create alarm in Cloudwatch;
-![](..\00_includes\04_AWS\2\Cloudwatch.png)  
+![[](..\00_includes\04_AWS\2\Cloudwatch.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Cloudwatch.png?raw=true)  
 Het alarm gaat af als er verwacht wordt dat ik binnen 6 uur meer dan een dollar uit ga geven;
-![](..\00_includes\04_AWS\2\Estimated_cost.png)  
-![](..\00_includes\04_AWS\2\Estimated_dollar.png)  
+![[](..\00_includes\04_AWS\2\Estimated_cost.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Estimated_cost.png?raw=true)  
+![[](..\00_includes\04_AWS\2\Estimated_dollar.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Estimated_dollar.png?raw=true)  
 Ik krijg een mailtje als het alarm afgaat;
-![](..\00_includes\04_AWS\2\Dollar_notification.png)  
-![](..\00_includes\04_AWS\2\Dollar_alarm.png)  
+![[](..\00_includes\04_AWS\2\Dollar_notification.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Dollar_notification.png?raw=true)  
+![[](..\00_includes\04_AWS\2\Dollar_alarm.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Dollar_alarm.png?raw=true)  
 Het alarm is succesvol aangemaakt;
-![](..\00_includes\04_AWS\2\Dollar_alarm_conf.png)  
+![[](..\00_includes\04_AWS\2\Dollar_alarm_conf.png)](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Dollar_alarm_conf.png?raw=true)https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/2/Dollar_alarm_conf.png?raw=true  
 
 - Understand the options that AWS offers to get insights in your cloud costs.
 
