@@ -1,4 +1,4 @@
-# [Onderwerp]
+# Shared Responsibility Model
 [Geef een korte beschrijving van het onderwerp]
 
 ## Key-terms
