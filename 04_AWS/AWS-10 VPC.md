@@ -1,5 +1,5 @@
 # VPC
-[Geef een korte beschrijving van het onderwerp]
+VPC (Virtual Private Cloud) is een service die wordt aangeboden door AWS en stelt gebruikers in staat om een virtueel privénetwerk in de cloud te creëren en te configureren. Met VPC kunnen gebruikers geïsoleerde en veilige netwerkomgevingen creëren waarin ze hun AWS-resources kunnen implementeren.
 
 ## Key-terms
 [Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
