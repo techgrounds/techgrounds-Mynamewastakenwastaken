@@ -1,5 +1,5 @@
 # EC2
-[Geef een korte beschrijving van het onderwerp]
+EC2 (Elastic Compute Cloud) is een van de kernservices die wordt aangeboden door Amazon Web Services (AWS). Het is een schaalbare virtuele serveromgeving waarmee gebruikers rekenkracht in de cloud kunnen huren om applicaties te draaien en verschillende workloads uit te voeren.
 
 ## Key-terms
 [Schrijf hier een lijst met belangrijke termen met eventueel een korte uitleg.]
