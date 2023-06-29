@@ -17,7 +17,7 @@ Upload a cat picture to your bucket.
 Share the object URL of your cat picture with a peer. Make sure they are able to see the picture.
 
 Eerst maken we een nieuwe bucket met de aangegeven specificaties;  
-![](..\00_includes\04_AWS\5\create_bucket.png)  
+![](https://github.com/techgrounds/techgrounds-Mynamewastakenwastaken/blob/main/00_includes/04_AWS/5/create_bucket.png?raw=true)  
 ![](..\00_includes\04_AWS\5\bucket_name.png)  
 Vervolgens uploaden we het plaatje;  
 ![](..\00_includes\04_AWS\5\upload.png)  
