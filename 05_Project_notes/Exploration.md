@@ -15,6 +15,7 @@ SSH of RDP verbindingen met de webserver mogen alleen tot stand komen vanuit de 
 
 Onduidelijkheden:
 - Welk type sleutel moet gebruikt worden voor de versleuteling?
+- Specificaties van de VM hardware?
 - Waar moeten precies backups van gemaakt worden? Alleen de gekoppelde volumes of ook de AMI?
 - Informatie om de webserver automatisch te kunnen installeren
 - Wat zijn de vertrouwde IP locaties?
