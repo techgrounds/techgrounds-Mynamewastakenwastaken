@@ -1,19 +1,9 @@
-import { Duration, Stack, StackProps } from 'aws-cdk-lib';
-import * as sns from 'aws-cdk-lib/aws-sns';
-import * as subs from 'aws-cdk-lib/aws-sns-subscriptions';
-import * as sqs from 'aws-cdk-lib/aws-sqs';
-import { Construct } from 'constructs';
+import * as cdk from 'aws-cdk-lib';
 
-export class ProjectStack extends Stack {
-  constructor(scope: Construct, id: string, props?: StackProps) {
+export class ProjectStack extends cdk.Stack {
+  constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const queue = new sqs.Queue(this, 'ProjectQueue', {
-      visibilityTimeout: Duration.seconds(300)
-    });
-
-    const topic = new sns.Topic(this, 'ProjectTopic');
-
-    topic.addSubscription(new subs.SqsSubscription(queue));
+    // nothing here!
   }
 }
