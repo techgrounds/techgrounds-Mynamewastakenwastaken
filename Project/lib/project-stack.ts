@@ -21,10 +21,16 @@ export class ProjectStack extends cdk.Stack {
       cidr: '10.20.20.0/24',
       subnetConfiguration: [  // Configuration for the subnets
         {
-          name: 'AdminPrivate',
+          name: 'AdminPublic',
           subnetType: ec2.SubnetType.PUBLIC,  // Public subnet
         },
       ],
     });
+
+    const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
+      peerVpcId: 'ProductionVPC',
+      vpcId: 'AdminVPC',
+    });
+
   }
 }
