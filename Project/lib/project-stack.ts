@@ -6,8 +6,8 @@ export class ProjectStack extends cdk.Stack {
     super(scope, id, props);
 
     const vpc = new ec2.Vpc(this, 'ProductionVPC', {
+      ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
       maxAzs: 2,  // We're using 2 AZ's
-      cidr: '10.10.10.0/24',
       subnetConfiguration: [  // Configuration for the subnets
         {
           name: 'ProductionPublic',
@@ -17,8 +17,8 @@ export class ProjectStack extends cdk.Stack {
     });
 
     const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
+      ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
       maxAzs: 2,  // We're using 2 AZ's
-      cidr: '10.20.20.0/24',
       subnetConfiguration: [  // Configuration for the subnets
         {
           name: 'AdminPublic',
