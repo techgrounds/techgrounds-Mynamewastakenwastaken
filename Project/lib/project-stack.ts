@@ -15,5 +15,16 @@ export class ProjectStack extends cdk.Stack {
         },
       ],
     });
+
+    const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
+      maxAzs: 2,  // We're using 2 AZ's
+      cidr: '10.20.20.0/24',
+      subnetConfiguration: [  // Configuration for the subnets
+        {
+          name: 'AdminPrivate',
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,  // Private subnet
+        },
+      ],
+    });
   }
 }
