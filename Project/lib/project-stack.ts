@@ -22,7 +22,7 @@ export class ProjectStack extends cdk.Stack {
       subnetConfiguration: [  // Configuration for the subnets
         {
           name: 'AdminPrivate',
-          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,  // Private subnet
+          subnetType: ec2.SubnetType.PUBLIC,  // Public subnet
         },
       ],
     });
