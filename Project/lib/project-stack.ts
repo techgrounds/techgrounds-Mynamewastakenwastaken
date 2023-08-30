@@ -7,16 +7,11 @@ export class ProjectStack extends cdk.Stack {
 
     const vpc = new ec2.Vpc(this, 'ProductionVPC', {
       maxAzs: 2,  // We're using 2 AZ's
+      cidr: '10.10.10.0/24',
       subnetConfiguration: [  // Configuration for the subnets
         {
-          cidrMask: 24,  // The CIDR notation for a subnet (optional)
           name: 'ProductionPublic',
-          subnetType: ec2.SubnetType.PUBLIC,  // Indicates this is a public subnet
-        },
-        {
-          cidrMask: 24,  // The CIDR notation for a subnet (optional)
-          name: 'ProductionPrivate',
-          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,  // Indicates this is a private subnet
+          subnetType: ec2.SubnetType.PUBLIC,  // Public subnet
         },
       ],
     });
