@@ -32,5 +32,7 @@ export class ProjectStack extends cdk.Stack {
       vpcId: 'vpc-0cd8c01751ec77a28',
     });
 
+    
+
   }
 }
