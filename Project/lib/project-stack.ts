@@ -70,13 +70,13 @@ export class ProjectStack extends cdk.Stack {
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
-      // Create role for the webserver instance
-    const instanceRole = new iam.Role(this, 'WebRole', {
-      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      roleName: 'WebserverRole',
-    });
+    //   // Create role for the webserver instance
+    // const instanceRole = new iam.Role(this, 'WebRole', {
+    //   assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+    //   roleName: 'WebserverRole',
+    // });
 
-    instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
+    // instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
     // const instance = new ec2.Instance(this, 'Webserver', {
     //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
