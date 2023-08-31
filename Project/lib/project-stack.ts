@@ -85,7 +85,7 @@ export class ProjectStack extends cdk.Stack {
       role: instanceRole,
     });
     
-    const userDataScript = readFileSync('./lib/user-data.sh', 'utf8');
+    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
 
     instance.addUserData(userDataScript);
 
