@@ -68,12 +68,32 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow HTTP traffic
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
 
+      // Create role for the webserver instance
     const instanceRole = new iam.Role(this, 'WebRole', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      roleName: 'Webserver',
+      roleName: 'WebserverRole',
     });
 
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
+
+    const instance = new ec2.Instance(this, 'Webserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestAmazonLinux2(),
+      vpc,
+      ProductionSG,
+      role: instanceRole,
+      userData: ec2.UserData.forLinux({
+        shebang: '#!/bin/bash',
+        contents: `
+        #!/bin/bash
+        yum -y install httpd
+        systemctl enable httpd
+        systemctl start httpd
+        echo '<html><h1>Hello From Your Web Server!</h1></html>' > /var/www/html/index.html
+        `,
+      }),
+    });
+    
 
   }
 }
