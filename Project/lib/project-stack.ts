@@ -32,15 +32,23 @@ export class ProjectStack extends cdk.Stack {
       vpcId: vpc2.vpcId,
     });
 
-      // Loop through each public subnet and add the route
+      // Loop through each public subnet of Production vpc and add the peering route
     vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      // const routeTable = subnet.routeTable;
       new ec2.CfnRoute(this, 'PeeringRoute' + index, {
       routeTableId,
       destinationCidrBlock: '10.20.20.0/24',
       vpcPeeringConnectionId: VPCPeeringConnection.attrId
       });
-    })
+    });
     
+      // Loop through each public subnet of Admin vpc and add the peering route
+    vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'PeeringRoute' + index, {
+      routeTableId,
+      destinationCidrBlock: '10.10.10.0/24',
+      vpcPeeringConnectionId: VPCPeeringConnection.attrId
+      });
+    });
+
   }
 }
