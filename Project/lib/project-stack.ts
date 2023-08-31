@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import {readFileSync} from 'fs';
 
 export class ProjectStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -80,20 +81,13 @@ export class ProjectStack extends cdk.Stack {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       vpc,
-      ProductionSG,
+      securityGroup: ProductionSG,
       role: instanceRole,
-      userData: ec2.UserData.forLinux({
-        shebang: '#!/bin/bash',
-        contents: `
-        #!/bin/bash
-        yum -y install httpd
-        systemctl enable httpd
-        systemctl start httpd
-        echo '<html><h1>Hello From Your Web Server!</h1></html>' > /var/www/html/index.html
-        `,
-      }),
     });
     
+    const userDataScript = readFileSync('./lib/user-data.sh', 'utf8');
+
+    instance.addUserData(userDataScript);
 
   }
 }
