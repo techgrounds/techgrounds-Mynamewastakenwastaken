@@ -25,10 +25,10 @@ export class ProjectStack extends cdk.Stack {
           subnetType: ec2.SubnetType.PUBLIC,  // Public subnet
         },
       ],
-    });
-    const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
-      peerVpcId: vpc.vpcId,
-      vpcId: vpc2.vpcId,
-    });
+    // });
+    // const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
+    //   peerVpcId: vpc.vpcId,
+    //   vpcId: vpc2.vpcId,
+    // });
   }
 }
