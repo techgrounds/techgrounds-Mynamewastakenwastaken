@@ -66,8 +66,9 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
 
-      // Add an inbound rule to allow HTTP traffic
+      // Add an inbound rule to allow HTTP/S traffic
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
       // Create role for the webserver instance
     const instanceRole = new iam.Role(this, 'WebRole', {
@@ -86,7 +87,6 @@ export class ProjectStack extends cdk.Stack {
     });
     
     const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-
     instance.addUserData(userDataScript);
 
   }
