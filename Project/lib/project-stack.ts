@@ -78,16 +78,16 @@ export class ProjectStack extends cdk.Stack {
 
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
-    const instance = new ec2.Instance(this, 'Webserver', {
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-      machineImage: ec2.MachineImage.latestAmazonLinux2(),
-      vpc,
-      securityGroup: ProductionSG,
-      role: instanceRole,
-    });
+    // const instance = new ec2.Instance(this, 'Webserver', {
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
+    //   vpc,
+    //   securityGroup: ProductionSG,
+    //   role: instanceRole,
+    // });
     
-    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    instance.addUserData(userDataScript);
+    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
+    // instance.addUserData(userDataScript);
 
   }
 }
