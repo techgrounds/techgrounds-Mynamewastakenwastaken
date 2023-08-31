@@ -28,8 +28,8 @@ export class ProjectStack extends cdk.Stack {
     });
 
     const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
-      peerVpcId: vpc.node.id,
-      vpcId: vpc2.node.id,
+      peerVpcId: vpc.node.addr,
+      vpcId: vpc2.node.addr,
     });
   }
 }
