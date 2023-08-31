@@ -26,9 +26,9 @@ export class ProjectStack extends cdk.Stack {
         },
       ],
     });
-    // const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
-    //   peerVpcId: vpc.vpcId,
-    //   vpcId: vpc2.vpcId,
-    // });
+    const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
+      peerVpcId: vpc.vpcId,
+      vpcId: vpc2.vpcId,
+    });
   }
 }
