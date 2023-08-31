@@ -50,5 +50,17 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
+      // Create a security group for your instances
+    const ProductionSG = new ec2.SecurityGroup(this, 'AdminAccess', {
+        vpc,
+      });
+
+      // Add an ingress rule to allow SSH traffic only from 10.20.20.0/24
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
+
+      // Add an ingress rule to allow RDP traffic only from 10.20.20.0/24
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
+
+
   }
 }
