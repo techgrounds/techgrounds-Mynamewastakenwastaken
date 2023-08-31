@@ -44,7 +44,7 @@ export class ProjectStack extends cdk.Stack {
       vpcPeeringConnectionId: VPCPeeringConnection.attrId
       });
     });
-    
+
       // Loop through each public subnet of Admin vpc and add the peering route
     vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
       new ec2.CfnRoute(this, 'ProductionPeering' + index, {
@@ -65,11 +65,14 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
 
-    const instanceRole = new iam.Role(this, 'InstanceRole', {
+      // Add an inbound rule to allow HTTP traffic
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+
+    const instanceRole = new iam.Role(this, 'WebRole', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
       roleName: 'Webserver',
     });
-    
+
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
   }
