@@ -34,7 +34,8 @@ export class ProjectStack extends cdk.Stack {
 
       // Loop through each public subnet and add the route
     for (const subnet of vpc.publicSubnets) {
-      subnet.addRoute('PeeringRoute', {
+      const routeTable = subnet.routeTable;
+      routeTable.addRoute('PeeringRoute', {
         routerId: VPCPeeringConnection.attrId,
         routerType: ec2.RouterType.VPC_PEERING_CONNECTION,
         destinationCidrBlock: '10.20.20.0/24',
