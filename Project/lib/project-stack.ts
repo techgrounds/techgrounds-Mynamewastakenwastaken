@@ -92,56 +92,56 @@ export class ProjectStack extends cdk.Stack {
       keyName: 'WindowsKey',
     });
 
-    //   // Create role for the admin instance
-    // const instanceRole2 = new iam.Role(this, 'Instance2', {
-    //   assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-    //   roleName: 'AdminRole',
-    // });
+      // Create role for the admin instance
+    const instanceRole2 = new iam.Role(this, 'Instance2', {
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+      roleName: 'AdminRole',
+    });
 
-    // instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
-    // instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
+    instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
+    instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
-    //   // Create production instance
-    // const instance = new ec2.Instance(this, 'Webserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
-    //   vpc: vpc,
-    //   securityGroup: ProductionSG,
-    //   role: instanceRole,
-    // });
+      // Create production instance
+    const instance = new ec2.Instance(this, 'Webserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestAmazonLinux2(),
+      vpc: vpc,
+      securityGroup: ProductionSG,
+      role: instanceRole,
+    });
     
-    //   // Create admin instance
-    // const instance2 = new ec2.Instance(this, 'Admninserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
-    //   vpc: vpc2,
-    //   securityGroup: AdminSG,        
-    //   role: instanceRole2,
-    //   keyName: 'WindowsKey',
-    // });
+      // Create admin instance
+    const instance2 = new ec2.Instance(this, 'Admninserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
+      vpc: vpc2,
+      securityGroup: AdminSG,        
+      role: instanceRole2,
+      keyName: 'WindowsKey',
+    });
 
-    // instance2.addUserData('123456');
+    instance2.addUserData('123456');
 
-    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    // instance.addUserData(userDataScript);
-    // instance2.addUserData(userDataScript);
+    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
+    instance.addUserData(userDataScript);
+    instance2.addUserData(userDataScript);
 
-    //   // default = general purpose SSD
-    // const volume = new ec2.Volume(this, 'ProductionEBS', {
-    //   availabilityZone: 'eu-central-1a',
-    //   size: cdk.Size.gibibytes(1),
-    //   encrypted: true,
-    // });
+      // default = general purpose SSD
+    const volume = new ec2.Volume(this, 'ProductionEBS', {
+      availabilityZone: 'eu-central-1a',
+      size: cdk.Size.gibibytes(1),
+      encrypted: true,
+    });
     
-    //   // default = general purpose SSD
-    // const volume2 = new ec2.Volume(this, 'AdminEBS', {
-    //   availabilityZone: 'eu-central-1a',
-    //   size: cdk.Size.gibibytes(1),
-    //   encrypted: true,
-    // });
+      // default = general purpose SSD
+    const volume2 = new ec2.Volume(this, 'AdminEBS', {
+      availabilityZone: 'eu-central-1a',
+      size: cdk.Size.gibibytes(1),
+      encrypted: true,
+    });
 
-    // volume.grantAttachVolume(instanceRole)
-    // volume2.grantAttachVolume(instanceRole2)
+    volume.grantAttachVolume(instanceRole)
+    volume2.grantAttachVolume(instanceRole2)
 
   }
 }
