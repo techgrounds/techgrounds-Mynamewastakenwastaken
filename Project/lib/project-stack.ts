@@ -88,11 +88,11 @@ export class ProjectStack extends cdk.Stack {
       roleName: 'InstanceRole',
     });
 
-    //   // Create role for the admin instance
-    // const instanceRole2 = new iam.Role(this, 'Instance2', {
-    //   assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-    //   roleName: 'AdminRole',
-    // });
+      // Create role for the admin instance
+    const instanceRole2 = new iam.Role(this, 'Instance2', {
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+      roleName: 'AdminRole',
+    });
 
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
     // instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
@@ -103,7 +103,7 @@ export class ProjectStack extends cdk.Stack {
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       vpc: vpc,
       securityGroup: ProductionSG,
-      // role: instanceRole,
+      role: instanceRole,
     });
     
       // Create admin instance
@@ -112,7 +112,7 @@ export class ProjectStack extends cdk.Stack {
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       vpc: vpc2,
       securityGroup: AdminSG,        
-      // role: instanceRole,
+      role: instanceRole2,
     });
 
     const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
@@ -126,8 +126,15 @@ export class ProjectStack extends cdk.Stack {
       encrypted: true,
     });
     
-    volume.grantAttachVolume(instanceRole, [instance]);
+      // default = general purpose SSD
+    const volume2 = new ec2.Volume(this, 'AdminEBS', {
+      availabilityZone: 'eu-central-1a',
+      size: cdk.Size.gibibytes(1),
+      encrypted: true,
+    });
 
+    volume.grantAttachVolume(instanceRole, [instance]);
+    volume2.grantAttachVolume(instanceRole2, [instance2]);
 
     // const encryptionKey = new kms.Key(this, 'ProductionKey', {
     //   enableKeyRotation: true,
