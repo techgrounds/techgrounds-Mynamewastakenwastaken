@@ -133,8 +133,8 @@ export class ProjectStack extends cdk.Stack {
       encrypted: true,
     });
 
-    volume.grantAttachVolume(instanceRole, [instance]);
-    volume2.grantAttachVolume(instanceRole2, [instance2]);
+    // volume.grantAttachVolume(instanceRole, [instance]);
+    // volume2.grantAttachVolume(instanceRole2, [instance2]);
 
     // const encryptionKey = new kms.Key(this, 'ProductionKey', {
     //   enableKeyRotation: true,
