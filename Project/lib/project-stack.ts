@@ -133,5 +133,7 @@ export class ProjectStack extends cdk.Stack {
       encrypted: true,
     });
 
+    volume.grantAttachVolume(instanceRole)
+
   }
 }
