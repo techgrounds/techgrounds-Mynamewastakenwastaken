@@ -80,10 +80,7 @@ export class ProjectStack extends cdk.Stack {
       });    
 
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
-    AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150');
-
-      // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
+    AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150');
 
       // Create role for the production instance
     const instanceRole = new iam.Role(this, 'Instance', {
