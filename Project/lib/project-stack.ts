@@ -118,7 +118,7 @@ export class ProjectStack extends cdk.Stack {
       // default = general purpose SSD
     const volume = new ec2.Volume(this, 'ProductionEBS', {
       availabilityZone: 'eu-central-1a',
-      size: Size.gibibytes(1),
+      size: cdk.Size.gibibytes(1),
       encrypted: true,
     });
     
