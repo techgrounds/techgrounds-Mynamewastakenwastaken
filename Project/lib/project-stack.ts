@@ -85,17 +85,17 @@ export class ProjectStack extends cdk.Stack {
       // Create role for the production instance
     const instanceRole = new iam.Role(this, 'Instance', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      roleName: 'ProductionRole',
+      roleName: 'InstanceRole',
     });
 
-      // Create role for the production instance
-    const instanceRole2 = new iam.Role(this, 'Instance2', {
-      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      roleName: 'AdminRole',
-    });
+    //   // Create role for the admin instance
+    // const instanceRole2 = new iam.Role(this, 'Instance2', {
+    //   assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+    //   roleName: 'AdminRole',
+    // });
 
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
-    instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
+    // instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
       // Create production instance
     const instance = new ec2.Instance(this, 'Webserver', {
@@ -112,7 +112,7 @@ export class ProjectStack extends cdk.Stack {
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       vpc: vpc2,
       securityGroup: AdminSG,        
-      role: instanceRole2,
+      role: instanceRole,
     });
 
     const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
