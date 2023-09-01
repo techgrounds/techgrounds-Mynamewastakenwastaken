@@ -119,19 +119,19 @@ export class ProjectStack extends cdk.Stack {
     instance.addUserData(userDataScript);
     instance2.addUserData(userDataScript);
 
-    //   // default = general purpose SSD
-    // const volume = new ec2.Volume(this, 'ProductionEBS', {
-    //   availabilityZone: 'eu-central-1a',
-    //   size: cdk.Size.gibibytes(1),
-    //   encrypted: true,
-    // });
+      // default = general purpose SSD
+    const volume = new ec2.Volume(this, 'ProductionEBS', {
+      availabilityZone: 'eu-central-1a',
+      size: cdk.Size.gibibytes(1),
+      encrypted: true,
+    });
     
-    //   // default = general purpose SSD
-    // const volume2 = new ec2.Volume(this, 'AdminEBS', {
-    //   availabilityZone: 'eu-central-1a',
-    //   size: cdk.Size.gibibytes(1),
-    //   encrypted: true,
-    // });
+      // default = general purpose SSD
+    const volume2 = new ec2.Volume(this, 'AdminEBS', {
+      availabilityZone: 'eu-central-1a',
+      size: cdk.Size.gibibytes(1),
+      encrypted: true,
+    });
 
   }
 }
