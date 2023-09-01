@@ -108,6 +108,7 @@ export class ProjectStack extends cdk.Stack {
       vpc: vpc,
       securityGroup: ProductionSG,
       role: instanceRole,
+      keyName: 'WindowsKey',
     });
     
       // Create admin instance
