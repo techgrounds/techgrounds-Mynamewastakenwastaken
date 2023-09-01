@@ -95,7 +95,7 @@ export class ProjectStack extends cdk.Stack {
     });
 
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
-    // instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
+    instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
       // Create production instance
     const instance = new ec2.Instance(this, 'Webserver', {
@@ -103,7 +103,7 @@ export class ProjectStack extends cdk.Stack {
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       vpc: vpc,
       securityGroup: ProductionSG,
-      role: instanceRole,
+      // role: instanceRole,
     });
     
       // Create admin instance
@@ -112,7 +112,7 @@ export class ProjectStack extends cdk.Stack {
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       vpc: vpc2,
       securityGroup: AdminSG,        
-      role: instanceRole2,
+      // role: instanceRole2,
     });
 
     const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
