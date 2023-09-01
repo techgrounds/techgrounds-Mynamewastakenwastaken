@@ -133,8 +133,14 @@ export class ProjectStack extends cdk.Stack {
       encrypted: true,
     });
 
-    volume.grantAttachVolume(instance);
-    volume2.grantAttachVolume(instance2);
+      // Attach the EBS volume to the EC2 instance
+    const cfnVolumeAttachment = new ec2.CfnVolumeAttachment(this, 'MyCfnVolumeAttachment', {
+      instanceId: 'Webserver',
+      volumeId: 'ProductionEBS',
+    });
+
+    // volume.grantAttachVolume(instance);
+    // volume2.grantAttachVolume(instance2);
 
     // const encryptionKey = new kms.Key(this, 'ProductionKey', {
     //   enableKeyRotation: true,
