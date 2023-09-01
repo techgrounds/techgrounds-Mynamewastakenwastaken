@@ -115,9 +115,9 @@ export class ProjectStack extends cdk.Stack {
       role: instanceRole2,
     });
 
-    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    // instance.addUserData(userDataScript);
-    // instance2.addUserData(userDataScript);
+    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
+    instance.addUserData(userDataScript);
+    instance2.addUserData(userDataScript);
 
       // default = general purpose SSD
     const volume = new ec2.Volume(this, 'ProductionEBS', {
