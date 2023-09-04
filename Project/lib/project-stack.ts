@@ -168,17 +168,17 @@ export class ProjectStack extends cdk.Stack {
     // instance2.addUserData(userDataScript);
 
 
-    const cluster = new rds.DatabaseCluster(this, 'Database', {
-      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
-      writer: rds.ClusterInstance.provisioned('writer', {
-        publiclyAccessible: false,
-      }),
-      readers: [
-        rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
-        rds.ClusterInstance.serverlessV2('reader2'),
-      ],
-      vpc: vpc2,
-    });
+    // const cluster = new rds.DatabaseCluster(this, 'Database', {
+    //   engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
+    //   writer: rds.ClusterInstance.provisioned('writer', {
+    //     publiclyAccessible: false,
+    //   }),
+    //   readers: [
+    //     rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
+    //     rds.ClusterInstance.serverlessV2('reader2'),
+    //   ],
+    //   vpc: vpc2,
+    // });
 
 
 
