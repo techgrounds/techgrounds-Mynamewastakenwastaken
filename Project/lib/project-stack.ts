@@ -108,12 +108,12 @@ export class ProjectStack extends cdk.Stack {
       roleName: 'InstanceRole',
     });
 
-    // const ProdKey = new kms.Key(this, 'ProdKey', {
-    //   enableKeyRotation: true,
-    // });
-
     const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
       keyName: 'ProductionKey',
+    });
+
+    const cfnKeyPair2 = new ec2.CfnKeyPair(this, 'AdminKeyPair', {
+      keyName: 'AdminKey',
     });
 
       // Create role for the admin instance
@@ -135,15 +135,15 @@ export class ProjectStack extends cdk.Stack {
       keyName: 'ProductionKey',
     });
     
-    //   // Create admin instance
-    // const instance2 = new ec2.Instance(this, 'Admninserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
-    //   vpc: vpc2,
-    //   securityGroup: AdminSG,        
-    //   role: instanceRole2,
-    //   keyName: 'WindowsKey',
-    // });
+      // Create admin instance
+    const instance2 = new ec2.Instance(this, 'Admninserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
+      vpc: vpc2,
+      securityGroup: AdminSG,        
+      role: instanceRole2,
+      keyName: 'AdminKey',
+    });
 
     const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
     instance.addUserData(userDataScript);
