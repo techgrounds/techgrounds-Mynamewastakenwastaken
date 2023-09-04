@@ -68,10 +68,10 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
-    new ec2.VpnConnection(this, 'VpnConnection', {
-      ip: '80.112.80.150',
-      vpc: vpc2
-    });
+    // new ec2.VpnConnection(this, 'VpnConnection', {
+    //   ip: '80.112.80.150',
+    //   vpc: vpc2
+    // });
 
 
       // Create a security group for Production
