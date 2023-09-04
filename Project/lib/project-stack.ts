@@ -13,6 +13,7 @@ export class ProjectStack extends cdk.Stack {
     const productiongroup = new iam.Group(this, 'ProductionGroup');
     const admingroup = new iam.Group(this, 'AdminGroup');
 
+      // Allow production full ec2 access in the production VPC
     productiongroup.addToPolicy(
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
@@ -21,9 +22,14 @@ export class ProjectStack extends cdk.Stack {
       })
     );
     
-
-
-
+      // Allow admin full access to everything
+    admingroup.addToPolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
+        actions: ['*']
+      })
+    );
 
       // Create a bucket for post deployment scripts
     const postbucket = new s3.Bucket(this, 'PostDeployment', {
