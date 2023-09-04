@@ -10,28 +10,6 @@ export class ProjectStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-      // Create IAM roles for production/admin staff
-    const productiongroup = new iam.Group(this, 'ProductionGroup');
-    const admingroup = new iam.Group(this, 'AdminGroup');
-
-      // Allow production full ec2 access in the production VPC
-    productiongroup.addToPolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
-        actions: ['ec2:*']
-      })
-    );
-    
-      // Allow admin full access to everything
-    admingroup.addToPolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
-        actions: ['*']
-      })
-    );
-
       // Create a bucket for post deployment scripts
     const postbucket = new s3.Bucket(this, 'PostDeployment', {
       bucketName: 'post-deployment-scripts-1utlas52',
@@ -165,7 +143,27 @@ export class ProjectStack extends cdk.Stack {
     const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
     instance.addUserData(userDataScript);
 
-
+      // Create IAM roles for production/admin staff
+      const productiongroup = new iam.Group(this, 'ProductionGroup');
+      const admingroup = new iam.Group(this, 'AdminGroup');
+  
+        // Allow production full ec2 access in the production VPC
+      productiongroup.addToPolicy(
+        new iam.PolicyStatement({
+          effect: iam.Effect.ALLOW,
+          resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/' + vpc.vpcId],
+          actions: ['ec2:*']
+        })
+      );
+      
+        // Allow admin full access to everything
+      admingroup.addToPolicy(
+        new iam.PolicyStatement({
+          effect: iam.Effect.ALLOW,
+          resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
+          actions: ['*']
+        })
+      );
     // const cluster = new rds.DatabaseCluster(this, 'Database', {
     //   engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
     //   writer: rds.ClusterInstance.provisioned('writer', {
