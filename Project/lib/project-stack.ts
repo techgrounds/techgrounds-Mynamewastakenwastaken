@@ -68,6 +68,14 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
+    vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'InternetGateway' + index, {
+      routeTableId,
+      destinationCidrBlock: '0.0.0.0/0',
+      gatewayId: vpc.internetGatewayId
+      });
+    });
+
     // new ec2.VpnConnection(this, 'VpnConnection', {
     //   ip: '80.112.80.150',
     //   vpc: vpc2
