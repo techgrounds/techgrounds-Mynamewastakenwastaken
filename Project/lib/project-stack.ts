@@ -83,6 +83,9 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
 
+      // !!!!! TESTING REMOVE IN FINAL !!!!!
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
+
       // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
 
@@ -105,9 +108,13 @@ export class ProjectStack extends cdk.Stack {
       roleName: 'InstanceRole',
     });
 
-    const cfnKeyPair = new ec2.CfnKeyPair(this, 'MyCfnKeyPair', {
-      keyName: 'WindowsKey',
+    const ProdKey = new kms.Key(this, 'ProdKey', {
+      enableKeyRotation: true,
     });
+
+    // const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
+    //   keyName: 'ProductionKey',
+    // });
 
       // Create role for the admin instance
     const instanceRole2 = new iam.Role(this, 'Instance2', {
@@ -118,15 +125,15 @@ export class ProjectStack extends cdk.Stack {
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
     instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
-    //   // Create production instance
-    // const instance = new ec2.Instance(this, 'Webserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
-    //   vpc: vpc,
-    //   securityGroup: ProductionSG,
-    //   role: instanceRole,
-    //   keyName: 'WindowsKey',
-    // });
+      // Create production instance
+    const instance = new ec2.Instance(this, 'Webserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestAmazonLinux2(),
+      vpc: vpc,
+      securityGroup: ProductionSG,
+      role: instanceRole,
+      keyName: 'ProdKey',
+    });
     
     //   // Create admin instance
     // const instance2 = new ec2.Instance(this, 'Admninserver', {
@@ -138,18 +145,16 @@ export class ProjectStack extends cdk.Stack {
     //   keyName: 'WindowsKey',
     // });
 
-    // instance2.addUserData('123456');
-
-    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    // instance.addUserData(userDataScript);
+    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
+    instance.addUserData(userDataScript);
     // instance2.addUserData(userDataScript);
 
-    //   // default = general purpose SSD
-    // const volume = new ec2.Volume(this, 'ProductionEBS', {
-    //   availabilityZone: 'eu-central-1a',
-    //   size: cdk.Size.gibibytes(1),
-    //   encrypted: true,
-    // });
+      // default = general purpose SSD
+    const volume = new ec2.Volume(this, 'ProductionEBS', {
+      availabilityZone: 'eu-central-1a',
+      size: cdk.Size.gibibytes(1),
+      encrypted: true,
+    });
     
     //   // default = general purpose SSD
     // const volume2 = new ec2.Volume(this, 'AdminEBS', {
@@ -158,8 +163,13 @@ export class ProjectStack extends cdk.Stack {
     //   encrypted: true,
     // });
 
-    // volume.grantAttachVolume(instanceRole)
+    volume.grantAttachVolume(instanceRole)
     // volume2.grantAttachVolume(instanceRole2)
+
+    const ProdVolumeAttachment = new ec2.CfnVolumeAttachment(this, 'ProdVolumeAttachment', {
+      instanceId: 'Webserver',
+      volumeId: 'ProductionEBS',
+    });
 
   }
 }
