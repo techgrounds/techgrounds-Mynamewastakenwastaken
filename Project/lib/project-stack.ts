@@ -68,6 +68,12 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
+    new ec2.VpnConnection(this, 'VpnConnection', {
+      ip: '80.112.80.150/32',
+      vpc: vpc2
+    });
+
+
       // Create a security group for Production
     const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
         vpc: vpc,
@@ -164,6 +170,7 @@ export class ProjectStack extends cdk.Stack {
           actions: ['*']
         })
       );
+
     // const cluster = new rds.DatabaseCluster(this, 'Database', {
     //   engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
     //   writer: rds.ClusterInstance.provisioned('writer', {
