@@ -68,14 +68,6 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
-    vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      new ec2.CfnRoute(this, 'InternetGateway' + index, {
-      routeTableId,
-      destinationCidrBlock: '0.0.0.0/0',
-      gatewayId: vpc.internetGatewayId
-      });
-    });
-
     // new ec2.VpnConnection(this, 'VpnConnection', {
     //   ip: '80.112.80.150',
     //   vpc: vpc2
@@ -143,15 +135,15 @@ export class ProjectStack extends cdk.Stack {
     //   keyName: 'ProductionKey',
     // });
     
-      // Create admin instance
-    const instance2 = new ec2.Instance(this, 'Admninserver', {
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-      machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
-      vpc: vpc2,
-      securityGroup: AdminSG,        
-      role: instanceRole2,
-      keyName: 'AdminKey',
-    });
+    //   // Create admin instance
+    // const instance2 = new ec2.Instance(this, 'Admninserver', {
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
+    //   vpc: vpc2,
+    //   securityGroup: AdminSG,        
+    //   role: instanceRole2,
+    //   keyName: 'AdminKey',
+    // });
 
     //   // Add userscript to webserver
     // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
