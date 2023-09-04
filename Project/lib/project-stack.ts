@@ -2,12 +2,28 @@ import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
+import * as s3 from 'aws-cdk-lib/aws-s3'
 import * as kms from 'aws-cdk-lib/aws-kms';
 
 
 export class ProjectStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+      // Create a bucket for post deployment scripts
+    const postbucket = new s3.Bucket(scope, 'PostDeployment', {
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      encryption: s3.BucketEncryption.KMS_MANAGED,
+      enforceSSL: true,
+      versioned: true,
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+    });
+
+    // const kmsKey = new kms.Key(this, 'S3Key', {
+    //   enableKeyRotation: true,
+    // });
+
+    // postbucket.grantReadWrite(kmsKey);
 
       // Create the Production VPC
     const vpc = new ec2.Vpc(this, 'ProductionVPC', {
