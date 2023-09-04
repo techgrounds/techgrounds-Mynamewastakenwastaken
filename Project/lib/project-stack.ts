@@ -3,6 +3,7 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
 import * as s3 from 'aws-cdk-lib/aws-s3'
+import * as rds from 'aws-cdk-lib/aws-rds'
 
 
 export class ProjectStack extends cdk.Stack {
@@ -165,6 +166,23 @@ export class ProjectStack extends cdk.Stack {
     // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
     // instance.addUserData(userDataScript);
     // instance2.addUserData(userDataScript);
+
+
+    const cluster = new rds.DatabaseCluster(this, 'Database', {
+      engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
+      writer: rds.ClusterInstance.provisioned('writer', {
+        publiclyAccessible: false,
+      }),
+      readers: [
+        rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
+        rds.ClusterInstance.serverlessV2('reader2'),
+      ],
+      vpc: vpc2,
+    });
+
+
+
+
 
     //   // default = general purpose SSD
     // const volume = new ec2.Volume(this, 'ProductionEBS', {
