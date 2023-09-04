@@ -166,10 +166,10 @@ export class ProjectStack extends cdk.Stack {
     volume.grantAttachVolume(instanceRole)
     // volume2.grantAttachVolume(instanceRole2)
 
-    const ProdVolumeAttachment = new ec2.CfnVolumeAttachment(this, 'ProdVolumeAttachment', {
-      instanceId: 'Webserver',
-      volumeId: 'ProductionEBS',
-    });
+    // const ProdVolumeAttachment = new ec2.CfnVolumeAttachment(this, 'ProdVolumeAttachment', {
+    //   instanceId: 'Webserver',
+    //   volumeId: 'ProductionEBS',
+    // });
 
   }
 }
