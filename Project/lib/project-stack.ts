@@ -12,6 +12,7 @@ export class ProjectStack extends cdk.Stack {
 
       // Create a bucket for post deployment scripts
     const postbucket = new s3.Bucket(this, 'PostDeployment', {
+      bucketName: 'PostDeploymentScripts',
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       encryption: s3.BucketEncryption.KMS_MANAGED,
       enforceSSL: true,
