@@ -14,158 +14,156 @@ export class ProjectStack extends cdk.Stack {
     const productiongroup = new iam.Group(this, 'ProductionGroup');
     const admingroup = new iam.Group(this, 'AdminGroup');
 
-    //   // Allow production full ec2 access in the production VPC
-    // productiongroup.addToPolicy(
-    //   new iam.PolicyStatement({
-    //     effect: iam.Effect.ALLOW,
-    //     resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/vpc-09ed10548eadff52b'],
-    //     actions: ['ec2:*']
-    //   })
-    // );
+      // Allow production full ec2 access in the production VPC
+    productiongroup.addToPolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
+        actions: ['ec2:*']
+      })
+    );
     
-    //   // Allow admin full access to everything
-    // admingroup.addToPolicy(
-    //   new iam.PolicyStatement({
-    //     effect: iam.Effect.ALLOW,
-    //     resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
-    //     actions: ['*']
-    //   })
-    // );
+      // Allow admin full access to everything
+    admingroup.addToPolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
+        actions: ['*']
+      })
+    );
 
-    //   // Create a bucket for post deployment scripts
-    // const postbucket = new s3.Bucket(this, 'PostDeployment', {
-    //   bucketName: 'post-deployment-scripts-1utlas52',
-    //   blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-    //   encryption: s3.BucketEncryption.KMS_MANAGED,
-    //   enforceSSL: true,
-    //   versioned: true,
-    //   removalPolicy: cdk.RemovalPolicy.RETAIN,
-    // });
+      // Create a bucket for post deployment scripts
+    const postbucket = new s3.Bucket(this, 'PostDeployment', {
+      bucketName: 'post-deployment-scripts-1utlas52',
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      encryption: s3.BucketEncryption.KMS_MANAGED,
+      enforceSSL: true,
+      versioned: true,
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+    });
 
-    //   // Create the Production VPC
-    // const vpc = new ec2.Vpc(this, 'ProductionVPC', {
-    //   ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
-    //   maxAzs: 2,
-    //   subnetConfiguration: [
-    //     {
-    //       name: 'ProductionPublic',
-    //       subnetType: ec2.SubnetType.PUBLIC,
-    //     },
-    //   ],
-    // });
+      // Create the Production VPC
+    const vpc = new ec2.Vpc(this, 'ProductionVPC', {
+      ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
+      maxAzs: 2,
+      subnetConfiguration: [
+        {
+          name: 'ProductionPublic',
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
+      ],
+    });
 
-    //   // create the Admin VPC
-    // const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
-    //   ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
-    //   maxAzs: 2,
-    //   subnetConfiguration: [
-    //     {
-    //       name: 'AdminPrivate',
-    //       subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-    //     },
-    //   ],
-    // });
+      // create the Admin VPC
+    const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
+      ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
+      maxAzs: 2,
+      subnetConfiguration: [
+        {
+          name: 'AdminPrivate',
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+        },
+      ],
+    });
 
-    //   // Create the peering connection
-    // const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
-    //   peerVpcId: vpc.vpcId,
-    //   vpcId: vpc2.vpcId,
-    // });
+      // Create the peering connection
+    const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
+      peerVpcId: vpc.vpcId,
+      vpcId: vpc2.vpcId,
+    });
 
-    //   // Loop through each public subnet of Production vpc and add the peering route
-    // vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-    //   new ec2.CfnRoute(this, 'AdminPeering' + index, {
-    //   routeTableId,
-    //   destinationCidrBlock: '10.20.20.0/24',
-    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
-    //   });
-    // });
+      // Loop through each public subnet of Production vpc and add the peering route
+    vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'AdminPeering' + index, {
+      routeTableId,
+      destinationCidrBlock: '10.20.20.0/24',
+      vpcPeeringConnectionId: VPCPeeringConnection.attrId
+      });
+    });
 
-    //   // Loop through each public subnet of Admin vpc and add the peering route
-    // vpc2.privateSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-    //   new ec2.CfnRoute(this, 'ProductionPeering' + index, {
-    //   routeTableId,
-    //   destinationCidrBlock: '10.10.10.0/24',
-    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
-    //   });
-    // });
+      // Loop through each public subnet of Admin vpc and add the peering route
+    vpc2.privateSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'ProductionPeering' + index, {
+      routeTableId,
+      destinationCidrBlock: '10.10.10.0/24',
+      vpcPeeringConnectionId: VPCPeeringConnection.attrId
+      });
+    });
 
-    //   // Create a security group for Production
-    // const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
-    //     vpc: vpc,
-    //     description: 'Allow HTTP access and Admin access'
-    //   });
+      // Create a security group for Production
+    const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
+        vpc: vpc,
+        description: 'Allow HTTP access and Admin access'
+      });
 
-    //   // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
-    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
+      // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
 
-    //   // !!!!! TESTING REMOVE IN FINAL !!!!!
-    // ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
+      // !!!!! TESTING REMOVE IN FINAL !!!!!
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
 
-    //   // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
-    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
+      // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
 
-    //   // Add an inbound rule to allow HTTP/S traffic
-    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
-    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+      // Add an inbound rule to allow HTTP/S traffic
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
-    //   // Create a security group for Admin
-    // const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
-    //     vpc: vpc2,
-    //     description: 'Allow public access from select ip'
-    //   });    
+      // Create a security group for Admin
+    const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
+        vpc: vpc2,
+        description: 'Allow public access from select ip'
+      });    
 
-    //   // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
-    // AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
+      // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
+    AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
 
-    //   // Create key pairs for secure connections
-    // const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
-    //   keyName: 'ProductionKey',
-    // });
+      // Create key pairs for secure connections
+    const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
+      keyName: 'ProductionKey',
+    });
+    const cfnKeyPair2 = new ec2.CfnKeyPair(this, 'AdminKeyPair', {
+      keyName: 'AdminKey',
+    });
 
-    // const cfnKeyPair2 = new ec2.CfnKeyPair(this, 'AdminKeyPair', {
-    //   keyName: 'AdminKey',
-    // });
+      // Create role for the production instance
+    const instanceRole = new iam.Role(this, 'Instance', {
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+      roleName: 'InstanceRole',
+    });
 
+      // Create role for the admin instance
+    const instanceRole2 = new iam.Role(this, 'Instance2', {
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+      roleName: 'AdminRole',
+    });
 
-    //   // Create role for the production instance
-    // const instanceRole = new iam.Role(this, 'Instance', {
-    //   assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-    //   roleName: 'InstanceRole',
-    // });
+    instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
+    instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
-    //   // Create role for the admin instance
-    // const instanceRole2 = new iam.Role(this, 'Instance2', {
-    //   assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-    //   roleName: 'AdminRole',
-    // });
-
-    // instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
-    // instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
-
-    //   // Create production instance
-    // const instance = new ec2.Instance(this, 'Webserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
-    //   vpc: vpc,
-    //   securityGroup: ProductionSG,
-    //   role: instanceRole,
-    //   keyName: 'ProductionKey',
-    // });
+      // Create production instance
+    const instance = new ec2.Instance(this, 'Webserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestAmazonLinux2(),
+      vpc: vpc,
+      securityGroup: ProductionSG,
+      role: instanceRole,
+      keyName: 'ProductionKey',
+    });
     
-    //   // Create admin instance
-    // const instance2 = new ec2.Instance(this, 'Admninserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
-    //   vpc: vpc2,
-    //   securityGroup: AdminSG,        
-    //   role: instanceRole2,
-    //   keyName: 'AdminKey',
-    // });
+      // Create admin instance
+    const instance2 = new ec2.Instance(this, 'Admninserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
+      vpc: vpc2,
+      securityGroup: AdminSG,        
+      role: instanceRole2,
+      keyName: 'AdminKey',
+    });
 
-    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    // instance.addUserData(userDataScript);
-    // instance2.addUserData(userDataScript);
+      // Add userscript to webserver
+    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
+    instance.addUserData(userDataScript);
 
 
     // const cluster = new rds.DatabaseCluster(this, 'Database', {
