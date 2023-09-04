@@ -108,13 +108,13 @@ export class ProjectStack extends cdk.Stack {
       roleName: 'InstanceRole',
     });
 
-    const ProdKey = new kms.Key(this, 'ProdKey', {
-      enableKeyRotation: true,
-    });
-
-    // const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
-    //   keyName: 'ProductionKey',
+    // const ProdKey = new kms.Key(this, 'ProdKey', {
+    //   enableKeyRotation: true,
     // });
+
+    const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
+      keyName: 'ProductionKey',
+    });
 
       // Create role for the admin instance
     const instanceRole2 = new iam.Role(this, 'Instance2', {
@@ -132,7 +132,7 @@ export class ProjectStack extends cdk.Stack {
       vpc: vpc,
       securityGroup: ProductionSG,
       role: instanceRole,
-      keyName: 'ProdKey',
+      keyName: 'ProductionKey',
     });
     
     //   // Create admin instance
@@ -154,7 +154,7 @@ export class ProjectStack extends cdk.Stack {
       availabilityZone: 'eu-central-1a',
       size: cdk.Size.gibibytes(1),
       encrypted: true,
-      volumeName: 'ProductionEBS',
+      // volumeName: 'ProductionEBS',
     });
     
     //   // default = general purpose SSD
