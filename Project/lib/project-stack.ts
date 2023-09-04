@@ -11,7 +11,7 @@ export class ProjectStack extends cdk.Stack {
     super(scope, id, props);
 
       // Create a bucket for post deployment scripts
-    const postbucket = new s3.Bucket(scope, 'PostDeployment', {
+    const postbucket = new s3.Bucket(this, 'PostDeployment', {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       encryption: s3.BucketEncryption.KMS_MANAGED,
       enforceSSL: true,
