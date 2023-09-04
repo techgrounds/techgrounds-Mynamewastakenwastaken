@@ -17,7 +17,7 @@ export class ProjectStack extends cdk.Stack {
       new iam.PolicyStatement({
         effect: iam.Effect.ALLOW,
         resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/vpc-09ed10548eadff52b'],
-        actions: ['*']
+        actions: ['ec2:*']
       })
     );
     
