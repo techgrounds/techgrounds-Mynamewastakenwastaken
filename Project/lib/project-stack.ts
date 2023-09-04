@@ -3,12 +3,27 @@ import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
 import * as s3 from 'aws-cdk-lib/aws-s3'
-import * as kms from 'aws-cdk-lib/aws-kms';
 
 
 export class ProjectStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+
+      // Create IAM roles for production/admin staff
+    const productiongroup = new iam.Group(this, 'ProductionGroup');
+    const admingroup = new iam.Group(this, 'AdminGroup');
+
+    productiongroup.addToPolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/vpc-09ed10548eadff52b'],
+        actions: ['*']
+      })
+    );
+    
+
+
+
 
       // Create a bucket for post deployment scripts
     const postbucket = new s3.Bucket(this, 'PostDeployment', {
@@ -19,12 +34,6 @@ export class ProjectStack extends cdk.Stack {
       versioned: true,
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
-
-    // const kmsKey = new kms.Key(this, 'S3Key', {
-    //   enableKeyRotation: true,
-    // });
-
-    // postbucket.grantReadWrite(kmsKey);
 
       // Create the Production VPC
     const vpc = new ec2.Vpc(this, 'ProductionVPC', {
@@ -102,18 +111,20 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
 
-      // Create role for the production instance
-    const instanceRole = new iam.Role(this, 'Instance', {
-      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      roleName: 'InstanceRole',
-    });
-
+      // Create key pairs for secure connections
     const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
       keyName: 'ProductionKey',
     });
 
     const cfnKeyPair2 = new ec2.CfnKeyPair(this, 'AdminKeyPair', {
       keyName: 'AdminKey',
+    });
+
+
+      // Create role for the production instance
+    const instanceRole = new iam.Role(this, 'Instance', {
+      assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
+      roleName: 'InstanceRole',
     });
 
       // Create role for the admin instance
@@ -125,28 +136,28 @@ export class ProjectStack extends cdk.Stack {
     instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
     instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
 
-      // Create production instance
-    const instance = new ec2.Instance(this, 'Webserver', {
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-      machineImage: ec2.MachineImage.latestAmazonLinux2(),
-      vpc: vpc,
-      securityGroup: ProductionSG,
-      role: instanceRole,
-      keyName: 'ProductionKey',
-    });
+    //   // Create production instance
+    // const instance = new ec2.Instance(this, 'Webserver', {
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
+    //   vpc: vpc,
+    //   securityGroup: ProductionSG,
+    //   role: instanceRole,
+    //   keyName: 'ProductionKey',
+    // });
     
-      // Create admin instance
-    const instance2 = new ec2.Instance(this, 'Admninserver', {
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-      machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
-      vpc: vpc2,
-      securityGroup: AdminSG,        
-      role: instanceRole2,
-      keyName: 'AdminKey',
-    });
+    //   // Create admin instance
+    // const instance2 = new ec2.Instance(this, 'Admninserver', {
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
+    //   vpc: vpc2,
+    //   securityGroup: AdminSG,        
+    //   role: instanceRole2,
+    //   keyName: 'AdminKey',
+    // });
 
-    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    instance.addUserData(userDataScript);
+    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
+    // instance.addUserData(userDataScript);
     // instance2.addUserData(userDataScript);
 
     //   // default = general purpose SSD
