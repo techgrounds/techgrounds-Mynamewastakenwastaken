@@ -154,6 +154,7 @@ export class ProjectStack extends cdk.Stack {
       availabilityZone: 'eu-central-1a',
       size: cdk.Size.gibibytes(1),
       encrypted: true,
+      volumeName: 'ProductionEBS',
     });
     
     //   // default = general purpose SSD
@@ -166,10 +167,10 @@ export class ProjectStack extends cdk.Stack {
     volume.grantAttachVolume(instanceRole)
     // volume2.grantAttachVolume(instanceRole2)
 
-    // const ProdVolumeAttachment = new ec2.CfnVolumeAttachment(this, 'ProdVolumeAttachment', {
-    //   instanceId: 'Webserver',
-    //   volumeId: 'ProductionEBS',
-    // });
+    const ProdVolumeAttachment = new ec2.CfnVolumeAttachment(this, 'ProdVolumeAttachment', {
+      instanceId: 'Webserver',
+      volumeId: 'ProductionEBS',
+    });
 
   }
 }
