@@ -69,6 +69,16 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
+      // Loop through each private subnet of Admin vpc and add the peering route
+    vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'NatGWRoute' + index, {
+      routeTableId,
+      destinationCidrBlock: '0.0.0.0/0',
+      natGatewayId: vpc.internetGatewayId
+      });
+    });
+
+
     // new ec2.CfnEIP(this, 'NatEIP', {
     //   domain: vpc.vpcId,
     // });
