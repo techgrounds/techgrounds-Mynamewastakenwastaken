@@ -39,7 +39,13 @@ export class ProjectStack extends cdk.Stack {
       maxAzs: 2,
       subnetConfiguration: [
         {
-          name: 'AdminPrivate',
+          cidrMask: 25,
+          name: 'AdminSubnet',
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
+        {
+          cidrMask: 25,
+          name: 'DBSubnet',
           subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
         },
       ],
@@ -61,7 +67,7 @@ export class ProjectStack extends cdk.Stack {
     });
 
       // Loop through each private subnet of Admin vpc and add the peering route
-    vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+    vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
       new ec2.CfnRoute(this, 'ProductionPeering' + index, {
       routeTableId,
       destinationCidrBlock: '10.10.10.0/24',
@@ -69,16 +75,16 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
-    const NatSubnet = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC}).subnets[0];
+    // const NatSubnet = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC}).subnets[0];
 
-      // Loop through each private subnet of Admin vpc and add the peering route
-    vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      new ec2.CfnRoute(this, 'NatGWRoute' + index, {
-      routeTableId,
-      destinationCidrBlock: '0.0.0.0/0',
-      natGatewayId: "nat-0846a0b88e4668bf4"
-      });
-    });
+    //   // Loop through each private subnet of Admin vpc and add the peering route
+    // vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+    //   new ec2.CfnRoute(this, 'NatGWRoute' + index, {
+    //   routeTableId,
+    //   destinationCidrBlock: '0.0.0.0/0',
+    //   natGatewayId: "nat-0846a0b88e4668bf4"
+    //   });
+    // });
 
 
     // new ec2.CfnEIP(this, 'NatEIP', {
