@@ -68,6 +68,10 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
+    new ec2.CfnEIP(this, 'NatEIP', {
+      domain: vpc.vpcId,
+    });
+
     // new ec2.VpnConnection(this, 'VpnConnection', {
     //   ip: '80.112.80.150',
     //   vpc: vpc2
