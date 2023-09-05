@@ -125,15 +125,15 @@ export class ProjectStack extends cdk.Stack {
     // instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
     instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'));
 
-    //   // Create production instance
-    // const instance = new ec2.Instance(this, 'Webserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
-    //   vpc: vpc,
-    //   securityGroup: ProductionSG,
-    //   role: instanceRole,
-    //   keyName: 'ProductionKey',
-    // });
+      // Create production instance
+    const instance = new ec2.Instance(this, 'Webserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestAmazonLinux2(),
+      vpc: vpc,
+      securityGroup: ProductionSG,
+      role: instanceRole,
+      keyName: 'ProductionKey',
+    });
     
     //   // Create admin instance
     // const instance2 = new ec2.Instance(this, 'Admninserver', {
@@ -186,18 +186,32 @@ export class ProjectStack extends cdk.Stack {
       vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
     });
 
-    //   // Create a backup plan
-    // const backupPlan = backup.BackupPlan;
-    // backupPlan.addRule(new backup.BackupPlanRule ({
-    //   completionWindow: cdk.Duration.hours(2),
-    //   startWindow: cdk.Duration.hours(1),
-    //   deleteAfter: cdk.Duration.days(7),
-    //   scheduleExpression: cdk.aws_events.Schedule.cron({
-    //     day: '*',
-    //     hour: '3',
-    //     minute: '30',
-    //   }),
-    // }));
+
+
+    // const WebVault = new backup.CfnBackupVault(this, 'BackupVault', {
+    //   backupVaultName: 'WebserverBackups',
+    // });
+
+    const BackupPlan = backup.BackupPlan.daily35DayRetention(this, 'Plan');
+
+      // Create a backup plan
+    BackupPlan.addRule(new backup.BackupPlanRule ({
+      completionWindow: cdk.Duration.hours(2),
+      startWindow: cdk.Duration.hours(1),
+      deleteAfter: cdk.Duration.days(7),
+      scheduleExpression: cdk.aws_events.Schedule.cron({
+        day: '*',
+        hour: '0',
+        minute: '0',
+      }),
+    }));
+
+    BackupPlan.addSelection('Selection', {
+      resources: [
+        backup.BackupResource.fromEc2Instance(instance)
+      ]
+    })
+
 
     //   // Define the resources to back up (EC2 instances)
     // const ec2Resource = new backup.BackupResource(this, 'MyEC2Resource', {
