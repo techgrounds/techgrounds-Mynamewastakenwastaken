@@ -171,7 +171,7 @@ export class ProjectStack extends cdk.Stack {
 
       const cluster = new rds.DatabaseCluster(this, 'Database', {
         engine: rds.DatabaseClusterEngine.auroraMysql({
-          version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
+          version: rds.AuroraMysqlEngineVersion.VER_2_07_1,
         }),
         instanceProps: {
           vpc: vpc2,
