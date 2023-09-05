@@ -72,6 +72,13 @@ export class ProjectStack extends cdk.Stack {
       domain: vpc.vpcId,
     });
 
+    const NatSubnet = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC}).subnets[0];
+
+    new ec2.CfnNatGateway(this, 'NatGW', {
+      subnetId: NatSubnet.subnetId,
+      allocationId: 'NatEIP'
+    });
+
     // new ec2.VpnConnection(this, 'VpnConnection', {
     //   ip: '80.112.80.150',
     //   vpc: vpc2
