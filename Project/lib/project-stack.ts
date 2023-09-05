@@ -4,6 +4,7 @@ import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
 import * as s3 from 'aws-cdk-lib/aws-s3'
 import * as rds from 'aws-cdk-lib/aws-rds'
+import { VpcSubnetGroupType } from 'aws-cdk-lib/cx-api';
 
 
 export class ProjectStack extends cdk.Stack {
@@ -179,7 +180,8 @@ export class ProjectStack extends cdk.Stack {
         rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
         rds.ClusterInstance.serverlessV2('reader2'),
       ],
-      vpc: vpc2
+      vpc: vpc2,
+      vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
     });
 
 
