@@ -69,12 +69,14 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
+    const NatSubnet = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC}).subnets[0];
+
       // Loop through each private subnet of Admin vpc and add the peering route
     vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
       new ec2.CfnRoute(this, 'NatGWRoute' + index, {
       routeTableId,
       destinationCidrBlock: '0.0.0.0/0',
-      natGatewayId: vpc.internetGatewayId
+      natGatewayId: "nat-0846a0b88e4668bf4"
       });
     });
 
