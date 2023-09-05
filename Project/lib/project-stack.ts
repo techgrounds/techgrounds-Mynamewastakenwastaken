@@ -82,7 +82,7 @@ export class ProjectStack extends cdk.Stack {
     const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
       vpc: vpc2,
       description: 'Allow public access from select ip'
-    });    
+    });   
 
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
@@ -95,7 +95,7 @@ export class ProjectStack extends cdk.Stack {
 
       // Add an inbound rule to allow HTTP/S traffic
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic'); 
 
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
@@ -169,27 +169,18 @@ export class ProjectStack extends cdk.Stack {
       //   })
       // );
 
-      const cluster = new rds.DatabaseCluster(this, 'Database', {
-        engine: rds.DatabaseClusterEngine.auroraMysql({
-          version: rds.AuroraMysqlEngineVersion.VER_2_07_1,
-        }),
-        instanceProps: {
-          vpc: vpc2,
-          vpcSubnets: {
-            subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-          },
-          securityGroups: [AdminSG],
-        },
-        removalPolicy: cdk.RemovalPolicy.SNAPSHOT,
-        backup: ({
-          retention: cdk.Duration.days(7),
-        }),
-      });
-
-
-
-
-
+    const cluster = new rds.DatabaseCluster(this, 'Database', {
+      engine: rds.DatabaseClusterEngine.auroraMysql({ 
+        version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
+      writer: rds.ClusterInstance.provisioned('writer', {
+        publiclyAccessible: false,
+      }),
+      readers: [
+        rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
+        rds.ClusterInstance.serverlessV2('reader2'),
+      ],
+      vpc: vpc2,
+    });
 
 
     //   // default = general purpose SSD
