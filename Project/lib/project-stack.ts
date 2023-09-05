@@ -24,6 +24,7 @@ export class ProjectStack extends cdk.Stack {
     const vpc = new ec2.Vpc(this, 'ProductionVPC', {
       ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
       maxAzs: 2,
+      natGateways: 1,
       subnetConfiguration: [
         {
           name: 'ProductionPublic',
