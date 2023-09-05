@@ -179,7 +179,7 @@ export class ProjectStack extends cdk.Stack {
         rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
         rds.ClusterInstance.serverlessV2('reader2'),
       ],
-      vpcSubnets: vpc2
+      vpc: vpc2
     });
 
 
