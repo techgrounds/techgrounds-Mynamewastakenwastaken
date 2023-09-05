@@ -20,58 +20,57 @@ export class ProjectStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
-      // Create the Production VPC
-    const vpc = new ec2.Vpc(this, 'ProductionVPC', {
-      ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
-      maxAzs: 2,
-      natGateways: 1,
-      subnetConfiguration: [
-        {
-          name: 'ProductionPublic',
-          subnetType: ec2.SubnetType.PUBLIC,
-        },
-      ],
-    });
+    //   // Create the Production VPC
+    // const vpc = new ec2.Vpc(this, 'ProductionVPC', {
+    //   ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
+    //   maxAzs: 2,
+    //   subnetConfiguration: [
+    //     {
+    //       name: 'ProductionPublic',
+    //       subnetType: ec2.SubnetType.PUBLIC,
+    //     },
+    //   ],
+    // });
 
-      // create the Admin VPC
-    const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
-      ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
-      maxAzs: 2,
-      subnetConfiguration: [
-        {
-          name: 'AdminSubnet',
-          subnetType: ec2.SubnetType.PUBLIC,
-        },
-        {
-          name: 'DBSubnet',
-          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-        },
-      ],
-    });
+    //   // create the Admin VPC
+    // const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
+    //   ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
+    //   maxAzs: 2,
+    //   subnetConfiguration: [
+    //     {
+    //       name: 'AdminSubnet',
+    //       subnetType: ec2.SubnetType.PUBLIC,
+    //     },
+    //     {
+    //       name: 'DBSubnet',
+    //       subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+    //     },
+    //   ],
+    // });
 
-      // Create the peering connection
-    const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
-      peerVpcId: vpc.vpcId,
-      vpcId: vpc2.vpcId,
-    });
+    //   // Create the peering connection
+    // const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
+    //   peerVpcId: vpc.vpcId,
+    //   vpcId: vpc2.vpcId,
+    // });
 
-      // Loop through each public subnet of Production vpc and add the peering route
-    vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      new ec2.CfnRoute(this, 'AdminPeering' + index, {
-      routeTableId,
-      destinationCidrBlock: '10.20.20.0/24',
-      vpcPeeringConnectionId: VPCPeeringConnection.attrId
-      });
-    });
+    //   // Loop through each public subnet of Production vpc and add the peering route
+    // vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+    //   new ec2.CfnRoute(this, 'AdminPeering' + index, {
+    //   routeTableId,
+    //   destinationCidrBlock: '10.20.20.0/24',
+    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
+    //   });
+    // });
 
-      // Loop through each private subnet of Admin vpc and add the peering route
-    vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      new ec2.CfnRoute(this, 'ProductionPeering' + index, {
-      routeTableId,
-      destinationCidrBlock: '10.10.10.0/24',
-      vpcPeeringConnectionId: VPCPeeringConnection.attrId
-      });
-    });
+    //   // Loop through each private subnet of Admin vpc and add the peering route
+    // vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+    //   new ec2.CfnRoute(this, 'ProductionPeering' + index, {
+    //   routeTableId,
+    //   destinationCidrBlock: '10.10.10.0/24',
+    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
+    //   });
+    // });
 
     // const NatSubnet = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC}).subnets[0];
 
