@@ -102,29 +102,29 @@ export class ProjectStack extends cdk.Stack {
 
 
       // Create a security group for Production
-    const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
-        vpc: vpc,
-        description: 'Allow HTTP access and Admin access'
-      });
+    // const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
+    //     vpc: vpc,
+    //     description: 'Allow HTTP access and Admin access'
+    //   });
 
-      // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
+    //   // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
+    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
 
-      // !!!!! TESTING REMOVE IN FINAL !!!!!
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
+    //   // !!!!! TESTING REMOVE IN FINAL !!!!!
+    // ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
 
-      // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
+    //   // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
+    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
 
-      // Add an inbound rule to allow HTTP/S traffic
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+    //   // Add an inbound rule to allow HTTP/S traffic
+    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
-      // Create a security group for Admin
-    const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
-        vpc: vpc2,
-        description: 'Allow public access from select ip'
-      });    
+    //   // Create a security group for Admin
+    // const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
+    //     vpc: vpc2,
+    //     description: 'Allow public access from select ip'
+    //   });    
 
     //   // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     // AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
