@@ -177,26 +177,26 @@ export class ProjectStack extends cdk.Stack {
     // instance.addUserData(userDataScript);
 
       // Create IAM roles for production/admin staff
-      const productiongroup = new iam.Group(this, 'ProductionGroup');
-      const admingroup = new iam.Group(this, 'AdminGroup');
+      // const productiongroup = new iam.Group(this, 'ProductionGroup');
+      // const admingroup = new iam.Group(this, 'AdminGroup');
   
-        // Allow production full ec2 access in the production VPC
-      productiongroup.addToPolicy(
-        new iam.PolicyStatement({
-          effect: iam.Effect.ALLOW,
-          resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/' + vpc.vpcId],
-          actions: ['ec2:*']
-        })
-      );
+      //   // Allow production full ec2 access in the production VPC
+      // productiongroup.addToPolicy(
+      //   new iam.PolicyStatement({
+      //     effect: iam.Effect.ALLOW,
+      //     resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/' + vpc.vpcId],
+      //     actions: ['ec2:*']
+      //   })
+      // );
       
-        // Allow admin full access to everything
-      admingroup.addToPolicy(
-        new iam.PolicyStatement({
-          effect: iam.Effect.ALLOW,
-          resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
-          actions: ['*']
-        })
-      );
+      //   // Allow admin full access to everything
+      // admingroup.addToPolicy(
+      //   new iam.PolicyStatement({
+      //     effect: iam.Effect.ALLOW,
+      //     resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
+      //     actions: ['*']
+      //   })
+      // );
 
     // const cluster = new rds.DatabaseCluster(this, 'Database', {
     //   engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
