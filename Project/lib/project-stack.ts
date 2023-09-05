@@ -39,12 +39,10 @@ export class ProjectStack extends cdk.Stack {
       maxAzs: 2,
       subnetConfiguration: [
         {
-          cidrMask: 25,
           name: 'AdminSubnet',
           subnetType: ec2.SubnetType.PUBLIC,
         },
         {
-          cidrMask: 25,
           name: 'DBSubnet',
           subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
         },
