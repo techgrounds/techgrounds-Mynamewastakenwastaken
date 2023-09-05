@@ -72,40 +72,17 @@ export class ProjectStack extends cdk.Stack {
       });
     });
 
-    // const NatSubnet = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC}).subnets[0];
-
-    //   // Loop through each private subnet of Admin vpc and add the peering route
-    // vpc2.isolatedSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-    //   new ec2.CfnRoute(this, 'NatGWRoute' + index, {
-    //   routeTableId,
-    //   destinationCidrBlock: '0.0.0.0/0',
-    //   natGatewayId: "nat-0846a0b88e4668bf4"
-    //   });
-    // });
-
-
-    // new ec2.CfnEIP(this, 'NatEIP', {
-    //   domain: vpc.vpcId,
-    // });
-
-    // const NatSubnet = vpc.selectSubnets({subnetType: ec2.SubnetType.PUBLIC}).subnets[0];
-
-    // new ec2.CfnNatGateway(this, 'NatGW', {
-    //   subnetId: NatSubnet.subnetId,
-    //   allocationId: vpc.
-    // });
-
-    // new ec2.VpnConnection(this, 'VpnConnection', {
-    //   ip: '80.112.80.150',
-    //   vpc: vpc2
-    // });
-
-
       // Create a security group for Production
     const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
         vpc: vpc,
         description: 'Allow HTTP access and Admin access'
       });
+
+      // Create a security group for Admin
+    const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
+      vpc: vpc2,
+      description: 'Allow public access from select ip'
+    });    
 
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
@@ -119,12 +96,6 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow HTTP/S traffic
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
-
-      // Create a security group for Admin
-    const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
-        vpc: vpc2,
-        description: 'Allow public access from select ip'
-      });    
 
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
@@ -198,17 +169,24 @@ export class ProjectStack extends cdk.Stack {
       //   })
       // );
 
-    // const cluster = new rds.DatabaseCluster(this, 'Database', {
-    //   engine: rds.DatabaseClusterEngine.auroraMysql({ version: rds.AuroraMysqlEngineVersion.VER_2_08_1 }),
-    //   writer: rds.ClusterInstance.provisioned('writer', {
-    //     publiclyAccessible: false,
-    //   }),
-    //   readers: [
-    //     rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
-    //     rds.ClusterInstance.serverlessV2('reader2'),
-    //   ],
-    //   vpc: vpc2,
-    // });
+      const cluster = new rds.DatabaseCluster(this, 'Database', {
+        engine: rds.DatabaseClusterEngine.auroraMysql({
+          version: rds.AuroraMysqlEngineVersion.VER_2_08_1,
+        }),
+        instanceProps: {
+          vpc: vpc2,
+          vpcSubnets: {
+            subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+          },
+          securityGroups: [AdminSG],
+        },
+        removalPolicy: cdk.RemovalPolicy.SNAPSHOT,
+        backup: ({
+          retention: cdk.Duration.days(7),
+        }),
+      });
+
+
 
 
 
