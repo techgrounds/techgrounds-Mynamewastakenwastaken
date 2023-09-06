@@ -145,9 +145,9 @@ export class ProjectStack extends cdk.Stack {
     //   keyName: 'AdminKey',
     // });
 
-      // Add userscript to webserver
-    const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    instance.addUserData(userDataScript);
+    //   // Add userscript to webserver
+    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
+    // instance.addUserData(userDataScript);
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
