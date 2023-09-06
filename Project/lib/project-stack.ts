@@ -125,15 +125,15 @@ export class ProjectStack extends cdk.Stack {
     // instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
     instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'));
 
-    //   // Create production instance
-    // const instance = new ec2.Instance(this, 'Webserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
-    //   vpc: vpc,
-    //   securityGroup: ProductionSG,
-    //   role: instanceRole,
-    //   keyName: 'ProductionKey',
-    // });
+      // Create production instance
+    const instance = new ec2.Instance(this, 'Webserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestAmazonLinux2(),
+      vpc: vpc,
+      securityGroup: ProductionSG,
+      role: instanceRole,
+      keyName: 'ProductionKey',
+    });
     
     //   // Create admin instance
     // const instance2 = new ec2.Instance(this, 'Admninserver', {
@@ -145,9 +145,9 @@ export class ProjectStack extends cdk.Stack {
     //   keyName: 'AdminKey',
     // });
 
-    //   // Add userscript to webserver
-    // const userDataScript = readFileSync('./lib/userdata.sh', 'utf8');
-    // instance.addUserData(userDataScript);
+      // Add userscript to webserver
+    const userDataScript = readFileSync('./lib/userdata-selfsigned.sh', 'utf8');
+    instance.addUserData(userDataScript);
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
@@ -209,22 +209,6 @@ export class ProjectStack extends cdk.Stack {
     //     backup.BackupResource.fromEc2Instance(instance)
     //   ]
     // })
-
-
-
-    
-    //   // Define the resources to back up (EC2 instances)
-    // const ec2Resource = new backup.BackupResource(this, 'MyEC2Resource', {
-    //   resourceType: backup.BackupResourceType.EC2_INSTANCE,
-    //   resourceArn: 'arn:aws:ec2:REGION:ACCOUNT_ID:instance/INSTANCE_ID', // Replace with your instance ARN
-    // });
-
-    //   // Create a backup selection
-    // new backup.BackupSelection(this, 'MyBackupSelection', {
-    //   backupPlan,
-    //   resources: [ec2Resource],
-    // });
-
 
 
 
