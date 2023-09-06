@@ -190,25 +190,25 @@ export class ProjectStack extends cdk.Stack {
     //   backupVaultName: 'WebserverBackups',
     // });
 
-    const Backup = new backup.BackupPlan(this, 'WebBackup')
+    // const Backup = new backup.BackupPlan(this, 'WebBackup')
 
-      // Create a backup plan
-      Backup.addRule(new backup.BackupPlanRule ({
-      completionWindow: cdk.Duration.hours(2),
-      startWindow: cdk.Duration.hours(1),
-      deleteAfter: cdk.Duration.days(7),
-      scheduleExpression: cdk.aws_events.Schedule.cron({
-        day: '*',
-        hour: '0',
-        minute: '0',
-      }),
-    }));
+    //   // Create a backup plan
+    //   Backup.addRule(new backup.BackupPlanRule ({
+    //   completionWindow: cdk.Duration.hours(2),
+    //   startWindow: cdk.Duration.hours(1),
+    //   deleteAfter: cdk.Duration.days(7),
+    //   scheduleExpression: cdk.aws_events.Schedule.cron({
+    //     day: '*',
+    //     hour: '0',
+    //     minute: '0',
+    //   }),
+    // }));
 
-    Backup.addSelection('Selection', {
-      resources: [
-        backup.BackupResource.fromEc2Instance(instance)
-      ]
-    })
+    // Backup.addSelection('Selection', {
+    //   resources: [
+    //     backup.BackupResource.fromEc2Instance(instance)
+    //   ]
+    // })
 
 
 
