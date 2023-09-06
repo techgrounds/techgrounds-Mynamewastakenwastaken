@@ -192,10 +192,12 @@ export class ProjectStack extends cdk.Stack {
     //   backupVaultName: 'WebserverBackups',
     // });
 
-    const BackupPlan = backup.BackupPlan.daily35DayRetention(this, 'Plan');
+    // const BackupPlan = backup.BackupPlan.daily35DayRetention(this, 'Plan');
+
+    const Backup = new backup.BackupPlan(this, 'WebBackup')
 
       // Create a backup plan
-    BackupPlan.addRule(new backup.BackupPlanRule ({
+      Backup.addRule(new backup.BackupPlanRule ({
       completionWindow: cdk.Duration.hours(2),
       startWindow: cdk.Duration.hours(1),
       deleteAfter: cdk.Duration.days(7),
@@ -206,13 +208,15 @@ export class ProjectStack extends cdk.Stack {
       }),
     }));
 
-    BackupPlan.addSelection('Selection', {
+    Backup.addSelection('Selection', {
       resources: [
         backup.BackupResource.fromEc2Instance(instance)
       ]
     })
 
 
+
+    
     //   // Define the resources to back up (EC2 instances)
     // const ec2Resource = new backup.BackupResource(this, 'MyEC2Resource', {
     //   resourceType: backup.BackupResourceType.EC2_INSTANCE,
