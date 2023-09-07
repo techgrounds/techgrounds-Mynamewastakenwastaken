@@ -155,7 +155,7 @@ export class ProjectStack extends cdk.Stack {
       readFileSync('./lib/userdata.sh', 'utf8')
     );
 
-    const ScalingGroup = new asg.AutoScalingGroup(this, 'ASG', {
+    const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
       vpc: vpc,
       keyName: 'ProductionKey',
       vpcSubnets: {
