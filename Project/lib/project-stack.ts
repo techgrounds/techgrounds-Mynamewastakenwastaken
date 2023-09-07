@@ -2,6 +2,7 @@ import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as asg from 'aws-cdk-lib/aws-autoscaling';
 import * as elb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
+import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
 import * as s3 from 'aws-cdk-lib/aws-s3'
@@ -189,20 +190,16 @@ export class ProjectStack extends cdk.Stack {
       targetPort: 8080,
     });
 
+    const SelfCertificate = acm.Certificate.fromCertificateArn(this, 'SelfSignedCert', 'arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
+
     const listener = LoadBalancer.addListener('Listener', {
       port: 8443,
+      certificates: [SelfCertificate]
     });
 
     listener.addTargets('WebServerFleet', {
       port: 8443,
       targets: [ScalingGroup]
-    });
-
-    const ListenerCertificate = new elb.ApplicationListenerCertificate(this, 'SelfSignedCert', {
-      certificates: [{
-        certificateArn: 'arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2',
-      }],
-      listener: listener,
     });
 
       // Create IAM roles for production/admin staff
