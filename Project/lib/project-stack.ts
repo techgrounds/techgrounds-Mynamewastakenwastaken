@@ -190,11 +190,11 @@ export class ProjectStack extends cdk.Stack {
     });
 
     const listener = LoadBalancer.addListener('Listener', {
-      port: 8443,
+      port: 8080,
     });
 
     listener.addTargets('WebServerFleet', {
-      port: 8443,
+      port: 8080,
       targets: [ScalingGroup]
     });
 
