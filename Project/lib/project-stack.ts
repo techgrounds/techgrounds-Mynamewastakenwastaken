@@ -197,11 +197,13 @@ export class ProjectStack extends cdk.Stack {
       certificates: [SelfCertificate]
     });
 
+    listener.addCertificates('SelfCert', [SelfCertificate])
+
     listener.addTargets('WebServerFleet', {
       port: 8443,
       targets: [ScalingGroup]
     });
-    
+
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
     const admingroup = new iam.Group(this, 'AdminGroup');
