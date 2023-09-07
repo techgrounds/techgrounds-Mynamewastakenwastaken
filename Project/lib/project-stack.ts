@@ -184,18 +184,18 @@ export class ProjectStack extends cdk.Stack {
     //   targetUtilizationPercent: 80,
     // });
 
-    const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
-      vpc: vpc,
-      internetFacing: true,
-      securityGroup: BalancerSG
-    });
+    // const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
+    //   vpc: vpc,
+    //   internetFacing: true,
+    //   securityGroup: BalancerSG
+    // });
 
-    const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
+    // const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
 
-    const listener = LoadBalancer.addListener('Listener', {
-      port: 443,
-      certificates: [SelfCertificate]
-    });
+    // const listener = LoadBalancer.addListener('Listener', {
+    //   port: 443,
+    //   certificates: [SelfCertificate]
+    // });
 
     // const RedirectListener = LoadBalancer.addRedirect({
     //   sourceProtocol: elb.ApplicationProtocol.HTTP,
@@ -204,14 +204,14 @@ export class ProjectStack extends cdk.Stack {
     //   targetPort: 8433,
     // });
 
-    LoadBalancer.addListener('HttpListener', {
-      port: 80,
-      open: true,
-      defaultAction: elb.ListenerAction.redirect({
-        protocol: 'HTTPS',
-        port: '443',
-      }),
-    });
+    // LoadBalancer.addListener('HttpListener', {
+    //   port: 80,
+    //   open: true,
+    //   defaultAction: elb.ListenerAction.redirect({
+    //     protocol: 'HTTPS',
+    //     port: '443',
+    //   }),
+    // });
 
     // listener.addTargets('WebServerFleet', {
     //   port: 8443,
