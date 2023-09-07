@@ -199,6 +199,12 @@ export class ProjectStack extends cdk.Stack {
       certificates: [SelfCertificate]
     });
 
+    const RedirectListener = LoadBalancer.addListener("httpListener", {
+      port: 8080, 
+      certificates:[SelfCertificate], 
+      protocol: elb.ApplicationProtocol.HTTP
+    });
+
     // listener.addCertificates('SelfCert', [SelfCertificate])
 
     listener.addTargets('WebServerFleet', {
