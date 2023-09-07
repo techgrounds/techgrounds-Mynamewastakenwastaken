@@ -88,6 +88,11 @@ export class ProjectStack extends cdk.Stack {
       description: 'Allow public access from select ip'
     });   
 
+    const BalancerSG = new ec2.SecurityGroup(this, 'ServerAccess', {
+      vpc: vpc2,
+      description: 'Allow public access'
+    });  
+
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
 
@@ -103,6 +108,9 @@ export class ProjectStack extends cdk.Stack {
 
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
+
+    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
       // Create key pairs for secure connections
     const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
@@ -179,13 +187,14 @@ export class ProjectStack extends cdk.Stack {
 
     const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
       vpc: vpc,
-      internetFacing: true
+      internetFacing: true,
+      securityGroup: BalancerSG
     });
 
     const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
 
     const listener = LoadBalancer.addListener('Listener', {
-      port: 8443,
+      port: 443,
       certificates: [SelfCertificate]
     });
 
@@ -197,11 +206,11 @@ export class ProjectStack extends cdk.Stack {
     // });
 
     const RedirectListener = LoadBalancer.addListener('HttpListener', {
-      port: 8080,
+      port: 80,
       open: true,
       defaultAction: elb.ListenerAction.redirect({
         protocol: 'HTTPS',
-        port: '8443',
+        port: '443',
       }),
     });
 
