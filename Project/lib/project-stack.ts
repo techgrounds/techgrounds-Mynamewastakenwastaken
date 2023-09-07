@@ -198,13 +198,12 @@ export class ProjectStack extends cdk.Stack {
       targets: [ScalingGroup]
     });
 
-    const ListenerCertificate = new elb.CfnListenerCertificate(this, 'SelfSignedCert', {
+    const ListenerCertificate = new elb.ApplicationListenerCertificate(this, 'SelfSignedCert', {
       certificates: [{
         certificateArn: 'arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2',
       }],
-      listenerArn: listener.listenerArn,
+      listener: listener,
     });
-
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
