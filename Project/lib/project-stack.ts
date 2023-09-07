@@ -194,7 +194,6 @@ export class ProjectStack extends cdk.Stack {
 
     const listener = LoadBalancer.addListener('Listener', {
       port: 8443,
-      certificates: [SelfCertificate]
     });
 
     listener.addCertificates('SelfCert', [SelfCertificate])
