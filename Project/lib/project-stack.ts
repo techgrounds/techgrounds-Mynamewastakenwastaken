@@ -152,7 +152,7 @@ export class ProjectStack extends cdk.Stack {
 
     const userDataScript = ec2.UserData.forLinux();
     userDataScript.addCommands(
-      readFileSync('./lib/userdata-test.sh', 'utf8')
+      readFileSync('./lib/userdata.sh', 'utf8')
     );
 
     const ScalingGroup = new asg.AutoScalingGroup(this, 'ASG', {
