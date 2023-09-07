@@ -111,8 +111,6 @@ export class ProjectStack extends cdk.Stack {
 
     BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
     BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
-    BalancerSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
-    BalancerSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
 
       // Create key pairs for secure connections
     const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
