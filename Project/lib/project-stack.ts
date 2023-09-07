@@ -89,7 +89,7 @@ export class ProjectStack extends cdk.Stack {
     });   
 
     const BalancerSG = new ec2.SecurityGroup(this, 'ServerAccess', {
-      vpc: vpc2,
+      vpc: vpc,
       description: 'Allow public access'
     });  
 
@@ -188,7 +188,7 @@ export class ProjectStack extends cdk.Stack {
     const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
       vpc: vpc,
       internetFacing: true,
-      securityGroup: ProductionSG
+      securityGroup: BalancerSG
     });
 
     const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
@@ -205,7 +205,7 @@ export class ProjectStack extends cdk.Stack {
     //   targetPort: 8433,
     // });
 
-    const RedirectListener = LoadBalancer.addListener('HttpListener', {
+    LoadBalancer.addListener('HttpListener', {
       port: 80,
       open: true,
       defaultAction: elb.ListenerAction.redirect({
