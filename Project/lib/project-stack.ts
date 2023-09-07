@@ -213,20 +213,10 @@ export class ProjectStack extends cdk.Stack {
       }),
     });
 
-    // RedirectListener.addCertificates('RedirectCert', [SelfCertificate])
-
-    // const RedirectListener = LoadBalancer.addListener("httpListener", {
-    //   port: 8080, 
-    //   certificates:[SelfCertificate],
-    //   defaultTargetGroups:
+    // listener.addTargets('WebServerFleet', {
+    //   port: 8443,
+    //   targets: [ScalingGroup]
     // });
-
-    // listener.addCertificates('SelfCert', [SelfCertificate])
-
-    listener.addTargets('WebServerFleet', {
-      port: 8443,
-      targets: [ScalingGroup]
-    });
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
