@@ -182,21 +182,29 @@ export class ProjectStack extends cdk.Stack {
       internetFacing: true
     });
 
-    // LoadBalancer.addRedirect({
-    //   sourceProtocol: elb.ApplicationProtocol.HTTPS,
-    //   sourcePort: 8443,
-    //   targetProtocol: elb.ApplicationProtocol.HTTP,
-    //   targetPort: 8080,
-    // });
+    LoadBalancer.addRedirect({
+      sourceProtocol: elb.ApplicationProtocol.HTTPS,
+      sourcePort: 8443,
+      targetProtocol: elb.ApplicationProtocol.HTTP,
+      targetPort: 8080,
+    });
 
     const listener = LoadBalancer.addListener('Listener', {
-      port: 8080,
+      port: 8443,
     });
 
     listener.addTargets('WebServerFleet', {
-      port: 8080,
+      port: 8443,
       targets: [ScalingGroup]
     });
+
+    const ListenerCertificate = new elb.CfnListenerCertificate(this, 'SelfSignedCert', {
+      certificates: [{
+        certificateArn: 'arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2',
+      }],
+      listenerArn: listener.listenerArn,
+    });
+
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
