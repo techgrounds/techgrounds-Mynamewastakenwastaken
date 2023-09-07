@@ -2,7 +2,6 @@ import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as asg from 'aws-cdk-lib/aws-autoscaling';
 import * as elb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import * as acm from 'aws-cdk-lib/aws-certificatemanager';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
 import * as s3 from 'aws-cdk-lib/aws-s3'
@@ -183,15 +182,6 @@ export class ProjectStack extends cdk.Stack {
       internetFacing: true
     });
 
-    LoadBalancer.addRedirect({
-      sourceProtocol: elb.ApplicationProtocol.HTTP,
-      sourcePort: 8080,
-      targetProtocol: elb.ApplicationProtocol.HTTPS,
-      targetPort: 8443,
-    });
-
-    // const SelfCertificate = acm.Certificate.fromCertificateArn(this, 'SelfSignedCert', 'arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
-
     const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
 
     const listener = LoadBalancer.addListener('Listener', {
@@ -199,11 +189,20 @@ export class ProjectStack extends cdk.Stack {
       certificates: [SelfCertificate]
     });
 
-    const RedirectListener = LoadBalancer.addListener("httpListener", {
-      port: 8080, 
-      certificates:[SelfCertificate], 
-      protocol: elb.ApplicationProtocol.HTTP
+    const RedirectListener = LoadBalancer.addRedirect({
+      sourceProtocol: elb.ApplicationProtocol.HTTP,
+      sourcePort: 8080,
+      targetProtocol: elb.ApplicationProtocol.HTTPS,
+      targetPort: 8443,
     });
+
+    RedirectListener.addCertificates('RedirectCert', [SelfCertificate])
+
+    // const RedirectListener = LoadBalancer.addListener("httpListener", {
+    //   port: 8080, 
+    //   certificates:[SelfCertificate],
+    //   defaultTargetGroups:
+    // });
 
     // listener.addCertificates('SelfCert', [SelfCertificate])
 
