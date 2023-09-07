@@ -182,12 +182,12 @@ export class ProjectStack extends cdk.Stack {
       internetFacing: true
     });
 
-    LoadBalancer.addRedirect({
-      sourceProtocol: elb.ApplicationProtocol.HTTPS,
-      sourcePort: 8443,
-      targetProtocol: elb.ApplicationProtocol.HTTP,
-      targetPort: 8080,
-    });
+    // LoadBalancer.addRedirect({
+    //   sourceProtocol: elb.ApplicationProtocol.HTTPS,
+    //   sourcePort: 8443,
+    //   targetProtocol: elb.ApplicationProtocol.HTTP,
+    //   targetPort: 8080,
+    // });
 
     const listener = LoadBalancer.addListener('Listener', {
       port: 8080,
