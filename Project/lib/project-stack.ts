@@ -1,6 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as asg from 'aws-cdk-lib/aws-autoscaling';
+import * as elb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
 import * as s3 from 'aws-cdk-lib/aws-s3'
@@ -174,6 +175,27 @@ export class ProjectStack extends cdk.Stack {
     
     ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
       targetUtilizationPercent: 80,
+    });
+
+    const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
+      vpc: vpc,
+      internetFacing: true
+    });
+
+    LoadBalancer.addRedirect({
+      sourceProtocol: elb.ApplicationProtocol.HTTPS,
+      sourcePort: 8443,
+      targetProtocol: elb.ApplicationProtocol.HTTP,
+      targetPort: 8080,
+    });
+
+    const listener = LoadBalancer.addListener('Listener', {
+      port: 8443,
+    });
+
+    listener.addTargets('WebServerFleet', {
+      port: 8443,
+      targets: [ScalingGroup]
     });
 
       // Create IAM roles for production/admin staff
