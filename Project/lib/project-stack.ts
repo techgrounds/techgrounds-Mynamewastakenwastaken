@@ -1,5 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as asg from 'aws-cdk-lib/aws-autoscaling';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import {readFileSync} from 'fs';
 import * as s3 from 'aws-cdk-lib/aws-s3'
@@ -148,6 +149,32 @@ export class ProjectStack extends cdk.Stack {
     //   // Add userscript to webserver
     // const userDataScript = readFileSync('./lib/userdata-test.sh', 'utf8');
     // instance.addUserData(userDataScript);
+
+    const userDataScript = ec2.UserData.forLinux();
+    userDataScript.addCommands(
+      readFileSync('./lib/userdata-test.sh', 'utf8')
+    );
+
+    const ScalingGroup = new asg.AutoScalingGroup(this, 'ASG', {
+      vpc: vpc,
+      keyName: 'ProductionKey',
+      vpcSubnets: {
+        subnetType: ec2.SubnetType.PUBLIC,
+      },
+      associatePublicIpAddress: true,
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: new ec2.AmazonLinuxImage(),
+      securityGroup: ProductionSG,
+      
+      userData: userDataScript,
+      desiredCapacity: 1,
+      maxCapacity: 3,
+      minCapacity: 1,
+    });
+    
+    ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
+      targetUtilizationPercent: 80,
+    });
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
