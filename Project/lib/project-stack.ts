@@ -174,7 +174,7 @@ export class ProjectStack extends cdk.Stack {
       securityGroup: ProductionSG,
       userData: userDataScript,
       maxCapacity: 3,
-      minCapacity: 1,
+      minCapacity: 3,
       defaultInstanceWarmup: cdk.Duration.minutes(3)
     });
     
