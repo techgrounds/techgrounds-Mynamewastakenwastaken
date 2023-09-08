@@ -8,6 +8,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3'
 import * as rds from 'aws-cdk-lib/aws-rds'
 import * as backup from 'aws-cdk-lib/aws-backup';
 import { VpcSubnetGroupType } from 'aws-cdk-lib/cx-api';
+import { HealthCheck } from 'aws-cdk-lib/aws-appmesh';
 
 
 export class ProjectStack extends cdk.Stack {
@@ -95,13 +96,12 @@ export class ProjectStack extends cdk.Stack {
 
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
-
-
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8080), 'Allow HTTP traffic');
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8443), 'Allow HTTPS traffic');
       // !!!!! TESTING REMOVE IN FINAL !!!!!
     ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
 
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
@@ -184,7 +184,7 @@ export class ProjectStack extends cdk.Stack {
     const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
       vpc: vpc,
       internetFacing: true,
-      securityGroup: BalancerSG
+      securityGroup: BalancerSG,
     });
 
     const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
