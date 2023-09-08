@@ -181,18 +181,18 @@ export class ProjectStack extends cdk.Stack {
       targetUtilizationPercent: 80,
     });
 
-    // const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
-    //   vpc: vpc,
-    //   internetFacing: true,
-    //   securityGroup: BalancerSG
-    // });
+    const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
+      vpc: vpc,
+      internetFacing: true,
+      securityGroup: BalancerSG
+    });
 
-    // const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
+    const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
 
-    // const listener = LoadBalancer.addListener('Listener', {
-    //   port: 443,
-    //   certificates: [SelfCertificate]
-    // });
+    const listener = LoadBalancer.addListener('Listener', {
+      port: 443,
+      certificates: [SelfCertificate]
+    });
 
     // const RedirectListener = LoadBalancer.addRedirect({
     //   sourceProtocol: elb.ApplicationProtocol.HTTP,
@@ -210,10 +210,10 @@ export class ProjectStack extends cdk.Stack {
     //   }),
     // });
 
-    // listener.addTargets('WebServerFleet', {
-    //   port: 8443,
-    //   targets: [ScalingGroup]
-    // });
+    listener.addTargets('WebServerFleet', {
+      port: 8443,
+      targets: [ScalingGroup]
+    });
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
