@@ -98,8 +98,8 @@ export class ProjectStack extends cdk.Stack {
 
 
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8080), 'Allow HTTP traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8443), 'Allow HTTPS traffic');
       // !!!!! TESTING REMOVE IN FINAL !!!!!
     ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
 
@@ -161,38 +161,38 @@ export class ProjectStack extends cdk.Stack {
       readFileSync('./lib/userdata.sh', 'utf8')
     );
 
-    const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
-      vpc: vpc,
-      keyName: 'ProductionKey',
-      vpcSubnets: {
-        subnetType: ec2.SubnetType.PUBLIC,
-      },
-      associatePublicIpAddress: true,
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-      machineImage: ec2.MachineImage.latestAmazonLinux2(),
-      securityGroup: ProductionSG,
-      userData: userDataScript,
-      maxCapacity: 3,
-      minCapacity: 1,
-      defaultInstanceWarmup: cdk.Duration.minutes(3)
-    });
+    // const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
+    //   vpc: vpc,
+    //   keyName: 'ProductionKey',
+    //   vpcSubnets: {
+    //     subnetType: ec2.SubnetType.PUBLIC,
+    //   },
+    //   associatePublicIpAddress: true,
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
+    //   securityGroup: ProductionSG,
+    //   userData: userDataScript,
+    //   maxCapacity: 3,
+    //   minCapacity: 1,
+    //   defaultInstanceWarmup: cdk.Duration.minutes(3)
+    // });
     
-    ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
-      targetUtilizationPercent: 80,
-    });
+    // ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
+    //   targetUtilizationPercent: 80,
+    // });
 
-    const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
-      vpc: vpc,
-      internetFacing: true,
-      securityGroup: BalancerSG
-    });
+    // const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
+    //   vpc: vpc,
+    //   internetFacing: true,
+    //   securityGroup: BalancerSG
+    // });
 
-    const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
+    // const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
 
-    const listener = LoadBalancer.addListener('Listener', {
-      port: 8443,
-      certificates: [SelfCertificate]
-    });
+    // const listener = LoadBalancer.addListener('Listener', {
+    //   port: 8443,
+    //   certificates: [SelfCertificate]
+    // });
 
     // const RedirectListener = LoadBalancer.addRedirect({
     //   sourceProtocol: elb.ApplicationProtocol.HTTP,
@@ -210,10 +210,10 @@ export class ProjectStack extends cdk.Stack {
     //   }),
     // });
 
-    listener.addTargets('WebServerFleet', {
-      port: 8443,
-      targets: [ScalingGroup]
-    });
+    // listener.addTargets('WebServerFleet', {
+    //   port: 8443,
+    //   targets: [ScalingGroup]
+    // });
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
