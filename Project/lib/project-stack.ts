@@ -96,15 +96,12 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
 
+
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
       // !!!!! TESTING REMOVE IN FINAL !!!!!
     ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
-
-      // Add an inbound rule to allow RDP traffic from 10.20.20.0/24
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
-
-      // Add an inbound rule to allow HTTP/S traffic
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic'); 
 
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
@@ -164,25 +161,25 @@ export class ProjectStack extends cdk.Stack {
       readFileSync('./lib/userdata.sh', 'utf8')
     );
 
-    // const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
-    //   vpc: vpc,
-    //   keyName: 'ProductionKey',
-    //   vpcSubnets: {
-    //     subnetType: ec2.SubnetType.PUBLIC,
-    //   },
-    //   associatePublicIpAddress: true,
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
-    //   securityGroup: ProductionSG,
-    //   userData: userDataScript,
-    //   maxCapacity: 3,
-    //   minCapacity: 1,
-    //   defaultInstanceWarmup: cdk.Duration.minutes(3)
-    // });
+    const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
+      vpc: vpc,
+      keyName: 'ProductionKey',
+      vpcSubnets: {
+        subnetType: ec2.SubnetType.PUBLIC,
+      },
+      associatePublicIpAddress: true,
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestAmazonLinux2(),
+      securityGroup: ProductionSG,
+      userData: userDataScript,
+      maxCapacity: 3,
+      minCapacity: 1,
+      defaultInstanceWarmup: cdk.Duration.minutes(3)
+    });
     
-    // ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
-    //   targetUtilizationPercent: 80,
-    // });
+    ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
+      targetUtilizationPercent: 80,
+    });
 
     // const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
     //   vpc: vpc,
