@@ -191,7 +191,7 @@ export class ProjectStack extends cdk.Stack {
     const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
 
     const listener = LoadBalancer.addListener('Listener', {
-      port: 8443,
+      port: 443,
       certificates: [SelfCertificate]
     });
 
@@ -212,7 +212,7 @@ export class ProjectStack extends cdk.Stack {
     // });
 
     listener.addTargets('WebServerFleet', {
-      port: 8443,
+      port: 443,
       targets: [ScalingGroup]
     });
 
