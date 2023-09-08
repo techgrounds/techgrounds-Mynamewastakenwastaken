@@ -211,10 +211,10 @@ export class ProjectStack extends cdk.Stack {
     //   }),
     // });
 
-    listener.addTargets('WebServerFleet', {
-      port: 443,
-      targets: [ScalingGroup]
-    });
+    // listener.addTargets('WebServerFleet', {
+    //   port: 443,
+    //   targets: [ScalingGroup]
+    // });
 
       // Create IAM roles for production/admin staff
     const productiongroup = new iam.Group(this, 'ProductionGroup');
