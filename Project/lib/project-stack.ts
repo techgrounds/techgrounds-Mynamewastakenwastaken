@@ -102,6 +102,7 @@ export class ProjectStack extends cdk.Stack {
       // !!!!! TESTING REMOVE IN FINAL !!!!!
     ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
     ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
+    ProductionSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
 
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
