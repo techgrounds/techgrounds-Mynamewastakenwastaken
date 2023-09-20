@@ -97,18 +97,17 @@ export class ProjectStack extends cdk.Stack {
       // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8080), 'Allow HTTP traffic');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8443), 'Allow HTTPS traffic');
-      // !!!!! TESTING REMOVE IN FINAL !!!!!
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
-    ProductionSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+
+    //   // !!!!! TESTING REMOVE IN FINAL !!!!!
+    // ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
+    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
 
       // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
     AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
 
-    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8080), 'Allow HTTP traffic');
-    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(8443), 'Allow HTTPS traffic');
+    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
       // Create key pairs for secure connections
     const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
@@ -185,7 +184,7 @@ export class ProjectStack extends cdk.Stack {
     const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
       vpc: vpc,
       internetFacing: true,
-      securityGroup: ProductionSG,
+      securityGroup: BalancerSG,
     });
 
     const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
@@ -197,19 +196,19 @@ export class ProjectStack extends cdk.Stack {
 
     // const RedirectListener = LoadBalancer.addRedirect({
     //   sourceProtocol: elb.ApplicationProtocol.HTTP,
-    //   sourcePort: 8080,
+    //   sourcePort: 80,
     //   targetProtocol: elb.ApplicationProtocol.HTTPS,
-    //   targetPort: 8433,
+    //   targetPort: 433,
     // });
 
-    // LoadBalancer.addListener('HttpListener', {
-    //   port: 80,
-    //   open: true,
-    //   defaultAction: elb.ListenerAction.redirect({
-    //     protocol: 'HTTPS',
-    //     port: '443',
-    //   }),
-    // });
+    LoadBalancer.addListener('HttpListener', {
+      port: 80,
+      open: true,
+      defaultAction: elb.ListenerAction.redirect({
+        protocol: 'HTTPS',
+        port: '443',
+      }),
+    });
 
     listener.addTargets('WebServerFleet', {
       port: 443,
