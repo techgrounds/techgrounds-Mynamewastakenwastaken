@@ -25,97 +25,97 @@ export class ProjectStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
-    //   // Create the Production VPC
-    // const vpc = new ec2.Vpc(this, 'ProductionVPC', {
-    //   ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
-    //   maxAzs: 2,
-    //   // subnetConfiguration: [
-    //   //   {
-    //   //     name: 'ProductionPublic',
-    //   //     subnetType: ec2.SubnetType.PUBLIC,
-    //   //   },
-    //   // ],
-    // });
+      // Create the Production VPC
+    const vpc = new ec2.Vpc(this, 'ProductionVPC', {
+      ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
+      maxAzs: 2,
+      // subnetConfiguration: [
+      //   {
+      //     name: 'ProductionPublic',
+      //     subnetType: ec2.SubnetType.PUBLIC,
+      //   },
+      // ],
+    });
 
-    //   // create the Admin VPC
-    // const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
-    //   ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
-    //   maxAzs: 2,
-    //   subnetConfiguration: [
-    //     {
-    //       name: 'AdminSubnet',
-    //       subnetType: ec2.SubnetType.PUBLIC,
-    //     },
-    //     {
-    //       name: 'DBSubnet',
-    //       subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-    //     },
-    //   ],
-    // });
+      // create the Admin VPC
+    const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
+      ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
+      maxAzs: 2,
+      subnetConfiguration: [
+        {
+          name: 'AdminSubnet',
+          subnetType: ec2.SubnetType.PUBLIC,
+        },
+        {
+          name: 'DBSubnet',
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+        },
+      ],
+    });
 
-    //   // Create the peering connection
-    // const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
-    //   peerVpcId: vpc.vpcId,
-    //   vpcId: vpc2.vpcId,
-    // });
+      // Create the peering connection
+    const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
+      peerVpcId: vpc.vpcId,
+      vpcId: vpc2.vpcId,
+    });
 
-    //   // Loop through each subnet of Production vpc and add the peering route
-    // vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-    //   new ec2.CfnRoute(this, 'PublicPeering' + index, {
-    //   routeTableId,
-    //   destinationCidrBlock: '10.20.20.0/24',
-    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
-    //   });
-    // });
+      // Loop through each subnet of Production vpc and add the peering route
+    vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'PublicPeering' + index, {
+      routeTableId,
+      destinationCidrBlock: '10.20.20.0/24',
+      vpcPeeringConnectionId: VPCPeeringConnection.attrId
+      });
+    });
 
-    // vpc.privateSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-    //   new ec2.CfnRoute(this, 'PrivatePeering' + index, {
-    //   routeTableId,
-    //   destinationCidrBlock: '10.20.20.0/24',
-    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
-    //   });
-    // });
+    vpc.privateSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'PrivatePeering' + index, {
+      routeTableId,
+      destinationCidrBlock: '10.20.20.0/24',
+      vpcPeeringConnectionId: VPCPeeringConnection.attrId
+      });
+    });
 
-    //   // Loop through each public subnet of Admin vpc and add the peering route
-    // vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-    //   new ec2.CfnRoute(this, 'ProductionPeering' + index, {
-    //   routeTableId,
-    //   destinationCidrBlock: '10.10.10.0/24',
-    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
-    //   });
-    // });
+      // Loop through each public subnet of Admin vpc and add the peering route
+    vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+      new ec2.CfnRoute(this, 'ProductionPeering' + index, {
+      routeTableId,
+      destinationCidrBlock: '10.10.10.0/24',
+      vpcPeeringConnectionId: VPCPeeringConnection.attrId
+      });
+    });
 
-    //   // Create a security group for Production
-    // const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
-    //     vpc: vpc,
-    //     description: 'Allow HTTP access and Admin access'
-    //   });
+      // Create a security group for Production
+    const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
+        vpc: vpc,
+        description: 'Allow HTTP access and Admin access'
+      });
 
-    //   // Create a security group for Admin
-    // const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
-    //   vpc: vpc2,
-    //   description: 'Allow public access from select ip'
-    // });   
+      // Create a security group for Admin
+    const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
+      vpc: vpc2,
+      description: 'Allow public access from select ip'
+    });   
 
-    // const BalancerSG = new ec2.SecurityGroup(this, 'ServerAccess', {
-    //   vpc: vpc,
-    //   description: 'Allow public access'
-    // });  
+    const BalancerSG = new ec2.SecurityGroup(this, 'ServerAccess', {
+      vpc: vpc,
+      description: 'Allow public access'
+    });  
 
-    //   // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
-    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
-    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
-    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+      // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
+    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
-    // //   // !!!!! TESTING REMOVE IN FINAL !!!!!
-    // // ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
-    // // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
+    //   // !!!!! TESTING REMOVE IN FINAL !!!!!
+    // ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
+    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
 
-    //   // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
-    // AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
+      // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
+    AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
 
-    // BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
-    // BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
       // Create key pairs for secure connections
     const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
