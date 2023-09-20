@@ -25,97 +25,97 @@ export class ProjectStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
-      // Create the Production VPC
-    const vpc = new ec2.Vpc(this, 'ProductionVPC', {
-      ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
-      maxAzs: 2,
-      // subnetConfiguration: [
-      //   {
-      //     name: 'ProductionPublic',
-      //     subnetType: ec2.SubnetType.PUBLIC,
-      //   },
-      // ],
-    });
+    //   // Create the Production VPC
+    // const vpc = new ec2.Vpc(this, 'ProductionVPC', {
+    //   ipAddresses: ec2.IpAddresses.cidr('10.10.10.0/24'),
+    //   maxAzs: 2,
+    //   // subnetConfiguration: [
+    //   //   {
+    //   //     name: 'ProductionPublic',
+    //   //     subnetType: ec2.SubnetType.PUBLIC,
+    //   //   },
+    //   // ],
+    // });
 
-      // create the Admin VPC
-    const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
-      ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
-      maxAzs: 2,
-      subnetConfiguration: [
-        {
-          name: 'AdminSubnet',
-          subnetType: ec2.SubnetType.PUBLIC,
-        },
-        {
-          name: 'DBSubnet',
-          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-        },
-      ],
-    });
+    //   // create the Admin VPC
+    // const vpc2 = new ec2.Vpc(this, 'AdminVPC', {
+    //   ipAddresses: ec2.IpAddresses.cidr('10.20.20.0/24'),
+    //   maxAzs: 2,
+    //   subnetConfiguration: [
+    //     {
+    //       name: 'AdminSubnet',
+    //       subnetType: ec2.SubnetType.PUBLIC,
+    //     },
+    //     {
+    //       name: 'DBSubnet',
+    //       subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+    //     },
+    //   ],
+    // });
 
-      // Create the peering connection
-    const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
-      peerVpcId: vpc.vpcId,
-      vpcId: vpc2.vpcId,
-    });
+    //   // Create the peering connection
+    // const VPCPeeringConnection = new ec2.CfnVPCPeeringConnection(this, 'Production_Admin_Peering', {
+    //   peerVpcId: vpc.vpcId,
+    //   vpcId: vpc2.vpcId,
+    // });
 
-      // Loop through each subnet of Production vpc and add the peering route
-    vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      new ec2.CfnRoute(this, 'PublicPeering' + index, {
-      routeTableId,
-      destinationCidrBlock: '10.20.20.0/24',
-      vpcPeeringConnectionId: VPCPeeringConnection.attrId
-      });
-    });
+    //   // Loop through each subnet of Production vpc and add the peering route
+    // vpc.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+    //   new ec2.CfnRoute(this, 'PublicPeering' + index, {
+    //   routeTableId,
+    //   destinationCidrBlock: '10.20.20.0/24',
+    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
+    //   });
+    // });
 
-    vpc.privateSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      new ec2.CfnRoute(this, 'PrivatePeering' + index, {
-      routeTableId,
-      destinationCidrBlock: '10.20.20.0/24',
-      vpcPeeringConnectionId: VPCPeeringConnection.attrId
-      });
-    });
+    // vpc.privateSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+    //   new ec2.CfnRoute(this, 'PrivatePeering' + index, {
+    //   routeTableId,
+    //   destinationCidrBlock: '10.20.20.0/24',
+    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
+    //   });
+    // });
 
-      // Loop through each public subnet of Admin vpc and add the peering route
-    vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
-      new ec2.CfnRoute(this, 'ProductionPeering' + index, {
-      routeTableId,
-      destinationCidrBlock: '10.10.10.0/24',
-      vpcPeeringConnectionId: VPCPeeringConnection.attrId
-      });
-    });
+    //   // Loop through each public subnet of Admin vpc and add the peering route
+    // vpc2.publicSubnets.forEach(({ routeTable: { routeTableId } }, index) => {
+    //   new ec2.CfnRoute(this, 'ProductionPeering' + index, {
+    //   routeTableId,
+    //   destinationCidrBlock: '10.10.10.0/24',
+    //   vpcPeeringConnectionId: VPCPeeringConnection.attrId
+    //   });
+    // });
 
-      // Create a security group for Production
-    const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
-        vpc: vpc,
-        description: 'Allow HTTP access and Admin access'
-      });
+    //   // Create a security group for Production
+    // const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
+    //     vpc: vpc,
+    //     description: 'Allow HTTP access and Admin access'
+    //   });
 
-      // Create a security group for Admin
-    const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
-      vpc: vpc2,
-      description: 'Allow public access from select ip'
-    });   
+    //   // Create a security group for Admin
+    // const AdminSG = new ec2.SecurityGroup(this, 'AdminAccess', {
+    //   vpc: vpc2,
+    //   description: 'Allow public access from select ip'
+    // });   
 
-    const BalancerSG = new ec2.SecurityGroup(this, 'ServerAccess', {
-      vpc: vpc,
-      description: 'Allow public access'
-    });  
+    // const BalancerSG = new ec2.SecurityGroup(this, 'ServerAccess', {
+    //   vpc: vpc,
+    //   description: 'Allow public access'
+    // });  
 
-      // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
-    ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
-    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+    //   // Add an inbound rule to allow SSH traffic from 10.20.20.0/24
+    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(22), 'Allow SSH from 10.20.20.0/24');
+    // ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
+    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
-    //   // !!!!! TESTING REMOVE IN FINAL !!!!!
-    // ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
-    // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
+    // //   // !!!!! TESTING REMOVE IN FINAL !!!!!
+    // // ProductionSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.tcp(22), 'Allow SSH from 80.112.80.150/32');
+    // // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all inbound traffic');
 
-      // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
-    AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
+    //   // Add an inbound rule to allow HTTP traffic from 10.20.20.0/24
+    // AdminSG.addIngressRule(ec2.Peer.ipv4('80.112.80.150/32'), ec2.Port.allTraffic(), 'Allow all connections from 80.112.80.150');
 
-    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
-    BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
+    // BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow HTTP traffic');
+    // BalancerSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow HTTPS traffic');
 
       // Create key pairs for secure connections
     const cfnKeyPair = new ec2.CfnKeyPair(this, 'ProdKeyPair', {
@@ -169,81 +169,81 @@ export class ProjectStack extends cdk.Stack {
       readFileSync('./lib/userdata.sh', 'utf8')
     );
 
-    const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
-      vpc: vpc,
-      keyName: 'ProductionKey',
-      vpcSubnets: {
-        subnetType: ec2.SubnetType.PUBLIC,
-      },
-      associatePublicIpAddress: true,
-      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-      machineImage: ec2.MachineImage.latestAmazonLinux2(),
-      securityGroup: ProductionSG,
-      userData: userDataScript,
-      maxCapacity: 3,
-      minCapacity: 1,
-      defaultInstanceWarmup: cdk.Duration.minutes(3)
-    });
+    // const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
+    //   vpc: vpc,
+    //   keyName: 'ProductionKey',
+    //   vpcSubnets: {
+    //     subnetType: ec2.SubnetType.PUBLIC,
+    //   },
+    //   associatePublicIpAddress: true,
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
+    //   securityGroup: ProductionSG,
+    //   userData: userDataScript,
+    //   maxCapacity: 3,
+    //   minCapacity: 1,
+    //   defaultInstanceWarmup: cdk.Duration.minutes(3)
+    // });
     
-    ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
-      targetUtilizationPercent: 80,
-    });
-
-    const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
-      vpc: vpc,
-      internetFacing: true,
-      securityGroup: BalancerSG,
-    });
-
-    const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
-
-    const listener = LoadBalancer.addListener('Listener', {
-      port: 443,
-      certificates: [SelfCertificate]
-    });
-
-    // const RedirectListener = LoadBalancer.addRedirect({
-    //   sourceProtocol: elb.ApplicationProtocol.HTTP,
-    //   sourcePort: 80,
-    //   targetProtocol: elb.ApplicationProtocol.HTTPS,
-    //   targetPort: 433,
+    // ScalingGroup.scaleOnCpuUtilization('CpuScaling', {
+    //   targetUtilizationPercent: 80,
     // });
 
-    LoadBalancer.addListener('HttpListener', {
-      port: 80,
-      open: true,
-      defaultAction: elb.ListenerAction.redirect({
-        protocol: 'HTTPS',
-        port: '443',
-      }),
-    });
+    // const LoadBalancer = new elb.ApplicationLoadBalancer(this, 'WebBalancer', {
+    //   vpc: vpc,
+    //   internetFacing: true,
+    //   securityGroup: BalancerSG,
+    // });
 
-    listener.addTargets('WebServerFleet', {
-      port: 443,
-      targets: [ScalingGroup]
-    });
+    // const SelfCertificate = elb.ListenerCertificate.fromArn('arn:aws:acm:eu-central-1:477007237229:certificate/5994a68b-24a2-4789-abb7-a7813f551ab2');
 
-      // Create IAM roles for production/admin staff
-    const productiongroup = new iam.Group(this, 'ProductionGroup');
-    const admingroup = new iam.Group(this, 'AdminGroup');
+    // const listener = LoadBalancer.addListener('Listener', {
+    //   port: 443,
+    //   certificates: [SelfCertificate]
+    // });
+
+    // // const RedirectListener = LoadBalancer.addRedirect({
+    // //   sourceProtocol: elb.ApplicationProtocol.HTTP,
+    // //   sourcePort: 80,
+    // //   targetProtocol: elb.ApplicationProtocol.HTTPS,
+    // //   targetPort: 433,
+    // // });
+
+    // LoadBalancer.addListener('HttpListener', {
+    //   port: 80,
+    //   open: true,
+    //   defaultAction: elb.ListenerAction.redirect({
+    //     protocol: 'HTTPS',
+    //     port: '443',
+    //   }),
+    // });
+
+    // listener.addTargets('WebServerFleet', {
+    //   port: 443,
+    //   targets: [ScalingGroup]
+    // });
+
+    //   // Create IAM roles for production/admin staff
+    // const productiongroup = new iam.Group(this, 'ProductionGroup');
+    // const admingroup = new iam.Group(this, 'AdminGroup');
   
-      // Allow production full ec2 access in the production VPC
-    productiongroup.addToPolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/' + vpc.vpcId],
-        actions: ['ec2:*']
-      })
-    );
+    //   // Allow production full ec2 access in the production VPC
+    // productiongroup.addToPolicy(
+    //   new iam.PolicyStatement({
+    //     effect: iam.Effect.ALLOW,
+    //     resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/' + vpc.vpcId],
+    //     actions: ['ec2:*']
+    //   })
+    // );
       
-      // Allow admin full access to everything
-    admingroup.addToPolicy(
-      new iam.PolicyStatement({
-        effect: iam.Effect.ALLOW,
-        resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
-        actions: ['*']
-      })
-    );
+    //   // Allow admin full access to everything
+    // admingroup.addToPolicy(
+    //   new iam.PolicyStatement({
+    //     effect: iam.Effect.ALLOW,
+    //     resources: ['arn:aws:ec2:eu-central-1:477007237229:vpc/*'],
+    //     actions: ['*']
+    //   })
+    // );
 
     //   // Create an Aurora DB cluster
     // const cluster = new rds.DatabaseCluster(this, 'Database', {
