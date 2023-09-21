@@ -175,7 +175,7 @@ export class ProjectStack extends cdk.Stack {
       vpcSubnets: {
         subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
       },
-      associatePublicIpAddress: true,
+      // associatePublicIpAddress: true,
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       machineImage: ec2.MachineImage.latestAmazonLinux2(),
       securityGroup: ProductionSG,
