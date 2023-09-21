@@ -245,21 +245,6 @@ export class ProjectStack extends cdk.Stack {
     //   })
     // );
 
-    //   // Create an Aurora DB cluster
-    // const cluster = new rds.DatabaseCluster(this, 'Database', {
-    //   engine: rds.DatabaseClusterEngine.auroraMysql({ 
-    //     version: rds.AuroraMysqlEngineVersion.VER_3_04_0 }),
-    //   writer: rds.ClusterInstance.provisioned('writer', {
-    //     publiclyAccessible: false,
-    //   }),
-    //   readers: [
-    //     rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
-    //     rds.ClusterInstance.serverlessV2('reader2'),
-    //   ],
-    //   vpc: vpc2,
-    //   vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
-    // });
-
     // const WebVault = new backup.CfnBackupVault(this, 'BackupVault', {
     //   backupVaultName: 'WebserverBackups',
     // });
@@ -284,10 +269,24 @@ export class ProjectStack extends cdk.Stack {
     //   ]
     // })
 
+    //   // Create an Aurora DB cluster
+    // const cluster = new rds.DatabaseCluster(this, 'Database', {
+    //   engine: rds.DatabaseClusterEngine.auroraMysql({ 
+    //     version: rds.AuroraMysqlEngineVersion.VER_3_04_0 }),
+    //   writer: rds.ClusterInstance.provisioned('writer', {
+    //     publiclyAccessible: false,
+    //   }),
+    //   readers: [
+    //     rds.ClusterInstance.provisioned('reader1', { promotionTier: 1 }),
+    //     rds.ClusterInstance.serverlessV2('reader2'),
+    //   ],
+    //   vpc: vpc2,
+    //   vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
+    // });
 
 
 
-
+    
 
     //   // default = general purpose SSD
     // const volume = new ec2.Volume(this, 'ProductionEBS', {
