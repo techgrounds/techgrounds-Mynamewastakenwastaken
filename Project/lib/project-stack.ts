@@ -135,30 +135,20 @@ export class ProjectStack extends cdk.Stack {
       // instanceRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonEC2FullAccess'));
     instanceRole2.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'));
 
-    //   // Create production instance
-    // const instance = new ec2.Instance(this, 'Webserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
-    //   vpc: vpc,
-    //   securityGroup: ProductionSG,
-    //   role: instanceRole,
-    //   keyName: 'ProductionKey',
-    // });
-    
-    //   // Create admin instance
-    // const instance2 = new ec2.Instance(this, 'Admninserver', {
-    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
-    //   machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
-    //   vpc: vpc2,
-    //   securityGroup: AdminSG,        
-    //   role: instanceRole2,
-    //   keyName: 'AdminKey',
-    // });
-
     const userDataScript = ec2.UserData.forLinux();
     userDataScript.addCommands(
       readFileSync('./lib/userdata.sh', 'utf8')
     );
+
+      // Create admin instance
+    const instance2 = new ec2.Instance(this, 'Admninserver', {
+      instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+      machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
+      vpc: vpc2,
+      securityGroup: AdminSG,        
+      role: instanceRole2,
+      keyName: 'AdminKey',
+    });
 
     const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
       vpc: vpc,
@@ -232,30 +222,6 @@ export class ProjectStack extends cdk.Stack {
       })
     );
 
-    const WebVault = new backup.CfnBackupVault(this, 'BackupVault', {
-      backupVaultName: 'WebserverBackups',
-    });
-
-    const Backup = new backup.BackupPlan(this, 'WebBackup')
-
-      // Create a backup plan
-      Backup.addRule(new backup.BackupPlanRule ({
-      completionWindow: cdk.Duration.hours(2),
-      startWindow: cdk.Duration.hours(1),
-      deleteAfter: cdk.Duration.days(7),
-      scheduleExpression: cdk.aws_events.Schedule.cron({
-        day: '*',
-        hour: '0',
-        minute: '0',
-      }),
-    }));
-
-    // Backup.addSelection('Selection', {
-    //   resources: [
-    //     backup.BackupResource.fromEc2Instance(instance)
-    //   ]
-    // })
-
     //   // Create an Aurora DB cluster
     // const cluster = new rds.DatabaseCluster(this, 'Database', {
     //   engine: rds.DatabaseClusterEngine.auroraMysql({ 
@@ -271,7 +237,39 @@ export class ProjectStack extends cdk.Stack {
     //   vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_ISOLATED },
     // });
 
+    //   // Create production instance
+    // const instance = new ec2.Instance(this, 'Webserver', {
+    //   instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
+    //   machineImage: ec2.MachineImage.latestAmazonLinux2(),
+    //   vpc: vpc,
+    //   securityGroup: ProductionSG,
+    //   role: instanceRole,
+    //   keyName: 'ProductionKey',
+    // });
+    
+    // const WebVault = new backup.CfnBackupVault(this, 'BackupVault', {
+      //   backupVaultName: 'WebserverBackups',
+      // });
 
+    // const Backup = new backup.BackupPlan(this, 'WebBackup')
+
+    //   // Create a backup plan
+    //   Backup.addRule(new backup.BackupPlanRule ({
+    //   completionWindow: cdk.Duration.hours(2),
+    //   startWindow: cdk.Duration.hours(1),
+    //   deleteAfter: cdk.Duration.days(7),
+    //   scheduleExpression: cdk.aws_events.Schedule.cron({
+    //     day: '*',
+    //     hour: '0',
+    //     minute: '0',
+    //   }),
+    // }));
+
+    // Backup.addSelection('Selection', {
+    //   resources: [
+    //     backup.BackupResource.fromEc2Instance(instance)
+    //   ]
+    // })
 
 
 
