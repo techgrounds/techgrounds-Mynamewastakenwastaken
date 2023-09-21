@@ -145,6 +145,7 @@ export class ProjectStack extends cdk.Stack {
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T2, ec2.InstanceSize.MICRO),
       machineImage: ec2.MachineImage.latestWindows(ec2.WindowsVersion.WINDOWS_SERVER_2019_ENGLISH_FULL_BASE),
       vpc: vpc2,
+      vpcSubnets: { subnetType: ec2.SubnetType.PUBLIC },
       securityGroup: AdminSG,        
       role: instanceRole2,
       keyName: 'AdminKey',
