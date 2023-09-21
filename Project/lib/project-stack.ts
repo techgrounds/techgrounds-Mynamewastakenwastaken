@@ -250,11 +250,11 @@ export class ProjectStack extends cdk.Stack {
       }),
     }));
 
-    Backup.addSelection('Selection', {
-      resources: [
-        backup.BackupResource.fromEc2Instance(instance)
-      ]
-    })
+    // Backup.addSelection('Selection', {
+    //   resources: [
+    //     backup.BackupResource.fromEc2Instance(instance)
+    //   ]
+    // })
 
     //   // Create an Aurora DB cluster
     // const cluster = new rds.DatabaseCluster(this, 'Database', {
