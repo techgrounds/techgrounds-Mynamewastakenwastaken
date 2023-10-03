@@ -91,7 +91,8 @@ export class ProjectStack extends cdk.Stack {
       // Create a security group for Production
     const ProductionSG = new ec2.SecurityGroup(this, 'ProductionAccess', {
         vpc: vpc,
-        description: 'Allow HTTP access and Admin access'
+        description: 'Allow Balancer and Admin access',
+        allowAllOutbound: false
       });
 
       // Create a security group for Admin
