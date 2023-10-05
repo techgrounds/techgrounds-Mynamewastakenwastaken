@@ -169,7 +169,7 @@ export class ProjectStack extends cdk.Stack {
       minCapacity: 1,
       defaultInstanceWarmup: cdk.Duration.minutes(2),
       healthCheck: asg.HealthCheck.elb({
-        grace: cdk.Duration.minutes(1),
+        grace: cdk.Duration.minutes(2),
       })
     });
     
