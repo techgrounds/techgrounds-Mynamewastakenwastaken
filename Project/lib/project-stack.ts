@@ -10,6 +10,7 @@ import * as rds from 'aws-cdk-lib/aws-rds'
 import * as backup from 'aws-cdk-lib/aws-backup';
 import { VpcSubnetGroupType } from 'aws-cdk-lib/cx-api';
 import { HealthCheck } from 'aws-cdk-lib/aws-appmesh';
+import { truncate } from 'fs/promises';
 
 
 export class ProjectStack extends cdk.Stack {
@@ -111,7 +112,7 @@ export class ProjectStack extends cdk.Stack {
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
     // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow inbound HTTPS traffic');
     // ProductionSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow outbound HTTPS traffic');
-    ProductionSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.allTraffic(), 'Allow all outbound traffic');
+    ProductionSG.allowAllOutbound; true
     
     
     //   // !!!!! TESTING REMOVE IN FINAL !!!!!
