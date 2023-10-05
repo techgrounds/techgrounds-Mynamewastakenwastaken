@@ -156,6 +156,7 @@ export class ProjectStack extends cdk.Stack {
 
     const ScalingGroup = new asg.AutoScalingGroup(this, 'ASGWebServer', {
       vpc: vpc,
+      associatePublicIpAddress: true,
       keyName: 'ProductionKey',
       vpcSubnets: {
         subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
