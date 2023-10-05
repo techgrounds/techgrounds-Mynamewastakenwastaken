@@ -111,7 +111,8 @@ export class ProjectStack extends cdk.Stack {
     ProductionSG.addIngressRule(ec2.Peer.ipv4('10.20.20.0/24'), ec2.Port.tcp(3389), 'Allow RDP from 10.20.20.0/24');
     // ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow inbound HTTPS traffic');
     // ProductionSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow outbound HTTPS traffic');
-    // ProductionSG.addEgressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow outbound HTTP traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(80), 'Allow inbound HTTP traffic');
+    ProductionSG.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(443), 'Allow inbound HTTP traffic');
     
     
     //   // !!!!! TESTING REMOVE IN FINAL !!!!!
